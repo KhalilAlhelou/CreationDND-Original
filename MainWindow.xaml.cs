@@ -22,7 +22,10 @@ namespace CreationDND
     {
         public MainWindow()
         {
+
             InitializeComponent();
+            Console.WriteLine("ADASDASDASD");
+
         }
     }
 }
