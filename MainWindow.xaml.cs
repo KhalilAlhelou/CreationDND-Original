@@ -20,8 +20,10 @@ namespace CreationDND
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ViewModel _viewModel;
         public MainWindow()
         {
+            _viewModel = new ViewModel();
             InitializeComponent();
         }
     }
