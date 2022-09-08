@@ -37,7 +37,7 @@ public class raceCharacter
 
     public override string? ToString()
     {
-        return this.idRace +" "+ this.nameRace + " " + this.descRace;
+        return this.idRace + " " + this.nameRace + " " + this.descRace;
     }
 }
 
