@@ -6,7 +6,24 @@
         xmlns:local="clr-namespace:CreationDND"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
-    </Grid>
+	<Grid>
+		<TextBlock FontSize="30" FontWeight="Bold" Margin="64,18,64,0" VerticalAlignment="Top">
+			Création de Personnage de Donjons et Dragons
+		</TextBlock>
+
+		<Image Source="Images\dnd logo.png" Margin="220,92,220,186"/>
+		
+		<Button Name="btn1" Background="LightBlue"
+        BorderBrush="Black" BorderThickness="1"
+        Click="newCharacter" ClickMode="Press" Margin="64,278,597,120">
+			Nouveau Personnage
+		</Button>
+
+		<Button Name="btn2" Background="LightBlue"
+        BorderBrush="Black" BorderThickness="1"
+        Click="viewOldCharacters" ClickMode="Press" Margin="597,278,64,120">
+			Voir Personnages Créés
+		</Button>
+	</Grid>
 </Window>
