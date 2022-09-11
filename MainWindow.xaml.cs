@@ -29,7 +29,6 @@ namespace CreationDND
 
             InitializeComponent();
             dbHandler db = new dbHandler();
-            db.InitializeDB();
             //db.showTable("race");
             raceCharacter raceTmp = db.getRace(122);
             raceCharacter raceTmp2 = db.getRace("Nain de montagne");

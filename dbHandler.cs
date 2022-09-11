@@ -16,10 +16,6 @@ public class dbHandler
 
     }
 
-    public void InitializeDB()
-    {
-        sqlHandler.initializeDB();
-    }
     public void showTable(string tableName)
     {
 
