@@ -11,28 +11,71 @@ public class raceCharacter
     int idRace;
     string nameRace;
     string descRace;
-    public raceCharacter(int idTmp, string nameTmp, string descTmp)
+    public raceCharacter(int idTmp, string nameTmp, string descTmp, int bForce, int bDex, int bConst, int bInt, int bSage, int bChar)
     {
-        this.idRace = idTmp;
-        this.nameRace = nameTmp;
-        this.descRace = descTmp;
+        IDRace = idTmp;
+        NameRace = nameTmp;
+        DescRace = descTmp;
+        BonusForce = bForce;
+        BonusDex = bDex;
+        BonusConst = bConst;
+        BonusInt = bInt;
+        BonusSage = bSage;
+        BonusChar = bChar;
+    }
+    
+    public int IDRace
+    {
+        get;
+        private set;
     }
 
-
-    public int getIdRace()
+    public string NameRace
     {
-
-        return this.idRace;
+        get;
+        private set;
     }
 
-    public string getNameRace()
+    public string DescRace
     {
-        return this.nameRace;
+        get;
+        private set;
     }
 
-    public string getDescRace()
+    public int BonusForce
     {
-        return this.descRace;
+        get;
+        private set;
+    }
+
+    public int BonusDex
+    {
+        get;
+        private set;
+    }
+
+    public int BonusConst
+    {
+        get;
+        private set;
+    }
+
+    public int BonusInt
+    {
+        get;
+        private set;
+    }
+
+    public int BonusSage
+    {
+        get;
+        private set;
+    }
+
+    public int BonusChar
+    {
+        get;
+        private set;
     }
 
     public override string? ToString()
