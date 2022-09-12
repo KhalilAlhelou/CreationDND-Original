@@ -6,7 +6,22 @@
         xmlns:local="clr-namespace:CreationDND"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
-    </Grid>
+	<Grid>
+		<Button Content ="Create New" Margin="149,250,488,134">
+			<Button.Triggers>
+				<EventTrigger RoutedEvent="Button.Click">
+					
+				</EventTrigger>
+			</Button.Triggers>
+		</Button>
+
+		<Button Content ="View " Margin="369,250,268,134">
+			<Button.Triggers>
+				<EventTrigger RoutedEvent="Button.Click">
+					
+				</EventTrigger>
+			</Button.Triggers>
+		</Button>
+	</Grid>
 </Window>
