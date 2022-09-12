@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
 
 	<Grid>
+<<<<<<< HEAD
 		<Button Content ="Create New" Margin="149,250,488,134">
 			<Button.Triggers>
 				<EventTrigger RoutedEvent="Button.Click">
@@ -22,6 +23,24 @@
 					
 				</EventTrigger>
 			</Button.Triggers>
+=======
+		<TextBlock FontSize="30" FontWeight="Bold" Margin="64,18,64,0" VerticalAlignment="Top">
+			Création de Personnage de Donjons et Dragons
+		</TextBlock>
+
+		<Image Source="Images\dnd logo.png" Margin="220,92,220,186"/>
+		
+		<Button Name="btn1" Background="LightBlue"
+        BorderBrush="Black" BorderThickness="1"
+        Click="newCharacter" ClickMode="Press" Margin="64,278,597,120">
+			Nouveau Personnage
+		</Button>
+
+		<Button Name="btn2" Background="LightBlue"
+        BorderBrush="Black" BorderThickness="1"
+        Click="viewOldCharacters" ClickMode="Press" Margin="597,278,64,120">
+			Voir Personnages Créés
+>>>>>>> 68f786da0a42c3ef05f2a0408cca3d3502022ac2
 		</Button>
 	</Grid>
 </Window>

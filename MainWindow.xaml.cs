@@ -20,9 +20,22 @@ namespace CreationDND
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ViewModel _viewModel;
         public MainWindow()
         {
+            _viewModel = new ViewModel();
             InitializeComponent();
+        }
+
+        void newCharacter(object sender, RoutedEventArgs e)
+        {
+            btn1.Background = Brushes.Pink;
+        }
+
+        void viewOldCharacters(object sender, RoutedEventArgs e)
+        {
+            btn2.Background = Brushes.Pink;
+
         }
     }
 }
