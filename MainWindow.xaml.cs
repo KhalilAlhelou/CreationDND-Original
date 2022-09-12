@@ -29,7 +29,9 @@ namespace CreationDND
 
         void newCharacter(object sender, RoutedEventArgs e)
         {
-            btn1.Background = Brushes.Pink;
+            Races pageRaces = new Races();
+            pageRaces.Show();
+            this.Close();
         }
 
         void viewOldCharacters(object sender, RoutedEventArgs e)

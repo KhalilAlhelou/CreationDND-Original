@@ -10,5 +10,6 @@ namespace CreationDND
     class ViewModel
     {
         public Model _model = new Model();
+
     }
 }
