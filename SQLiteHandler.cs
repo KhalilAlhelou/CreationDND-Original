@@ -1,34 +1,35 @@
 ﻿
 using System.Data.SQLite;
 using System.Diagnostics;
-
 using System.Collections.Generic;
-
 using System.IO;
-using System.Windows.Shapes;
-
+using System;
 
 public class SQLiteHandler
 {
     string SQLpath;
     public SQLiteHandler()
     {
-        string path = "../../Data/dbCharacter.sqlite";
+        string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/dbCharacter.sqlite";
+        //string path = "Data/dbCharacter.sqlite";
         SQLpath = "Data Source=" + path + ";Version=3;";
         initializeDB(path);
 
 }
     public void initializeDB(string path)
     {
-
+        
         if (!File.Exists(path))
         {
+            DirectoryInfo di = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/");
+            di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+
             Debug.WriteLine("DB is being created");
             SQLiteConnection.CreateFile(path);
 
             SQLiteConnection m_dbConnection = new SQLiteConnection(SQLpath);
-            string insertionRacePath = "../../Data/insertionRace.sql";
-            string insertionRaceContents = File.ReadAllText(insertionRacePath);
+
+            string insertionRaceContents = File.ReadAllText("insertionRace.sql");
 
             m_dbConnection.Open();
 
@@ -85,7 +86,7 @@ public class SQLiteHandler
             if (rdr.GetString(1).ToLower() == raceName.ToLower())
             {
 
-                return new raceCharacter(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2));
+                return new raceCharacter(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2),0,0,0,0,0,0);
             }
         }
 
@@ -110,7 +111,7 @@ public class SQLiteHandler
             if (rdr.GetInt32(0) == raceId)
             {
 
-                return new raceCharacter(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2));
+                return new raceCharacter(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), 0, 0, 0, 0, 0, 0);
             }
         }
 
@@ -132,7 +133,7 @@ public class SQLiteHandler
         {
 
 
-                listRace.Add(new raceCharacter(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2)));
+                listRace.Add(new raceCharacter(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2),0,0,0,0,0,0));
             
         }
 

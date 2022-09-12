@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 
 public class raceCharacter
 {
-    int idRace;
-    string nameRace;
-    string descRace;
+
     public raceCharacter(int idTmp, string nameTmp, string descTmp, int bForce, int bDex, int bConst, int bInt, int bSage, int bChar)
     {
         IDRace = idTmp;
@@ -78,9 +76,5 @@ public class raceCharacter
         private set;
     }
 
-    public override string? ToString()
-    {
-        return this.idRace + " " + this.nameRace + " " + this.descRace;
-    }
 }
 
