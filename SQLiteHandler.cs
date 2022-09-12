@@ -76,7 +76,7 @@ public class SQLiteHandler
         using var con = new SQLiteConnection(SQLpath);
         con.Open();
 
-        string stm = "SELECT * FROM race WHERE name ='" + raceName + "'";
+        string stm = "SELECT * FROM race WHERE nameR ='" + raceName + "'";
 
         using var cmd = new SQLiteCommand(stm, con);
         using SQLiteDataReader rdr = cmd.ExecuteReader();
@@ -99,7 +99,7 @@ public class SQLiteHandler
         using var con = new SQLiteConnection(SQLpath);
         con.Open();
 
-        string stm = "SELECT * FROM race WHERE id ='" + raceId + "'";
+        string stm = "SELECT * FROM race WHERE idR ='" + raceId + "'";
 
         using var cmd = new SQLiteCommand(stm, con);
         using SQLiteDataReader rdr = cmd.ExecuteReader();
