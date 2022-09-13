@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+[assembly:InternalsVisibleTo("TestCreationDND")]
 
-
-namespace CreationDND
+namespace Model
 {
     class Race
     {
@@ -29,6 +30,11 @@ namespace CreationDND
             this.bInt = _race.bInt;
             this.bSage = _race.bSage;
             this.bChar = _race.bChar;
+        }
+
+        internal bool? comparerARaceDTO(RaceDTO raceDTO)
+        {
+            if(nom != raceDTO.nom || description != raceDTO.description || bForce != raceDTO.bForce)
         }
     }
 }

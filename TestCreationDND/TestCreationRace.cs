@@ -1,5 +1,6 @@
 using NUnit.Framework;
-using CreationDND;
+using Model;
+
 
 namespace TestCreationDND
 {
@@ -27,7 +28,7 @@ namespace TestCreationDND
         {
             raceDTO = new RaceDTO(1, "Test", "DescTest", 1, 1, 1, 1, 1, 1);
             race = new Race(raceDTO);
-            Assert.IsTrue(race.comparerRaceARaceDTO(raceDTO));
+            Assert.IsTrue(race.comparerARaceDTO(raceDTO));
         }
     }
 }
