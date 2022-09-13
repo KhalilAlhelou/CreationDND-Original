@@ -34,7 +34,12 @@ namespace Model
 
         internal bool? comparerARaceDTO(RaceDTO raceDTO)
         {
-            if(nom != raceDTO.nom || description != raceDTO.description || bForce != raceDTO.bForce)
+            if(nom != raceDTO.nom || description != raceDTO.description || bForce != raceDTO.bForce || bDex != raceDTO.bDex || bConst != raceDTO.bConst || bInt != raceDTO.bInt || bSage != raceDTO.bSage || bChar != raceDTO.bChar)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
