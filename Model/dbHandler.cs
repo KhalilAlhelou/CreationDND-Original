@@ -34,7 +34,37 @@ public class dbHandler
     {
         return sqlHandler.getRace(raceName);
     }
-}
+
+    public RaceDTO getRaceBonusForce(int bonusForce)
+    {
+        return sqlHandler.getRaceBonusForce(bonusForce);
+    }
+
+    public RaceDTO getRaceBonusDex(int bonusDex)
+    {
+        return sqlHandler.getRaceBonusDex(bonusDex);
+    }
+
+   public RaceDTO getRaceBonusConst(int bonusConst)
+   {
+        return sqlHandler.getRaceBonusConst(bonusConst);
+   }
+
+   public RaceDTO getRaceBonusInt(int bonusInt)
+   {
+        return sqlHandler.getRaceBonusInt(bonusInt);
+   }
+   public RaceDTO getRaceBonusSage(int bonusSage)
+   {
+        return sqlHandler.getRaceBonusSage(bonusSage);
+   }
+   public RaceDTO getRaceBonusChar(int bonusChar)
+   {
+        return sqlHandler.getRaceBonusChar(bonusChar);
+   }
+
+
+    }
 
 
 
