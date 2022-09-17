@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <None Remove="Images\dnd logo.png" />
+    <None Remove="Images\highelf.png" />
+    <None Remove="Images\WOOD-ELF-2.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Images\dnd logo.png" />
+    <Resource Include="Images\highelf.png" />
+    <Resource Include="Images\WOOD-ELF-2.png" />
   </ItemGroup>
 
 </Project>
