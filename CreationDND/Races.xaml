@@ -8,7 +8,7 @@
         Title="Races" Height="450" Width="800">
     <Grid>
 
-        <Image x:Name="img" Source="\Images\dnd logo.png" Margin="85,75,442,167"></Image>
+        <Image x:Name="img" Source="\Images\dnd logo.png" Margin="264,79,264,163"></Image>
 
         <ComboBox Margin="122,325,122,55" x:Name="ComboBox1" SelectionChanged="comboBox_ChangerImage">
         </ComboBox>
