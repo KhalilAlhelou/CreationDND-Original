@@ -7,7 +7,8 @@ using System.Windows.Ink;
 //using static raceCharacter;
 //using static SQLiteHandler;
 
-
+namespace Model
+{
 public class dbHandler
 {
     SQLiteHandler sqlHandler = new SQLiteHandler();
@@ -34,6 +35,8 @@ public class dbHandler
     {
         return sqlHandler.getRace(raceName);
     }
+}
+
 
 
 }
