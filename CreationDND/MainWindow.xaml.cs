@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 //using static dbHandler;
 //using static raceCharacter;
 
@@ -29,10 +30,7 @@ namespace CreationDND
         {
             
             InitializeComponent();
-            dbHandler db = new dbHandler();
-            //db.showTable("race");
-            List<raceCharacter> listTmp = db.getAllRace();
-            //Debug.WriteLine(raceTmp2);
+            
             
         }
     }

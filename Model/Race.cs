@@ -22,19 +22,19 @@ namespace Model
 
         public Race(RaceDTO _race)
         {
-            this.nom = _race.nom;
-            this.description = _race.description;
-            this.bForce = _race.bForce;
-            this.bDex = _race.bDex;
-            this.bConst = _race.bConst;
-            this.bInt = _race.bInt;
-            this.bSage = _race.bSage;
-            this.bChar = _race.bChar;
+            this.nom = _race.NameRace;
+            this.description = _race.DescRace;
+            this.bForce = _race.BonusForce;
+            this.bDex = _race.BonusDex;
+            this.bConst = _race.BonusConst;
+            this.bInt = _race.BonusInt;
+            this.bSage = _race.BonusSage;
+            this.bChar = _race.BonusChar;
         }
 
         internal bool? comparerARaceDTO(RaceDTO raceDTO)
         {
-            if(nom != raceDTO.nom || description != raceDTO.description || bForce != raceDTO.bForce || bDex != raceDTO.bDex || bConst != raceDTO.bConst || bInt != raceDTO.bInt || bSage != raceDTO.bSage || bChar != raceDTO.bChar)
+            if (nom != raceDTO.NameRace || description != raceDTO.DescRace || bForce != raceDTO.BonusForce || bDex != raceDTO.BonusDex || bConst != raceDTO.BonusConst || bInt != raceDTO.BonusInt || bSage != raceDTO.BonusSage || bChar != raceDTO.BonusChar)
             {
                 return false;
             }

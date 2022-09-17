@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Ink;
 //using static raceCharacter;
 //using static SQLiteHandler;
 
@@ -22,16 +21,16 @@ public class dbHandler
 
         sqlHandler.showTable(tableName);
     }
-    public List<raceCharacter> getAllRace()
+    public List<RaceDTO> getAllRace()
     {
         return sqlHandler.getAllRace();
     }
 
-    public raceCharacter getRace(int raceId)
+    public RaceDTO getRace(int raceId)
     {
         return sqlHandler.getRace(raceId);
     }
-    public raceCharacter getRace(string raceName)
+    public RaceDTO getRace(string raceName)
     {
         return sqlHandler.getRace(raceName);
     }

@@ -44,10 +44,6 @@ namespace Model
             else {
                 Debug.WriteLine("DB is being read");  
                 }
-
-       
-
-       
         }
 
         public void showTable(string tableName)
@@ -72,7 +68,7 @@ namespace Model
             }
         }
 
-        public raceCharacter getRace(string raceName)
+        public RaceDTO getRace(string raceName)
         {
 
             using var con = new SQLiteConnection(SQLpath);
@@ -88,14 +84,14 @@ namespace Model
                 if (rdr.GetString(1).ToLower() == raceName.ToLower())
                 {
 
-                    return new raceCharacter(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2),0,0,0,0,0,0);
+                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2),0,0,0,0,0,0);
                 }
             }
 
             return null;
         }
 
-        public raceCharacter getRace(int raceId)
+        public RaceDTO getRace(int raceId)
         {
 
             using var con = new SQLiteConnection(SQLpath);
@@ -113,16 +109,16 @@ namespace Model
                 if (rdr.GetInt32(0) == raceId)
                 {
 
-                    return new raceCharacter(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), 0, 0, 0, 0, 0, 0);
+                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), 0, 0, 0, 0, 0, 0);
                 }
             }
 
             return null;
         }
 
-        public List<raceCharacter> getAllRace()
+        public List<RaceDTO> getAllRace()
         {
-            List<raceCharacter> listRace = new List<raceCharacter>();
+            List<RaceDTO> listRace = new List<RaceDTO>();
             using var con = new SQLiteConnection(SQLpath);
             con.Open();
 
@@ -135,7 +131,7 @@ namespace Model
             {
 
 
-                    listRace.Add(new raceCharacter(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2),0,0,0,0,0,0));
+                    listRace.Add(new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2),0,0,0,0,0,0));
             
             }
 
