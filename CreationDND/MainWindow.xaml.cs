@@ -14,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
 //using static dbHandler;
 //using static raceCharacter;
 
@@ -30,8 +29,7 @@ namespace CreationDND
         {
             
             InitializeComponent();
-            
-            
+
         }
     }
 }
