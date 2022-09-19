@@ -1,5 +1,6 @@
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "race" (
+DROP TABLE IF EXISTS "race";
+CREATE TABLE "race" (
 	"idR"	int,
 	"nameR"	varchar(100),
 	"descR"	varchar(500),
