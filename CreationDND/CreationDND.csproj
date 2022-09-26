@@ -17,6 +17,15 @@
     <Resource Include="Images\dnd logo.png" />
     <Resource Include="Images\highelf.png" />
     <Resource Include="Images\WOOD-ELF-2.png" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.8" />
+    <PackageReference Include="SQLite" Version="3.13.0" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.116" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="insertionRace.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

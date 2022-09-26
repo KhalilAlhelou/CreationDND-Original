@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
+//using static dbHandler;
+//using static raceCharacter;
+
 namespace CreationDND
 {
     /// <summary>
@@ -20,11 +25,13 @@ namespace CreationDND
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ViewModel _viewModel;
+        
         public MainWindow()
         {
-            _viewModel = new ViewModel();
+            
             InitializeComponent();
+            
+            
         }
 
         void newCharacter(object sender, RoutedEventArgs e)
