@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class Personnage
+    public class Personnage
     {
         private String nom = "";
         private Race race;
-        // private Classe classe;
+        private Classe classe;
         private int force = 0;
         private int dexterite = 0;
         private int constitution = 0;

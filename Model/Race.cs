@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class Race
+    public class Race
     {
         private String nom;
         private String description;
