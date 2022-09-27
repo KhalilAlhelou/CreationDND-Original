@@ -13,7 +13,10 @@ namespace TestCreationDND
         [SetUp]
         public void Setup()
         {
-
+            model = new Models();
         }
+
+        [Test]
+        public void CreationDUnPersonnageAPartirDUneRace()
     }
 }

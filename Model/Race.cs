@@ -11,14 +11,14 @@ namespace Model
 {
     public class Race
     {
-        private String nom;
-        private String description;
-        private int bForce;
-        private int bDex;
-        private int bConst;
-        private int bInt;
-        private int bSage;
-        private int bChar;
+        public string nom { get; private set; }
+        public string description { get; private set; }
+        public int bForce { get; private set; }
+        public int bDex { get; private set; }
+        public int bConst { get; private set; }
+        public int bInt { get; private set; }
+        public int bSage { get; private set; }
+        public int bChar { get; private set; }
 
         public Race(RaceDTO _race)
         {
@@ -31,6 +31,8 @@ namespace Model
             this.bSage = _race.BonusSage;
             this.bChar = _race.BonusChar;
         }
+
+
 
         internal bool? comparerARaceDTO(RaceDTO raceDTO)
         {

@@ -11,7 +11,7 @@ namespace Model
 {
     public class Personnage
     {
-        private String nom = "";
+        private string nom = "";
         private Race race;
         private Classe classe;
         private int force = 0;
@@ -30,6 +30,13 @@ namespace Model
         public Personnage(Race _race)
         {
             race = _race;
+            force += race.bForce;
+            dexterite += race.bDex;
+            constitution += race.bConst;
+            intelligence += race.bInt;
+            sagesse += race.bSage;
+            charisme += race.bChar;
+            calculerTousLesModificateurs();
 
         }
 
