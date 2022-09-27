@@ -7,10 +7,32 @@
         mc:Ignorable="d"
         Title="Races" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="450"/>
+        </Grid.RowDefinitions>
 
-        <Image x:Name="img" Source="\Images\dnd logo.png" Margin="264,79,264,163"></Image>
+        <StackPanel Grid.Column="0">
+            <DockPanel Height="433">
+                <Image x:Name="img" Source="\Images\dnd logo.png" Height="143" Width="234" Margin="100, 0, 60, 200"/>
+                <ComboBox x:Name="ComboBox1" SelectionChanged="comboBox_AfficherRace" Height="34" Width="222" Margin="-400, 150, 0, 0" ItemsSource="{Binding listeRaces}"/>
+            </DockPanel>
+        </StackPanel>
 
-        <ComboBox Margin="122,325,122,55" x:Name="ComboBox1" SelectionChanged="comboBox_ChangerImage" SelectionChanged="comboBox_AfficherRace>
-        </ComboBox>
+        <StackPanel Grid.Column="1" Margin="0,0,0,10">
+            
+            <DockPanel Height="299" Width="403" Grid.Row="0">
+                <TextBlock x:Name="TextBlockDescription" Text="{Binding descriptionRaceSelectionnee}" Margin="0,0, 0, 60" Width="400" Height="301"/>
+            </DockPanel>
+            
+            <DockPanel Height="135" Width="400">
+                <Button x:Name="choisirRaceSelectionnee" Height="60" Margin="0,0, 0, 0" Width="160" Content="Choisir race"/>
+            </DockPanel>
+            
+        </StackPanel>
+
     </Grid>
 </Window>
