@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace Model {
 
-    class Models
+    public class Models
     {
         public dbHandler db;
         public Models()

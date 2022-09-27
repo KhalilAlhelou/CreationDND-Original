@@ -20,51 +20,21 @@ namespace CreationDND
     /// </summary>
     public partial class Races : Window
     {
-        public enum enumRaces
-        {
-            Haut_elfe,
-            elfe_sylvestre
-        }
-
         public Races()
         {
             InitializeComponent();
-            foreach (enumRaces valeurs in Enum.GetValues(typeof(enumRaces)))
-            {
-                ComboBox1.Items.Add(valeurs);
-            }
 
-            //ComboBox1.ItemsSource = Enum.GetValues(typeof(enumRaces)).Cast<enumRaces>();
         }
 
-        public void comboBox_ChangerImage(object sender, SelectionChangedEventArgs e)
+        private void comboBox_ChangerImage()
         {
-            
-            ComboBox cmb = sender as ComboBox;
-            ComboBoxItem iter = cmb.SelectedItem as ComboBoxItem;
-            if (iter != null)
-            {
-                string chaine = ((ComboBoxItem)cmb.SelectedItem).Content.ToString();
-                enumRaces selectedValues = Enum.Parse<enumRaces>(chaine);
 
-                switch (selectedValues)
-                {
-                    case enumRaces.Haut_elfe:
-                        img.Source = new BitmapImage(new Uri("/Images/highelf.png", UriKind.Relative));
-                        break;
-
-                    case enumRaces.elfe_sylvestre:
-                        img.Source = new BitmapImage(new Uri("/Images/WOOD-ELF-2.png", UriKind.Relative));
-                        break;
-
-                    default:
-                        throw new Exception("Pas d'image");
-                }
-
-            }
         }
 
+        private void comboBox_AfficherRace()
+        {
 
+        }
     }
 
 }
