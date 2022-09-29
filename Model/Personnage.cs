@@ -11,21 +11,21 @@ namespace Model
 {
     public class Personnage
     {
-        private string nom = "";
-        private Race race;
-        private Classe classe;
-        private int force = 0;
-        private int dexterite = 0;
-        private int constitution = 0;
-        private int intelligence = 0;
-        private int sagesse = 0;
-        private int charisme = 0;
-        private int modForce = 0;
-        private int modDexterite = 0;
-        private int modConstitution = 0;
-        private int modIntelligence = 0;
-        private int modSagesse = 0;
-        private int modCharisme = 0;
+        public string nom { get; private set; } = "";
+        public Race race { get; private set; }
+        public Classe classe { get; private set; } = null;
+        public int force { get; private set; } = 0;
+        public int dexterite { get; private set; } = 0;
+        public int constitution { get; private set; } = 0;
+        public int intelligence { get; private set; } = 0;
+        public int sagesse { get; private set; } = 0;
+        public int charisme { get; private set; } = 0;
+        public int modForce { get; private set; } = 0;
+        public int modDexterite { get; private set; } = 0;
+        public int modConstitution { get; private set; } = 0;
+        public int modIntelligence { get; private set; } = 0;
+        public int modSagesse { get; private set; } = 0;
+        public int modCharisme { get; private set; } = 0;
 
         public Personnage(Race _race)
         {
