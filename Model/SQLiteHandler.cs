@@ -31,7 +31,7 @@ namespace Model
 
                 SQLiteConnection m_dbConnection = new SQLiteConnection(SQLpath);
 
-                string insertionRaceContents = File.ReadAllText("insertionRace.sql");
+                string insertionRaceContents = File.ReadAllText("insertionScript.sql");
 
                 m_dbConnection.Open();
 
