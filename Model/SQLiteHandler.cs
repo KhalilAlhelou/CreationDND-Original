@@ -31,7 +31,7 @@ namespace Model
 
                 SQLiteConnection m_dbConnection = new SQLiteConnection(SQLpath);
 
-                string insertionRaceContents = File.ReadAllText("insertionRace.sql");
+                string insertionRaceContents = File.ReadAllText("insertionScript.sql");
 
                 m_dbConnection.Open();
 
@@ -84,13 +84,99 @@ namespace Model
                 if (rdr.GetString(1).ToLower() == raceName.ToLower())
                 {
 
-                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2),0,0,0,0,0,0);
+                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8));
                 }
             }
 
             return null;
         }
+/**
+        public RaceDTO getClass(string className)
+        {
 
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM class WHERE nameC ='" + className + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                //for each attribute, add to list, getClass -> ID using an array of split on ";"
+                    return null; //todo
+                
+            }
+
+            return null;
+        }
+
+        public RaceDTO getClass(int classID)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM class WHERE idC ='" + classID + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+                return null; //todo
+
+            }
+
+            return null;
+        }
+
+        public RaceDTO getAttribute(string attributeName)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM attribute WHERE nameAttr ='" + attributeName + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+      
+
+                    return null; //todo
+                
+            }
+
+            return null;
+        }
+
+        public RaceDTO getAttribute(int attributeID)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM attribute WHERE idAttr ='" + attributeID + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+
+                return null; //todo
+
+            }
+
+            return null;
+        }
+**/
         public RaceDTO getRace(int raceId)
         {
 
@@ -109,7 +195,158 @@ namespace Model
                 if (rdr.GetInt32(0) == raceId)
                 {
 
-                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), 0, 0, 0, 0, 0, 0);
+                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8));
+                }
+            }
+
+            return null;
+        }
+
+
+        public RaceDTO getRaceBonusForce(int bonusForce)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM race WHERE bForceR ='" + bonusForce + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+
+                if (rdr.GetInt32(3) == bonusForce)
+                {
+
+                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8));
+                }
+            }
+
+            return null;
+        }
+
+        public RaceDTO getRaceBonusDex(int bonusDex)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM race WHERE bDexR ='" + bonusDex + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+
+                if (rdr.GetInt32(4) == bonusDex)
+                {
+
+                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8));
+                }
+            }
+
+            return null;
+        }
+
+        public RaceDTO getRaceBonusConst(int bonusConst)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM race WHERE bConstR ='" + bonusConst + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+
+                if (rdr.GetInt32(5) == bonusConst)
+                {
+
+                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8));
+                }
+            }
+
+            return null;
+        }
+
+        public RaceDTO getRaceBonusInt(int bonusInt)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM race WHERE bIntR ='" + bonusInt + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+
+                if (rdr.GetInt32(6) == bonusInt)
+                {
+
+                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8));
+                }
+            }
+
+            return null;
+        }
+
+        public RaceDTO getRaceBonusSage(int bonusSage)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM race WHERE bSageR ='" + bonusSage + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+
+                if (rdr.GetInt32(7) == bonusSage)
+                {
+
+                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8));
+                }
+            }
+
+            return null;
+        }
+
+        public RaceDTO getRaceBonusChar(int bonusChar)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM race WHERE bCharR ='" + bonusChar + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+
+                if (rdr.GetInt32(8) == bonusChar)
+                {
+
+                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8));
                 }
             }
 
@@ -131,7 +368,7 @@ namespace Model
             {
 
 
-                    listRace.Add(new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2),0,0,0,0,0,0));
+                    listRace.Add(new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8)));
             
             }
 

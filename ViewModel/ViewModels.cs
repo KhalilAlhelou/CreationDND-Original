@@ -14,6 +14,11 @@ namespace ViewModel
 {
     public class ViewModels : INotifyPropertyChanged
     {
+
+        private static ViewModels _instance = new ViewModels();
+
+        public static ViewModels Instance { get { return _instance; } }
+
         public Models models;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -22,7 +27,7 @@ namespace ViewModel
         //public ObservableCollection<Classe> listeClasses { get; set; }
         public string descriptionRaceSelectionnee { get; set; }
 
-        public ViewModels()
+        private ViewModels()
         {
             models = new Models();
             listeRaces = models.obtenirRaces();
