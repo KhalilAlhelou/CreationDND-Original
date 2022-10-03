@@ -32,5 +32,12 @@ namespace TestCreationDND
             race = new Race(raceDTO);
             Assert.IsTrue(race.comparerARaceDTO(raceDTO));
         }
+
+        [Test]
+        public void TestCreationListeAPartirDeBD()
+        {
+            ObservableCollection<Race> listeRaces = model.obtenirRaces();
+            Assert.IsNotNull(listeRaces);
+        }
     }
 }

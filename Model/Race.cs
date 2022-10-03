@@ -32,7 +32,17 @@ namespace Model
             this.bChar = _race.BonusChar;
         }
 
-
+        public Race(string nom, string description, int bForce, int bDex, int bConst, int bInt, int bSage, int bChar)
+        {
+            this.nom = nom;
+            this.description = description;
+            this.bForce = bForce;
+            this.bDex = bDex;
+            this.bConst = bConst;
+            this.bInt = bInt;
+            this.bSage = bSage;
+            this.bChar = bChar;
+        }
 
         internal bool? comparerARaceDTO(RaceDTO raceDTO)
         {

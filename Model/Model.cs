@@ -12,16 +12,11 @@ namespace Model {
         public Models()
         {
             db = new dbHandler();
-            //db.showTable("race");
-            List<RaceDTO> listTmp = db.getAllRace();
-            //Debug.WriteLine(raceTmp2);
         }
 
         public ObservableCollection<Race> obtenirRaces()
         {
             List<RaceDTO> listeDTO = db.getAllRace();
-            listeDTO.Add(new RaceDTO(1, "1", "1", 1, 1, 1, 1, 1, 1));
-
             ObservableCollection<Race> listeRaces = new ObservableCollection<Race>();
 
             foreach (RaceDTO raceDTO in listeDTO)
@@ -31,6 +26,22 @@ namespace Model {
 
             return listeRaces;
         }
+
+        public ObservableCollection<Classe> obtenirClasse()
+        {
+            List<ClasseDTO> listeDTO = new List<ClasseDTO>();
+
+            ObservableCollection<Classe> listeClasses = new ObservableCollection<Classe>();
+
+            foreach (ClasseDTO classeDTO in listeDTO)
+            {
+                listeClasses.Add(new Classe(classeDTO));
+            }
+
+            return listeClasses;
+
+        }
+
 
     }
 }
