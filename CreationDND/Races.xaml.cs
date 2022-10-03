@@ -30,7 +30,7 @@ namespace CreationDND
         public Races()
         {
             InitializeComponent();
-            _viewModel = new ViewModels();
+            _viewModel = ViewModels.Instance;
             DataContext = _viewModel;
         }
 
