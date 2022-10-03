@@ -104,7 +104,7 @@ namespace Model
 
             while (rdr.Read())
             {
-                
+                //for each attribute, add to list, getClass -> ID using an array of split on ";"
                     return null; //todo
                 
             }
