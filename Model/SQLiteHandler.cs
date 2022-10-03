@@ -90,7 +90,93 @@ namespace Model
 
             return null;
         }
+/**
+        public RaceDTO getClass(string className)
+        {
 
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM class WHERE nameC ='" + className + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                
+                    return null; //todo
+                
+            }
+
+            return null;
+        }
+
+        public RaceDTO getClass(int classID)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM class WHERE idC ='" + classID + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+                return null; //todo
+
+            }
+
+            return null;
+        }
+
+        public RaceDTO getAttribute(string attributeName)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM attribute WHERE nameAttr ='" + attributeName + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+      
+
+                    return null; //todo
+                
+            }
+
+            return null;
+        }
+
+        public RaceDTO getAttribute(int attributeID)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM attribute WHERE idAttr ='" + attributeID + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+
+                return null; //todo
+
+            }
+
+            return null;
+        }
+**/
         public RaceDTO getRace(int raceId)
         {
 
