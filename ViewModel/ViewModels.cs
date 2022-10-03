@@ -19,12 +19,15 @@ namespace ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<Race> listeRaces { get; set; }
+        //public ObservableCollection<Classe> listeClasses { get; set; }
         public string descriptionRaceSelectionnee { get; set; }
 
         public ViewModels()
         {
             models = new Models();
             listeRaces = models.obtenirRaces();
+            //listeClasses = models.obtenirClasse();
+
         }
 
         public void OnPropertyChange(string name)
@@ -40,5 +43,14 @@ namespace ViewModel
             OnPropertyChange("descriptionRaceSelectionnee");
 
         }
+
+       /* public void afficherClasse(object raceSelectionnee)
+        {
+            Classe class = raceSelectionnee as Classe;
+            descriptionClasseSelectionnee = class.description;
+
+            OnPropertyChange("descriptionClasseSelectionnee");
+
+        }*/
     }
 }
