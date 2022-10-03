@@ -11,15 +11,19 @@ namespace Model
 {
     public class Classe
     {
-        private string nom;
-        private string description;
-        private int pvNiveau1;
-        private bool estLanceurSort;
-        private List<Attribut> listeAttributs;
+        public string nom { get; private set; }
+        public string description { get; private set; }
+        public int pvNiveau1 { get; private set; }
+        public bool estLanceurSort { get; private set; }
+        public List<Attribut> listeAttributs { get; private set; }
 
-        public Classe (ClasseDTO classeDTO)
+        public Classe (ClassDTO classeDTO)
         {
-            
+            this.nom = classeDTO.Nom;
+            this.description = classeDTO.Description;
+            this.pvNiveau1 = classeDTO.HpLvl1;
+            this.estLanceurSort = classeDTO.SpellCaster;
+            this.listeAttributs = new List<Attribut>();
         }
 
         public Classe(string nom, string description, int pvNiveau1, bool estLanceurSort, List<Attribut> listeAttributs)

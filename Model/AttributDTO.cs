@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Attributs
+    public class AttributDTO
     {
-        public Attributs (string nomAttribut, string descriptionAttribut)
+        public AttributDTO (string nomAttribut, string descriptionAttribut)
         {
 
             NomAttribut = nomAttribut;

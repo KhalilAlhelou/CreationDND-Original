@@ -14,25 +14,28 @@ namespace ViewModel
 {
     public class ViewModels : INotifyPropertyChanged
     {
-
-        private static ViewModels _instance = new ViewModels();
-
-        public static ViewModels Instance { get { return _instance; } }
-
         public Models models;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<Race> listeRaces { get; set; }
-        //public ObservableCollection<Classe> listeClasses { get; set; }
-        public string descriptionRaceSelectionnee { get; set; }
+        public ObservableCollection<Classe> listeClasses { get; set; }
+        public string descriptionRaceSelectionnee { get; set; } 
+        public string descriptionClasseSelectionne { get; set; }
 
         private ViewModels()
         {
             models = new Models();
             listeRaces = models.obtenirRaces();
-            //listeClasses = models.obtenirClasse();
+            listeClasses = models.obtenirClasse();
 
+        }
+
+       private static ViewModels _instance = new ViewModels();
+
+        public static ViewModels getInstance
+        {
+            get { return _instance; }
         }
 
         public void OnPropertyChange(string name)
@@ -49,13 +52,15 @@ namespace ViewModel
 
         }
 
-       /* public void afficherClasse(object raceSelectionnee)
+        public void afficherClasse(object classeSelectionnee)
         {
-            Classe class = raceSelectionnee as Classe;
-            descriptionClasseSelectionnee = class.description;
+            Classe classe = classeSelectionnee as Classe;
+            descriptionClasseSelectionne = classe.description;
 
-            OnPropertyChange("descriptionClasseSelectionnee");
+            OnPropertyChange("descriptionClasseSelectionne");
 
-        }*/
-    }
+        }
+
+    }   
 }
+

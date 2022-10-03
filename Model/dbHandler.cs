@@ -8,60 +8,30 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-public class dbHandler
-{
-    SQLiteHandler sqlHandler = new SQLiteHandler();
-    public dbHandler()
+    public class dbHandler
     {
+        SQLiteHandler sqlHandler = new SQLiteHandler();
+        public dbHandler()
+        {
 
-    }
+        }
 
-    public void showTable(string tableName)
-    {
+        public void showTable(string tableName)
+        {
 
-        sqlHandler.showTable(tableName);
-    }
-    public List<RaceDTO> getAllRace()
-    {
-        return sqlHandler.getAllRace();
-    }
+            sqlHandler.showTable(tableName);
+        }
+        public List<RaceDTO> getAllRace()
+        {
+            return sqlHandler.getAllRace();
+        }
 
-    public RaceDTO getRace(int raceId)
-    {
-        return sqlHandler.getRace(raceId);
-    }
-    public RaceDTO getRace(string raceName)
-    {
-        return sqlHandler.getRace(raceName);
-    }
+        public List<ClassDTO> getAllClasse()
+        {
+            return sqlHandler.getAllClasse();
+        }
 
-    public RaceDTO getRaceBonusForce(int bonusForce)
-    {
-        return sqlHandler.getRaceBonusForce(bonusForce);
-    }
-
-    public RaceDTO getRaceBonusDex(int bonusDex)
-    {
-        return sqlHandler.getRaceBonusDex(bonusDex);
-    }
-
-   public RaceDTO getRaceBonusConst(int bonusConst)
-   {
-        return sqlHandler.getRaceBonusConst(bonusConst);
-   }
-
-   public RaceDTO getRaceBonusInt(int bonusInt)
-   {
-        return sqlHandler.getRaceBonusInt(bonusInt);
-   }
-   public RaceDTO getRaceBonusSage(int bonusSage)
-   {
-        return sqlHandler.getRaceBonusSage(bonusSage);
-   }
-   public RaceDTO getRaceBonusChar(int bonusChar)
-   {
-        return sqlHandler.getRaceBonusChar(bonusChar);
-   }
+       
 
 
     }

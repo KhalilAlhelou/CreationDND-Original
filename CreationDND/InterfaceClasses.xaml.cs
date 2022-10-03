@@ -25,22 +25,22 @@ namespace CreationDND
         public InterfaceClasses()
         {
             InitializeComponent();
-            _viewModel = new ViewModels();
+            _viewModel = ViewModels.getInstance;
             DataContext = _viewModel;
         }
 
         /*private void comboBoxRaces_ChangerImage()
         {
 
-        }
+        }*/
 
-         private void comboBox_AfficherClasse(object sender, SelectionChangedEventArgs e)
+         private void comboBox_AfficherClasses(object sender, SelectionChangedEventArgs e)
           {
-              if (ComboBox1.SelectedItem != null)
+              if (ComboBox2.SelectedItem != null)
               {
-                 // _viewModel.afficherClasse(ComboBox1.SelectedItem);
+                 _viewModel.afficherClasse(ComboBox2.SelectedItem);
               }
               //comboBoxRaces_ChangerImage();
-          }*/
+          }
     }
 }

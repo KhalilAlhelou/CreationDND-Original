@@ -9,7 +9,7 @@ namespace Model
 {
     public class ClassDTO
     {
-        public ClassDTO (string nom, string description, int hpLvl1, bool estSpellCaster, int bonusMaitrise, List<Attributs> attributs)
+        public ClassDTO (string nom, string description, int hpLvl1, bool estSpellCaster, int bonusMaitrise, List<AttributDTO> attributs)
         {
             Nom = nom;
             Description = description;
@@ -48,7 +48,7 @@ namespace Model
             private set;
         }
 
-        public List<Attributs> ListeAttributs
+        public List<AttributDTO> ListeAttributs
         {
             get;
             private set;
