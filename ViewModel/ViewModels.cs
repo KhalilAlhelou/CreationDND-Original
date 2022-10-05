@@ -45,7 +45,8 @@ namespace ViewModel
 
         public void ajouterRace(object selectedItem)
         {
-            throw new NotImplementedException();
+            Race race = (Race)selectedItem;
+            models.ajouterLaRace(race);
         }
 
         public void afficherRace(object raceSelectionnee)

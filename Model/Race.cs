@@ -4,12 +4,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 [assembly:InternalsVisibleTo("TestCreationDND")]
 
 namespace Model
 {
-    public class Race
+    public class Race : ISauvergardeXML
     {
         public string nom { get; private set; }
         public string description { get; private set; }
@@ -44,6 +45,11 @@ namespace Model
             this.bChar = bChar;
         }
 
+        public Race(XmlElement element)
+        {
+
+        }
+
         internal bool? comparerARaceDTO(RaceDTO raceDTO)
         {
             if (nom != raceDTO.NameRace || description != raceDTO.DescRace || bForce != raceDTO.BonusForce || bDex != raceDTO.BonusDex || bConst != raceDTO.BonusConst || bInt != raceDTO.BonusInt || bSage != raceDTO.BonusSage || bChar != raceDTO.BonusChar)
@@ -58,6 +64,27 @@ namespace Model
         {
             return nom;
 
+        }
+
+        public XmlNode toXMl(XmlDocument doc)
+        {
+            XmlElement elementRace = doc.CreateElement("Race");
+            elementRace.SetAttribute("bForce", bForce.ToString());
+            elementRace.SetAttribute("bDex", bDex.ToString());
+            elementRace.SetAttribute("bConst", bConst.ToString());
+            elementRace.SetAttribute("bInt", bInt.ToString());
+            elementRace.SetAttribute("bSage", bSage.ToString());
+            elementRace.SetAttribute("bChar", bChar.ToString());
+            
+            XmlElement elementRaceNom = doc.CreateElement("NomRace");
+            elementRaceNom.InnerText = nom;
+            elementRace.AppendChild(elementRaceNom);
+
+            XmlElement elementRaceDescription = doc.CreateElement("DescriptionRace");
+            elementRaceDescription.InnerText = description;
+            elementRace.AppendChild(elementRaceDescription);
+
+            return elementRace;
         }
     }
 }

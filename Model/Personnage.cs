@@ -4,12 +4,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 [assembly: InternalsVisibleTo("TestCreationDND")]
 
 namespace Model
 {
-    public class Personnage
+    public class Personnage : ISauvergardeXML
     {
         public string nom { get; private set; } = "";
         public Race race { get; private set; }
@@ -38,6 +39,25 @@ namespace Model
             charisme += race.bChar;
             calculerTousLesModificateurs();
 
+        }
+
+        public Personnage(XmlElement element)
+        {
+            force = Int32.Parse(element.GetAttribute("force"));
+            dexterite = Int32.Parse(element.GetAttribute("dexterite"));
+            constitution = Int32.Parse(element.GetAttribute("constitution"));
+            intelligence = Int32.Parse(element.GetAttribute("intelligence"));
+            sagesse = Int32.Parse(element.GetAttribute("sagesse"));
+            charisme = Int32.Parse(element.GetAttribute("charisme"));
+
+            race = new Race(element.GetElementsByTagName("Race")[0] as XmlElement);
+            //classe = new Classe(element.GetElementsByTagName("Classe")[0] as XmlElement);
+        }
+
+        public void ajouterClasse(Classe classe)
+        {
+            this.classe = classe;
+            // Ajout de la logique
         }
 
         private void calculerTousLesModificateurs()
@@ -90,6 +110,26 @@ namespace Model
                 default: 
                     return 0;
             }
+        }
+
+        public XmlNode toXMl(XmlDocument doc)
+        {
+            XmlElement elementPersonnage = doc.CreateElement("Personnage");
+            elementPersonnage.SetAttribute("force", force.ToString());
+            elementPersonnage.SetAttribute("dexterite", dexterite.ToString());
+            elementPersonnage.SetAttribute("constitution", constitution.ToString());
+            elementPersonnage.SetAttribute("intelligence", intelligence.ToString());
+            elementPersonnage.SetAttribute("sagesse", sagesse.ToString());
+            elementPersonnage.SetAttribute("charisme", charisme.ToString());
+
+            elementPersonnage.AppendChild(race.toXMl(doc));
+
+            if(classe != null)
+            {
+                elementPersonnage.AppendChild(classe.toXMl(doc));
+            }
+
+            return elementPersonnage;
         }
     }
 }

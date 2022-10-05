@@ -4,12 +4,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 [assembly: InternalsVisibleTo("TestCreationDND")]
 
 namespace Model
 {
-    public class Classe
+    public class Classe : ISauvergardeXML
     {
         public string nom { get; private set; }
         public string description { get; private set; }
@@ -35,6 +36,11 @@ namespace Model
             this.listeAttributs = listeAttributs;
         }
 
+        public Classe(XmlElement element)
+        {
+
+        }
+
         public int calculerPvAuNiv1(int modConstitution)
         {
             return modConstitution + this.pvNiveau1;
@@ -43,6 +49,31 @@ namespace Model
         public override string ToString()
         {
             return nom;
+        }
+
+        public XmlNode toXMl(XmlDocument doc)
+        {
+            XmlElement elementClasse = doc.CreateElement("Classe");
+            elementClasse.SetAttribute("pvNiv1", pvNiveau1.ToString());
+
+            if (estLanceurSort)
+            {
+                elementClasse.SetAttribute("estLanceurSort", "TRUE");
+            }
+            else
+            {
+                elementClasse.SetAttribute("estLanceurSort", "FALSE");
+            }
+
+            XmlElement elementClasseNom = doc.CreateElement("NomClasse");
+            elementClasseNom.InnerText = nom;
+            elementClasse.AppendChild(elementClasseNom);
+
+            XmlElement elementClasseDescription = doc.CreateElement("DescriptionClasse");
+            elementClasseDescription.InnerText = description;
+            elementClasse.AppendChild(elementClasseDescription);
+
+            return elementClasse;
         }
     }
 }
