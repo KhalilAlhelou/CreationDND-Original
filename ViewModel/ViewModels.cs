@@ -43,6 +43,11 @@ namespace ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        public void ajouterRace(object selectedItem)
+        {
+            throw new NotImplementedException();
+        }
+
         public void afficherRace(object raceSelectionnee)
         {
             Race race = raceSelectionnee as Race;

@@ -9,6 +9,7 @@ namespace Model {
     public class Models
     {
         public dbHandler db;
+        public Personnage personnage;
         public Models()
         {
             db = new dbHandler();
@@ -42,6 +43,10 @@ namespace Model {
 
         }
 
+        public void ajouterLaRaceAuPersonnage(Race race)
+        {
+
+        }
 
     }
 }
