@@ -18,7 +18,9 @@ namespace TestCreationDND
         [Test]
         public void CreationDUnAttributAPartirDUnAttributDTO()
         {
-            Assert.Pass();
+            AttributDTO attributDTO = new AttributDTO("test", "test");
+            Attribut attribut = new Attribut(attributDTO);
+            Assert.AreEqual(attributDTO.NomAttribut, attribut.nom);
         }
     }
 }

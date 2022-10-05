@@ -31,7 +31,7 @@ namespace ViewModel
 
         }
 
-       private static ViewModels _instance = new ViewModels();
+        private static ViewModels _instance = new ViewModels();
 
         public static ViewModels getInstance
         {

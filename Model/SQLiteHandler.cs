@@ -90,93 +90,6 @@ namespace Model
 
             return null;
         }
-/**
-        public RaceDTO getClass(string className)
-        {
-
-            using var con = new SQLiteConnection(SQLpath);
-            con.Open();
-
-            string stm = "SELECT * FROM class WHERE nameC ='" + className + "'";
-
-            using var cmd = new SQLiteCommand(stm, con);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                //for each attribute, add to list, getClass -> ID using an array of split on ";"
-                    return null; //todo
-                
-            }
-
-            return null;
-        }
-
-        public RaceDTO getClass(int classID)
-        {
-
-            using var con = new SQLiteConnection(SQLpath);
-            con.Open();
-
-            string stm = "SELECT * FROM class WHERE idC ='" + classID + "'";
-
-            using var cmd = new SQLiteCommand(stm, con);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-
-                return null; //todo
-
-            }
-
-            return null;
-        }
-
-        public RaceDTO getAttribute(string attributeName)
-        {
-
-            using var con = new SQLiteConnection(SQLpath);
-            con.Open();
-
-            string stm = "SELECT * FROM attribute WHERE nameAttr ='" + attributeName + "'";
-
-            using var cmd = new SQLiteCommand(stm, con);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-      
-
-                    return null; //todo
-                
-            }
-
-            return null;
-        }
-
-        public RaceDTO getAttribute(int attributeID)
-        {
-
-            using var con = new SQLiteConnection(SQLpath);
-            con.Open();
-
-            string stm = "SELECT * FROM attribute WHERE idAttr ='" + attributeID + "'";
-
-            using var cmd = new SQLiteCommand(stm, con);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-
-
-                return null; //todo
-
-            }
-
-            return null;
-        }
-**/
         
 
         public List<RaceDTO> getAllRace()
@@ -215,11 +128,8 @@ namespace Model
 
             while (rdr.Read())
             {
-
-                //int id = rdr.GetInt32(0);
-                //listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), null));
-
-                listClasse.Add(new ClassDTO("Test", "Ceci est le test de la description", 12, false, 2, null));
+                // To get attribut liste
+                listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), null));
 
             }
             con.Close();

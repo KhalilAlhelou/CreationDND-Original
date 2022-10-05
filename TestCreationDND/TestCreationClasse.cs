@@ -20,7 +20,10 @@ namespace TestCreationDND
         [Test]
         public void CreationDuClasseAPartirDUneClasseDTO()
         {
-            Assert.Pass();
+            ClassDTO classDTO = new ClassDTO("Test", "Test", 1, false, 1, null);
+            Classe classe = new Classe(classDTO);
+
+            Assert.AreEqual(classDTO.Nom, classe.nom);
         }
 
         [Test]
@@ -30,6 +33,13 @@ namespace TestCreationDND
             int pvNiv1 = classeTest.calculerPvAuNiv1(modConstitution);
 
             Assert.AreEqual(8, pvNiv1);
+        }
+
+        [Test]
+        public void TestCreationListeAPartirDeBD()
+        {
+            ObservableCollection<Classe> listeRaces = model.obtenirClasse();
+            Assert.IsNotNull(listeRaces);
         }
     }
 }
