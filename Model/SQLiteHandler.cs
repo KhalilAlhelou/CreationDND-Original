@@ -9,48 +9,48 @@ namespace Model
 {
     public class SQLiteHandler
     {
-        string SQLpath;
+        string pathScriptSQL;
+        string pathSQLite;
         public SQLiteHandler()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/dbCharacter.sqlite";
+            pathSQLite = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/dbCharacter.sqlite";
             //string path = "Data/dbCharacter.sqlite";
-            SQLpath = "Data Source=" + path + ";Version=3;";
-            initializeDB(path);
+            pathScriptSQL = "Data Source=" + pathSQLite + ";Version=3;";
+            initializeDB();
 
         }
-        public void initializeDB(string path)
+        public void initializeDB()
         {
-
-            if (!File.Exists(path))
+            if (!File.Exists(pathSQLite))
             {
-                DirectoryInfo di = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/");
-                di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
-
-                Debug.WriteLine("DB is being created");
-                SQLiteConnection.CreateFile(path);
-
-                SQLiteConnection m_dbConnection = new SQLiteConnection(SQLpath);
-
-                string insertionRaceContents = File.ReadAllText("insertionScript.sql");
-
-                m_dbConnection.Open();
-
-                SQLiteCommand command = new SQLiteCommand(insertionRaceContents, m_dbConnection);
-                command.ExecuteNonQuery();
-
-                m_dbConnection.Close();
-
+                createFileDirectory();
             }
-            else
-            {
-                Debug.WriteLine("DB is being read");
-            }
+            executeInsertionSQL();
+        }
+
+        private void executeInsertionSQL()
+        {
+            SQLiteConnection m_dbConnection = new SQLiteConnection(pathScriptSQL);
+            string insertionRaceContents = File.ReadAllText("insertionScript.sql");
+            m_dbConnection.Open();
+            SQLiteCommand command = new SQLiteCommand(insertionRaceContents, m_dbConnection);
+            command.ExecuteNonQuery();
+            m_dbConnection.Close();
+        }
+
+        private void createFileDirectory()
+        {
+            DirectoryInfo di = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/");
+            di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+
+            Debug.WriteLine("DB is being created");
+            SQLiteConnection.CreateFile(pathSQLite);
         }
 
         public void showTable(string tableName)
         {
 
-            using var con = new SQLiteConnection(SQLpath);
+            using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
             string stm = "SELECT * FROM " + tableName;
@@ -72,7 +72,7 @@ namespace Model
         public RaceDTO getRace(string raceName)
         {
 
-            using var con = new SQLiteConnection(SQLpath);
+            using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
             string stm = "SELECT * FROM race WHERE nameR ='" + raceName + "'";
@@ -96,7 +96,7 @@ namespace Model
         public List<RaceDTO> getAllRace()
         {
             List<RaceDTO> listRace = new List<RaceDTO>();
-            using var con = new SQLiteConnection(SQLpath);
+            using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
             string stm = "SELECT * FROM race";
@@ -106,7 +106,6 @@ namespace Model
 
             while (rdr.Read())
             {
-
 
                 listRace.Add(new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8)));
 
@@ -119,7 +118,7 @@ namespace Model
         public List<ClassDTO> getAllClasse()
         {
             List<ClassDTO> listClasse = new List<ClassDTO>();
-            using var con = new SQLiteConnection(SQLpath);
+            using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
             string stm = "SELECT * FROM class";
@@ -147,7 +146,7 @@ namespace Model
         public AttributDTO getAttribut(string attrID)
         {
 
-            using var con = new SQLiteConnection(SQLpath);
+            using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
             string stm = "SELECT * FROM attribute WHERE idAttr ='" + attrID + "'";
