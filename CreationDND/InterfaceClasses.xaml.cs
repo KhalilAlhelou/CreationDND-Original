@@ -42,5 +42,10 @@ namespace CreationDND
               }
               //comboBoxRaces_ChangerImage();
           }
+
+        public void sauvegardeBidon(object sender, RoutedEventArgs e)
+        {
+            _viewModel.ajouterClasse(ComboBox2.SelectedItem);
+        }
     }
 }

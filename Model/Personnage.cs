@@ -51,7 +51,22 @@ namespace Model
             charisme = Int32.Parse(element.GetAttribute("charisme"));
 
             race = new Race(element.GetElementsByTagName("Race")[0] as XmlElement);
+            calculerTousLesModificateurs();
             //classe = new Classe(element.GetElementsByTagName("Classe")[0] as XmlElement);
+        }
+
+        public Personnage(string nom, Race race, Classe classe, int force, int dexterite, int constitution, int intelligence, int sagesse, int charisme)
+        {
+            this.nom = nom;
+            this.race = race;
+            this.classe = classe;
+            this.force = force;
+            this.dexterite = dexterite;
+            this.constitution = constitution;
+            this.intelligence = intelligence;
+            this.sagesse = sagesse;
+            this.charisme = charisme;
+            calculerTousLesModificateurs();
         }
 
         public void ajouterClasse(Classe classe)

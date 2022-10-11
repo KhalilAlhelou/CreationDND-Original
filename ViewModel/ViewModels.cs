@@ -49,6 +49,12 @@ namespace ViewModel
             models.ajouterLaRace(race);
         }
 
+        public void ajouterClasse(object selectedItem)
+        {
+            Classe classe = (Classe)selectedItem;
+            models.ajouterLaClasse(classe);
+        }
+
         public void afficherRace(object raceSelectionnee)
         {
             Race race = raceSelectionnee as Race;
@@ -66,7 +72,6 @@ namespace ViewModel
             OnPropertyChange("descriptionClasseSelectionne");
 
         }
-
     }   
 }
 

@@ -14,6 +14,7 @@ namespace Model {
         private ObservableCollection<Personnage> personnagesExistants;
         private XmlDocument document;
         private string fichierXML;
+        private GenerateurPDF generateurPDF;
 
         public Models()
         {
@@ -21,6 +22,7 @@ namespace Model {
             fichierXML = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/personnages.xml";
             chargerXML();
             db = new dbHandler();
+            generateurPDF = new GenerateurPDF();
         }
 
         public ObservableCollection<Race> obtenirRaces()
@@ -61,6 +63,11 @@ namespace Model {
         {
             personnage.ajouterClasse(classe);
             SauvegardeXml();
+        }
+
+        public void GenererFichePersonnagePDF(Personnage personnage)
+        {
+            generateurPDF.GenererLePDFDuPersonnage(personnage);
         }
 
         private void SauvegardeXml()
