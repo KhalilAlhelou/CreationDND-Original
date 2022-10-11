@@ -17,10 +17,10 @@ namespace Model
             SQLpath = "Data Source=" + path + ";Version=3;";
             initializeDB(path);
 
-    }
+        }
         public void initializeDB(string path)
         {
-        
+
             if (!File.Exists(path))
             {
                 DirectoryInfo di = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/");
@@ -41,9 +41,10 @@ namespace Model
                 m_dbConnection.Close();
 
             }
-            else {
-                Debug.WriteLine("DB is being read");  
-                }
+            else
+            {
+                Debug.WriteLine("DB is being read");
+            }
         }
 
         public void showTable(string tableName)
@@ -90,7 +91,7 @@ namespace Model
 
             return null;
         }
-        
+
 
         public List<RaceDTO> getAllRace()
         {
@@ -107,8 +108,8 @@ namespace Model
             {
 
 
-                    listRace.Add(new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8)));
-            
+                listRace.Add(new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8)));
+
             }
 
             con.Close();
@@ -128,12 +129,41 @@ namespace Model
 
             while (rdr.Read())
             {
-                // To get attribut liste
-                listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), null));
+                List<AttributDTO> listAttribut = new List<AttributDTO>();
+
+                string[] attributTmp = rdr.GetString(6).Split(';');
+
+                foreach (var attribut in attributTmp)
+                {
+                    listAttribut.Add(getAttribut(attribut));
+                }
+
+                listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut));
 
             }
             con.Close();
             return listClasse;
+        }
+        public AttributDTO getAttribut(string attrID)
+        {
+
+            using var con = new SQLiteConnection(SQLpath);
+            con.Open();
+
+            string stm = "SELECT * FROM attribute WHERE idAttr ='" + attrID + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+
+                return new AttributDTO(rdr.GetString(1), rdr.GetString(2));
+
+            }
+
+            return null;
         }
     }
 
