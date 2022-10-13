@@ -35,6 +35,26 @@ namespace Model
 
             section.AddParagraph();
 
+            texte = "Force = " + personnage.force.ToString() + " (" + personnage.modForce.ToString() + ")";
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+
+            texte = "Dextérité = " + personnage.dexterite.ToString() + " (" + personnage.modDexterite.ToString() + ")";
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+
+            texte = "Constitution = " + personnage.constitution.ToString() + " (" + personnage.modConstitution.ToString() + ")";
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+
+            texte = "Intelligence = " + personnage.intelligence.ToString() + " (" + personnage.modIntelligence.ToString() + ")";
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+
+            texte = "Sagesse = " + personnage.sagesse.ToString() + " (" + personnage.modSagesse.ToString() + ")";
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+
+            texte = "Charisme = " + personnage.charisme.ToString() + " (" + personnage.modCharisme.ToString() + ")";
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+
+
+
             PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer();
             pdfRenderer.Document = document;
             pdfRenderer.RenderDocument();

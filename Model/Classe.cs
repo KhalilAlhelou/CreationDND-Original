@@ -38,7 +38,19 @@ namespace Model
 
         public Classe(XmlElement element)
         {
+            pvNiveau1 = Int32.Parse(element.GetAttribute("pvNiv1"));
 
+            if (element.GetAttribute("estLanceurSort").Equals("TRUE"))
+            {
+                estLanceurSort = true;
+            }
+            else
+            {
+                estLanceurSort = false;
+            }
+
+            nom = element.GetElementsByTagName("NomClasse").Item(0).InnerText;
+            description = element.GetElementsByTagName("DescriptionClasse").Item(0).InnerText;
         }
 
         public int calculerPvAuNiv1(int modConstitution)

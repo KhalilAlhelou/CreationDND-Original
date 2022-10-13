@@ -47,6 +47,15 @@ namespace Model
 
         public Race(XmlElement element)
         {
+            bForce = Int32.Parse(element.GetAttribute("bForce"));
+            bDex = Int32.Parse(element.GetAttribute("bDex"));
+            bConst = Int32.Parse(element.GetAttribute("bConst"));
+            bInt = Int32.Parse(element.GetAttribute("bInt"));
+            bSage = Int32.Parse(element.GetAttribute("bSage"));
+            bChar = Int32.Parse(element.GetAttribute("bChar"));
+
+            nom = element.GetElementsByTagName("NomRace").Item(0).InnerText;
+            description = element.GetElementsByTagName("DescriptionRace").Item(0).InnerText;
 
         }
 
