@@ -10,7 +10,7 @@ namespace Model {
     public class Models
     {
         private dbHandler db;
-        private Personnage personnage;
+        private Personnage personnageEnCreation;
         private ObservableCollection<Personnage> personnagesExistants;
         private XmlDocument document;
         private string fichierXML;
@@ -20,9 +20,9 @@ namespace Model {
         {
             personnagesExistants = new ObservableCollection<Personnage>();
             fichierXML = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/personnages.xml";
-            chargerXML();
             db = new dbHandler();
             generateurPDF = new GenerateurPDF();
+            chargerXML();
         }
 
         public ObservableCollection<Race> obtenirRaces()
@@ -53,15 +53,20 @@ namespace Model {
 
         }
 
+        public ObservableCollection<Personnage> obtenirPersonnagesExistants()
+        {
+            return personnagesExistants;
+        }
+
         public void ajouterLaRace(Race race)
         {
-            personnage = new Personnage(race);
+            personnageEnCreation = new Personnage(race);
             SauvegardeXml();
         }
 
         public void ajouterLaClasse(Classe classe)
         {
-            personnage.ajouterClasse(classe);
+            personnageEnCreation.ajouterClasse(classe);
             SauvegardeXml();
         }
 
@@ -76,7 +81,12 @@ namespace Model {
             XmlElement root = document.CreateElement("Personnages");
             document.AppendChild(root);
             
-            root.AppendChild(personnage.toXMl(document));
+            foreach (Personnage personnage in personnagesExistants)
+            {
+                root.AppendChild(personnage.toXMl(document));
+            }
+
+            root.AppendChild(personnageEnCreation.toXMl(document));
 
             document.Save(fichierXML);
         }
@@ -86,18 +96,18 @@ namespace Model {
             document = new XmlDocument();
             if (File.Exists(fichierXML))
             {
-                document.Load(fichierXML);
-            }
-
-            XmlElement? root = document.DocumentElement;
-            if (root != null)
-            {
-                XmlNodeList listePersonnages = root.GetElementsByTagName("Personnage");
-                foreach (XmlElement elementPersonnage in listePersonnages)
+                document.Load(fichierXML); 
+                XmlElement? root = document.DocumentElement;
+                if (root != null)
                 {
-                    personnagesExistants.Add(new Personnage(elementPersonnage));
-                }
+                    XmlNodeList listePersonnages = root.GetElementsByTagName("Personnage");
+                    foreach (XmlElement elementPersonnage in listePersonnages)
+                    {
+                        personnagesExistants.Add(new Personnage(elementPersonnage));
+                    }
 
+                }
+                
             }
         }
     }
