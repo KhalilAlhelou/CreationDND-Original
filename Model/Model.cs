@@ -8,15 +8,15 @@ namespace Model {
 
     public class Models
     {
-        public dbHandler db;
+        public dbHandler bd;
         public Models()
         {
-            db = new dbHandler();
+            bd = new dbHandler();
         }
 
         public ObservableCollection<Race> obtenirRaces()
         {
-            List<RaceDTO> listeDTO = db.getAllRace();
+            List<RaceDTO> listeDTO = bd.getAllRace();
             ObservableCollection<Race> listeRaces = new ObservableCollection<Race>();
 
             foreach (RaceDTO raceDTO in listeDTO)
@@ -29,7 +29,7 @@ namespace Model {
 
         public ObservableCollection<Classe> obtenirClasse()
         {
-            List<ClassDTO> listeDTO = db.getAllClasse();
+            List<ClassDTO> listeDTO = bd.getAllClasse();
 
             ObservableCollection<Classe> listeClasses = new ObservableCollection<Classe>();
 
