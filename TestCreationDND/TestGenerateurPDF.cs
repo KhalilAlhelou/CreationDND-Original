@@ -22,7 +22,7 @@ namespace TestCreationDND
             Classe classe = new Classe("Mage", "Test", 4, true, null);
             Personnage personnage = new Personnage("Bobby", race, classe, 15, 10, 12, 18, 8, 17);
             
-            models.GenererFichePersonnagePDF(personnage);
+            models.GenererFichePersonnagePDF(personnage, true);
             Assert.Pass();
         }
     }

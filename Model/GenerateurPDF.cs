@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+
+
 namespace Model
 {
     public class GenerateurPDF
@@ -15,7 +17,7 @@ namespace Model
         const int TAILLE_POLICE_NORMAL = 14;
         const int TAILLE_POLICE_TITRE = 20;
 
-        public void GenererLePDFDuPersonnage(Personnage personnage)
+        public void GenererLePDFDuPersonnage(Personnage personnage, bool estTest)
         {
             string texte;
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
@@ -59,10 +61,29 @@ namespace Model
             pdfRenderer.Document = document;
             pdfRenderer.RenderDocument();
 
+            
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/";
-            
-            string filename = personnage.nom + ".pdf";
+
+            if (!estTest)
+            {    
+                FolderBrowserDialog fbd = new FolderBrowserDialog();
+                fbd.Description = "Custom Description";
+                if(fbd.ShowDialog() == DialogResult.OK)
+                {
+                    path = fbd.SelectedPath + "/";
+                }
+               
+                
+            }
+
+            string nom = personnage.nom;
+
+            if (nom.Equals(""))
+            {
+                nom = "personnage";
+            }
+            string filename = nom + ".pdf";
             
             pdfRenderer.PdfDocument.Save(path + filename);
 

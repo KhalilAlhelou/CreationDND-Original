@@ -72,6 +72,12 @@ namespace ViewModel
             OnPropertyChange("descriptionClasseSelectionne");
 
         }
+
+        public void testPdf()
+        {
+            models.testPdf();
+        }
+
     }   
 }
 

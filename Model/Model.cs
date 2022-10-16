@@ -61,18 +61,24 @@ namespace Model {
         public void ajouterLaRace(Race race)
         {
             personnageEnCreation = new Personnage(race);
-            SauvegardeXml();
+            
         }
 
         public void ajouterLaClasse(Classe classe)
         {
             personnageEnCreation.ajouterClasse(classe);
             SauvegardeXml();
+            chargerXML();
         }
 
-        public void GenererFichePersonnagePDF(Personnage personnage)
+        public void GenererFichePersonnagePDF(Personnage personnage, bool estTest)
         {
-            generateurPDF.GenererLePDFDuPersonnage(personnage);
+            generateurPDF.GenererLePDFDuPersonnage(personnage, estTest);
+        }
+
+        public void testPdf()
+        {
+            generateurPDF.GenererLePDFDuPersonnage(personnagesExistants[0], false);
         }
 
         private void SauvegardeXml()
