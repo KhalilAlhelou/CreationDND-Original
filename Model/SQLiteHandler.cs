@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using System.Security.Cryptography;
 
 namespace Model
 {
@@ -27,7 +28,14 @@ namespace Model
             }
             executeInsertionSQL();
         }
+        private void createFileDirectory()
+        {
+            DirectoryInfo di = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/");
+            di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
 
+            Debug.WriteLine("DB is being created");
+            SQLiteConnection.CreateFile(pathSQLite);
+        }
         private void executeInsertionSQL()
         {
             SQLiteConnection m_dbConnection = new SQLiteConnection(pathScriptSQL);
@@ -38,14 +46,7 @@ namespace Model
             m_dbConnection.Close();
         }
 
-        private void createFileDirectory()
-        {
-            DirectoryInfo di = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/");
-            di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
 
-            Debug.WriteLine("DB is being created");
-            SQLiteConnection.CreateFile(pathSQLite);
-        }
 
         public void showTable(string tableName)
         {
@@ -63,7 +64,7 @@ namespace Model
                 case "race":
                     while (rdr.Read())
                     {
-                        Debug.WriteLine($"{rdr.GetInt32(0)} {rdr.GetString(1)} {rdr.GetString(2)}");
+                        Debug.WriteLine(rdr);
                     }
                     break;
             }
@@ -118,6 +119,7 @@ namespace Model
         public List<ClassDTO> getAllClasse()
         {
             List<ClassDTO> listClasse = new List<ClassDTO>();
+            List<ProficiencyDTO> listProficiencies = new List<ProficiencyDTO>();
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
@@ -137,7 +139,20 @@ namespace Model
                     listAttribut.Add(getAttribut(attribut));
                 }
 
-                listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut));
+                string[] proficiencyTmp = rdr.GetString(7).Split(':');
+                int profficiencyAmount = Int32.Parse(proficiencyTmp[0]);
+
+                string[] proficiencyList = proficiencyTmp[1].Split(';');
+                if (proficiencyList[0] == "0") {
+                    listProficiencies = getAllProficiencies();
+                }
+                else {
+                    foreach (var proficiency in proficiencyList)
+                    {
+                        listProficiencies.Add(getProficiency(proficiency));
+                    }
+                }
+                listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, profficiencyList, profficiencyAmount);
 
             }
             con.Close();
@@ -156,14 +171,55 @@ namespace Model
 
             while (rdr.Read())
             {
-
-
                 return new AttributDTO(rdr.GetString(1), rdr.GetString(2));
 
             }
 
             return null;
         }
+        
+        public ProficiencyDTO getProficiency(string pID)
+        {
+
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+
+            string stm = "SELECT * FROM proficiency WHERE pID ='" + pID + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                return new ProficiencyDTO(rdr.GetInt32(0), rdr.GetString(1));
+
+            }
+
+            return null;
+        }
+
+
+        public List<ProficiencyDTO> getAllProficiencies()
+        {
+            //List<ProficiencyDTO> listProficiencies = new List<ProficiencyDTO>();
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+
+            string stm = "SELECT * FROM proficiency";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+                listProficiencies.Add(new ProficiencyDTO(rdr.GetInt32(0), rdr.GetString(1));
+
+            }
+            con.Close();
+            return listProficiencies;
+        }
+        
     }
 
 }

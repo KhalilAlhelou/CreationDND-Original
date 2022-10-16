@@ -23,14 +23,37 @@ DROP TABLE IF EXISTS "class";
 CREATE TABLE IF NOT EXISTS "class" (
 	"idC"	INTEGER,
 	"nameC"	TEXT,
-	"descC"	TEXT,
+	"descC"	BLOB,
 	"hitPointC"	INTEGER,
 	"isSpellcaster"	BOOLEAN,
 	"bProfficiency"	INTEGER,
-	"listAttrs"	TEXT,
+	"listAttrs"	BLOB,
+	"bProfficiencyList"	TEXT,
 	PRIMARY KEY("idC")
 );
+DROP TABLE IF EXISTS "proficiency";
+CREATE TABLE IF NOT EXISTS "proficiency" (
+	"pID"	INTEGER,
+	"pName"	INTEGER,
+	PRIMARY KEY("pID")
+);
 INSERT INTO "attribute" ("idAttr","nameAttr","descAttr") VALUES (201,'Rage','Au combat, vous vous battez avec une férocité primitive. À votre tour, vous pouvez entrer en rage comme une action bonus.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -62,7 +85,31 @@ Lorsque vous êtes en rage, vous bénéficiez des avantages suivants si vous ne 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Vous avez l''avantage sur les tests de Force et les jets de sauvegarde de Force.
+
+
+
+
+
+
+
+
 
 
 
@@ -78,6 +125,14 @@ Lorsque vous effectuez une attaque à l''arme de mêlée en utilisant la Force, 
 
 
 
+
+
+
+
+
+
+
+
 Vous avez une résistance aux dégâts de matraquage, de perçage et d''entaille.
 
 
@@ -86,7 +141,31 @@ Vous avez une résistance aux dégâts de matraquage, de perçage et d''entaille
 
 
 
+
+
+
+
+
+
+
+
 Si vous êtes capable de lancer des sorts, vous ne pouvez pas les lancer ou vous concentrer sur eux pendant votre rage.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -118,6 +197,22 @@ Votre rage dure 1 minute. Elle se termine prématurément si vous êtes assommé
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Une fois que vous vous êtes mis en rage le nombre de fois indiqué pour votre niveau de barbare dans la colonne Rages de la table des barbares, vous devez terminer un long repos avant de pouvoir vous remettre en rage.'),
  (202,'Défense sans armure','Lorsque vous ne portez pas d''armure, votre classe d''armure est égale à 10 + votre modificateur de Dextérité + votre modificateur de Constitution. Vous pouvez utiliser un bouclier et bénéficier de cet avantage.'),
  (203,'Spellcasting','Vous avez appris à démêler et à remodeler le tissu de la réalité en harmonie avec vos souhaits et votre musique. Vos sorts font partie de votre vaste répertoire, une magie que vous pouvez adapter à différentes situations. Consultez les Règles des sorts pour connaître les règles générales du lancement de sorts et la Liste des sorts pour connaître la liste des sorts.'),
@@ -134,7 +229,23 @@ Une fois que vous vous êtes mis en rage le nombre de fois indiqué pour votre n
 
 
 
+
+
+
+
+
+
+
+
 Vous gagnez les avantages suivants lorsque vous êtes désarmé ou que vous maniez uniquement des armes de moine et que vous ne portez pas d''armure ou ne maniez pas de bouclier :
+
+
+
+
+
+
+
+
 
 
 
@@ -146,7 +257,15 @@ Vous pouvez utiliser la Dextérité au lieu de la Force pour les jets d''attaque
 
 
 
+
+
+
+
 Vous pouvez lancer un d4 à la place des dégâts normaux de votre frappe à mains nues ou de votre arme de moine. Ce dé change à mesure que vous gagnez des niveaux de moine, comme indiqué dans la colonne Arts martiaux de la table des moines.
+
+
+
+
 
 
 
@@ -154,8 +273,28 @@ Lorsque vous utilisez l''action Attaque avec une frappe à mains nues ou une arm
 
 
 
+
+
+
+
 Certains monastères utilisent des formes spécialisées des armes de moine. Par exemple, vous pouvez utiliser une massue constituée de deux morceaux de bois reliés par une courte chaîne (appelée nunchaku) ou une faucille à la lame plus courte et plus droite (appelée kama). Quel que soit le nom que vous donnez à une arme de moine, vous pouvez utiliser les statistiques de jeu fournies pour cette arme dans la section Armes.'),
  (210,'Le sens divin','La présence d''un mal puissant est perceptible à vos sens comme une odeur nocive, et un bien puissant résonne à vos oreilles comme une musique céleste. Comme une action, vous pouvez ouvrir votre conscience pour détecter de telles forces. Jusqu''à la fin de votre prochain tour, vous connaissez l''emplacement de tout céleste, démon ou mort-vivant se trouvant à moins de 60 pieds de vous et qui n''est pas totalement couvert. Vous connaissez le type (céleste, démon ou mort-vivant) de tout être dont vous sentez la présence, mais pas son identité (le vampire Comte Strahd von Zarovich, par exemple). Dans le même rayon, vous détectez également la présence de tout lieu ou objet qui a été consacré ou profané, comme avec le sort hallow.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -188,7 +327,31 @@ Vous pouvez utiliser cette caractéristique un nombre de fois égal à 1 + votre
 
 
 
+
+
+
+
+
+
+
+
 Vos recherches arcaniques et la magie que vous a conférée votre protecteur vous ont permis d''acquérir une certaine facilité avec les sorts. Voir les Règles des sorts pour les règles générales du lancement de sorts et la Liste des sorts pour la liste des sorts du sorcier.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -212,7 +375,31 @@ Cantrips
 
 
 
+
+
+
+
+
+
+
+
 Vous connaissez deux cantrips de votre choix dans la liste des sorts de sorcier. Vous apprenez des cantrips supplémentaires de votre choix à des niveaux supérieurs, comme indiqué dans la colonne Cantrips Known de la table Warlock.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -236,7 +423,31 @@ Emplacements pour les sorts
 
 
 
+
+
+
+
+
+
+
+
 La table des sorciers indique le nombre d''emplacements de sorts dont vous disposez pour lancer vos sorts de sorcier du 1er au 5e niveau. La table indique également le niveau de ces emplacements ; tous vos emplacements de sorts sont de même niveau. Pour lancer un de vos sorts de sorcier de 1er niveau ou plus, vous devez dépenser un emplacement de sort. Vous récupérez tous les emplacements de sorts de Pacte Magique dépensés lorsque vous terminez un repos court ou long.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -268,6 +479,22 @@ Par exemple, lorsque vous êtes au 5e niveau, vous avez deux emplacements pour s
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Sorts connus de 1er niveau et plus
 
 
@@ -276,7 +503,31 @@ Sorts connus de 1er niveau et plus
 
 
 
+
+
+
+
+
+
+
+
 Au 1er niveau, vous connaissez deux sorts de 1er niveau de votre choix dans la liste des sorts de sorcier.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -308,7 +559,39 @@ La colonne Sorts connus de la table des sorciers indique quand vous apprenez d''
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 De plus, lorsque vous gagnez un niveau dans cette classe, vous pouvez choisir un des sorts de sorcier que vous connaissez et le remplacer par un autre sort de la liste des sorts de sorcier, qui doit également être d''un niveau pour lequel vous avez des emplacements de sorts.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -332,7 +615,31 @@ Capacité de lanceur de sorts
 
 
 
+
+
+
+
+
+
+
+
 Le charisme est votre capacité de lanceur de sorts pour vos sorts de sorcier. Vous utilisez donc votre charisme chaque fois qu''un sort fait référence à votre capacité de lanceur de sorts. De plus, vous utilisez votre modificateur de Charisme pour déterminer le jet de sauvegarde d''un sort de sorcier que vous lancez et pour effectuer un jet d''attaque avec un tel sort.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -364,7 +671,39 @@ Valeur de sauvegarde des sorts = 8 + votre bonus de compétence + votre modifica
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Modificateur d''attaque des sorts = votre bonus de compétence + votre modificateur de Charisme.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -388,6 +727,14 @@ Focalisation des sorts
 
 
 
+
+
+
+
+
+
+
+
 Vous pouvez utiliser un foyer arcanique (voir la section Équipement d''aventurier) comme foyer de lancement de sorts pour vos sorts de sorcier.'),
  (220,'Récupération des arcanes ','1er niveau
 
@@ -397,7 +744,31 @@ Vous pouvez utiliser un foyer arcanique (voir la section Équipement d''aventuri
 
 
 
+
+
+
+
+
+
+
+
 Vous avez appris à récupérer une partie de votre énergie magique en étudiant votre livre de sorts. Une fois par jour, lorsque vous terminez un court repos, vous pouvez choisir des emplacements de sorts dépensés pour récupérer. Les emplacements de sorts peuvent avoir un niveau combiné égal ou inférieur à la moitié de votre niveau de magicien (arrondi au supérieur), et aucun des emplacements ne peut être de 6e niveau ou plus.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -428,16 +799,34 @@ INSERT INTO "race" ("idR","nameR","descR","bForceR","bDexR","bConstR","bIntR","b
  (180,'Gnome des roches','L''énergie et l''enthousiasme d''un gnome pour la vie transparaissent dans chaque centimètre de son petit corps. En tant que gnome des rochers, vous avez une inventivité et une résistance naturelles supérieures à celles des autres gnomes. La plupart des gnomes des mondes de D&D sont des gnomes de roche, y compris les gnomes bricoleurs de Dragonlance.',0,0,1,2,0,0),
  (181,'Gnome de foret','L''énergie et l''enthousiasme d''un gnome pour la vie transparaissent dans chaque centimètre de son petit corps. En tant que gnome des rochers, vous avez une inventivité et une résistance naturelles supérieures à celles des autres gnomes. La plupart des gnomes des mondes de D&D sont des gnomes de roche, y compris les gnomes bricoleurs de Dragonlance.',0,1,0,2,0,0),
  (190,'Tieffelin','Être accueilli par des regards et des chuchotements, subir la violence et les insultes dans la rue, voir la méfiance et la peur dans chaque regard : tel est le lot du tiefling.',0,0,0,1,0,2);
-INSERT INTO "class" ("idC","nameC","descC","hitPointC","isSpellcaster","bProfficiency","listAttrs") VALUES (301,'Barbare','Un guerrier féroce d''origine primitive qui peut entrer dans une rage de combat.',12,0,2,'201;202'),
- (302,'Barde','Un magicien inspirant dont le pouvoir fait écho à la musique de la création',8,1,2,'203;204'),
- (303,'Clerc','Un champion sacerdotal qui manie la magie divine au service d''une puissance supérieure.',8,1,2,'203;205'),
- (304,'Druide','Un prêtre de l''Ancienne Foi, maniant les pouvoirs de la nature et adoptant des formes animales.',8,1,2,'203;206'),
- (305,'Guerrier','Un maître du combat martial, habile avec une variété d''armes et d''armures.',10,0,2,'207;208'),
- (306,'Moine','Un maître des arts martiaux, qui exploite la puissance du corps dans la poursuite de la perfection physique et spirituelle.',8,0,2,'202;209'),
- (307,'Paladin','Un guerrier saint lié à un serment sacré',10,0,2,'210;211'),
- (308,'Ranger','Un guerrier qui combat les menaces aux frontières de la civilisation.',10,0,2,'212;213'),
- (309,'Rogue','Un scélérat qui utilise la discrétion et la ruse pour surmonter les obstacles et les ennemis.',8,0,2,'214;215;216'),
- (310,'Sorcier','Un lanceur de sorts qui utilise la magie inhérente d''un don ou d''une lignée.',6,1,2,'203;217'),
- (311,'Warlock','Manipulateur de magie issue d''un marché avec une entité extraplanaire.',8,0,2,'218;219'),
- (312,'Magicien','Un utilisateur de magie érudit capable de manipuler les structures de la réalité.',6,1,2,'203;220');
+INSERT INTO "class" ("idC","nameC","descC","hitPointC","isSpellcaster","bProfficiency","listAttrs","bProfficiencyList") VALUES (301,'Barbare','Un guerrier féroce d''origine primitive qui peut entrer dans une rage de combat.',12,0,2,'201;202','2:405;403;408;411;412;418'),
+ (302,'Barde','Un magicien inspirant dont le pouvoir fait écho à la musique de la création',8,1,2,'203;204','3:0'),
+ (303,'Clerc','Un champion sacerdotal qui manie la magie divine au service d''une puissance supérieure.',8,1,2,'203;205','2:407;410;414;415;413'),
+ (304,'Druide','Un prêtre de l''Ancienne Foi, maniant les pouvoirs de la nature et adoptant des formes animales.',8,1,2,'203;206','2:402;405;413;410;411;412;415;418'),
+ (305,'Guerrier','Un maître du combat martial, habile avec une variété d''armes et d''armures.',10,0,2,'207;208','2:401;405;403;407;413;412;418;408'),
+ (306,'Moine','Un maître des arts martiaux, qui exploite la puissance du corps dans la poursuite de la perfection physique et spirituelle.',8,0,2,'202;209','2:401;403;407;413;415'),
+ (307,'Paladin','Un guerrier saint lié à un serment sacré',10,0,2,'210;211','2:403;413;408;410;414;415'),
+ (308,'Ranger','Un guerrier qui combat les menaces aux frontières de la civilisation.',10,0,2,'212;213','3:405;403;413;409;411;412;418'),
+ (309,'Rogue','Un scélérat qui utilise la discrétion et la ruse pour surmonter les obstacles et les ennemis.',8,0,2,'214;215;216','4:401;403;413;408;409;412;414;'),
+ (310,'Sorcier','Un lanceur de sorts qui utilise la magie inhérente d''un don ou d''une lignée.',6,1,2,'203;217','2:402;417;413;408;414;415'),
+ (311,'Warlock','Manipulateur de magie issue d''un marché avec une entité extraplanaire.',8,0,2,'218;219','2:402;417;407;408;409;411;415'),
+ (312,'Magicien','Un utilisateur de magie érudit capable de manipuler les structures de la réalité.',6,1,2,'203;220','2:402;407;413;409;410;415');
+INSERT INTO "proficiency" ("pID","pName") VALUES (401,NULL),
+ (402,'Arcanes'),
+ (403,'Athlétisme'),
+ (404,'Discrétion'),
+ (405,'Dressage'),
+ (406,'Escamotage'),
+ (407,'Histoire'),
+ (408,'Intimidation'),
+ (409,'Investigation'),
+ (410,'Médecine'),
+ (411,'Nature'),
+ (412,'Perception'),
+ (413,'Perspicacité'),
+ (414,'Persuasion'),
+ (415,'Religion'),
+ (416,'Représentation'),
+ (417,'Supercherie'),
+ (418,'Survie');
 COMMIT;
