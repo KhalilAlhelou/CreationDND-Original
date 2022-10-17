@@ -8,24 +8,29 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-
-
 namespace Model
 {
     public class GenerateurPDF
     {
-        const int TAILLE_POLICE_NORMAL = 14;
-        const int TAILLE_POLICE_TITRE = 20;
+        private const int TAILLE_POLICE_NORMAL = 14;
+        private const int TAILLE_POLICE_TITRE = 20;
 
         public void GenererLePDFDuPersonnage(Personnage personnage, bool estTest)
         {
             string texte;
+            string nom = personnage.nom;
+
+            if (nom.Equals(""))
+            {
+                nom = "Personnage";
+            }
+
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
             Document document = new Document();
             Section section = document.AddSection();
 
-            AjouterParagraphe(section, personnage.nom, TAILLE_POLICE_TITRE);
+            AjouterParagraphe(section, nom, TAILLE_POLICE_TITRE);
 
             section.AddParagraph();
 
@@ -56,38 +61,25 @@ namespace Model
             AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
 
 
-
             PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer();
             pdfRenderer.Document = document;
             pdfRenderer.RenderDocument();
 
-            
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/";
 
             if (!estTest)
             {    
                 FolderBrowserDialog fbd = new FolderBrowserDialog();
-                fbd.Description = "Custom Description";
                 if(fbd.ShowDialog() == DialogResult.OK)
                 {
                     path = fbd.SelectedPath + "/";
                 }
-               
-                
             }
 
-            string nom = personnage.nom;
-
-            if (nom.Equals(""))
-            {
-                nom = "personnage";
-            }
             string filename = nom + ".pdf";
             
             pdfRenderer.PdfDocument.Save(path + filename);
-
-
 
         }
 
