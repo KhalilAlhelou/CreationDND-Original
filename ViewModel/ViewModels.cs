@@ -43,6 +43,18 @@ namespace ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        public void ajouterRace(object selectedItem)
+        {
+            Race race = (Race)selectedItem;
+            models.ajouterLaRace(race);
+        }
+
+        public void ajouterClasse(object selectedItem)
+        {
+            Classe classe = (Classe)selectedItem;
+            models.ajouterLaClasse(classe);
+        }
+
         public void afficherRace(object raceSelectionnee)
         {
             Race race = raceSelectionnee as Race;
@@ -59,6 +71,11 @@ namespace ViewModel
 
             OnPropertyChange("descriptionClasseSelectionne");
 
+        }
+
+        public void testPdf()
+        {
+            models.testPdf();
         }
 
     }   

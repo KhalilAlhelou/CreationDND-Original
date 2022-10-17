@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModel;
 
 //using static dbHandler;
 //using static raceCharacter;
@@ -41,8 +42,10 @@ namespace CreationDND
 
         void viewOldCharacters(object sender, RoutedEventArgs e)
         {
-            btn2.Background = Brushes.Pink;
 
+            ViewModels v = ViewModels.getInstance;
+
+            v.testPdf();
         }
     }
 }
