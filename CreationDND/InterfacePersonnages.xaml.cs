@@ -34,10 +34,7 @@ namespace CreationDND
             DataContext = _viewModel;
         }
 
-        private void InitializeComponent()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         private void comboBox_AfficherPersonnage(object sender, SelectionChangedEventArgs e)
         {
