@@ -6,6 +6,13 @@
         xmlns:local="clr-namespace:CreationDND"
         mc:Ignorable="d"
         Title="InterfaceClasses"  Height="450" Width="812">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:InterfaceClasses.cmdRedirectionnerPage}"
+                        CanExecute="redirectionnerPage_CanExecute"
+                        Executed="redirectionnerPage_Executed"/>
+    </Window.CommandBindings>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
@@ -18,7 +25,7 @@
         <StackPanel Grid.Column="0">
             <DockPanel Height="433">
                 <Image x:Name="img" Source="\Images\dnd logo.png" Height="143" Width="234" Margin="100, 0, 60, 200"/>
-                <ComboBox x:Name="ComboBox2" ItemsSource="{Binding listeClasses}" SelectionChanged="comboBox_AfficherClasses" Height="34" Width="222" Margin="-400, 150, 0, 0"/>
+                <ComboBox x:Name="ComboBoxClasses" ItemsSource="{Binding listeClasses}" SelectionChanged="comboBox_AfficherClasses" Height="34" Width="222" Margin="-400, 150, 0, 0"/>
             </DockPanel>
         </StackPanel>
 
@@ -28,7 +35,7 @@
             </DockPanel>
 
             <DockPanel Height="135" Width="400">
-                <Button x:Name="choisirClasseSelectionnee" Height="60" Margin="0,0, 0, 0" Width="160" Content="Choisir classe" Click="redirectionPage"/>
+                <Button x:Name="choisirClasseSelectionnee" Height="60" Margin="0,0, 0, 0" Width="160" Content="Choisir classe" Command="{x:Static local:InterfaceClasses.cmdRedirectionnerPage}"/>
             </DockPanel>
         </StackPanel>
     </Grid>

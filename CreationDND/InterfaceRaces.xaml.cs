@@ -23,7 +23,9 @@ namespace CreationDND
     /// <summary>
     /// Lógica interna para Races.xaml
     /// </summary>
-    public partial class Races : Window { 
+    public partial class Races : Window {
+
+        public static RoutedCommand cmdChangerPage = new RoutedCommand();
 
         private ViewModels _viewModel;
     
@@ -41,19 +43,33 @@ namespace CreationDND
 
         private void comboBox_AfficherRace(object sender, SelectionChangedEventArgs e)
         {
-            if (ComboBox1.SelectedItem != null)
+            if (ComboBoxRaces.SelectedItem != null)
             {
-                _viewModel.afficherRace(ComboBox1.SelectedItem);
+                _viewModel.afficherRace(ComboBoxRaces.SelectedItem);
             }
             //comboBoxRaces_ChangerImage();
         }
 
-        public void chagerPage(object sender, RoutedEventArgs e)
+        public void changerPage_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             InterfaceClasses pageClasse = new InterfaceClasses();
             pageClasse.Show();
             this.Close();
         }
+
+        public void changerPage_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (ComboBoxRaces.SelectedItem == null)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+        }
+
+
     }
 
 }

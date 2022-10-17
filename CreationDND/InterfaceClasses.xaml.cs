@@ -20,6 +20,8 @@ namespace CreationDND
     /// </summary>
     public partial class InterfaceClasses : Window
     {
+        public static RoutedCommand cmdRedirectionnerPage = new RoutedCommand();
+
         private ViewModels _viewModel;
 
         public InterfaceClasses()
@@ -34,19 +36,31 @@ namespace CreationDND
 
         }*/
 
-         private void comboBox_AfficherClasses(object sender, SelectionChangedEventArgs e)
-          {
-              if (ComboBox2.SelectedItem != null)
-              {
-                 _viewModel.afficherClasse(ComboBox2.SelectedItem);
-              }
-              //comboBoxRaces_ChangerImage();
-          }
-        public void redirectionPage(object sender, RoutedEventArgs e)
+        private void comboBox_AfficherClasses(object sender, SelectionChangedEventArgs e)
+        {
+            if (ComboBoxClasses.SelectedItem != null)
+            {
+                _viewModel.afficherClasse(ComboBoxClasses.SelectedItem);
+            }
+            //comboBoxRaces_ChangerImage();
+        }
+        public void redirectionnerPage_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             InterfaceChoisirCompetence pageCompetences = new InterfaceChoisirCompetence();
             pageCompetences.Show();
             this.Close();
+        }
+
+        public void redirectionnerPage_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (ComboBoxClasses.SelectedItem == null)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
         }
     }
 }
