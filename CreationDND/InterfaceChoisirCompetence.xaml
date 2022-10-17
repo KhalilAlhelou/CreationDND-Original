@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CreationDND"
         mc:Ignorable="d"
-        Title="InterfaceChoisirCompetence" Height="450" Width="800">
+        Title="InterfaceChoisirCompetence" Height="450" Width="812">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
@@ -30,7 +30,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1">
             <ComboBox/>
-            <Button Height="60" Width="170" HorizontalAlignment="Right" Margin="0, 120, 15, 0"/>
+            <Button Height="60" Width="170" HorizontalAlignment="Right" Margin="0, 100, 15, 0"/>
         </StackPanel>
     </Grid>
 </Window>

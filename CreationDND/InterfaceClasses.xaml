@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CreationDND"
         mc:Ignorable="d"
-        Title="InterfaceClasses"  Height="450" Width="800">
+        Title="InterfaceClasses"  Height="450" Width="812">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
