@@ -110,7 +110,7 @@ INSERT INTO "class" ("idC","nameC","descC","hitPointC","isSpellcaster","bProffic
  (306,'Moine','Un maître des arts martiaux, qui exploite la puissance du corps dans la poursuite de la perfection physique et spirituelle.',8,0,2,'202;209','2:401;403;407;413;415'),
  (307,'Paladin','Un guerrier saint lié à un serment sacré',10,0,2,'210;211','2:403;413;408;410;414;415'),
  (308,'Ranger','Un guerrier qui combat les menaces aux frontières de la civilisation.',10,0,2,'212;213','3:405;403;413;409;411;412;418'),
- (309,'Rogue','Un scélérat qui utilise la discrétion et la ruse pour surmonter les obstacles et les ennemis.',8,0,2,'214;215;216','4:401;403;413;408;409;412;414;'),
+ (309,'Rogue','Un scélérat qui utilise la discrétion et la ruse pour surmonter les obstacles et les ennemis.',8,0,2,'214;215;216','4:401;403;413;408;409;412;414'),
  (310,'Sorcier','Un lanceur de sorts qui utilise la magie inhérente d''un don ou d''une lignée.',6,1,2,'203;217','2:402;417;413;408;414;415'),
  (311,'Warlock','Manipulateur de magie issue d''un marché avec une entité extraplanaire.',8,0,2,'218;219','2:402;417;407;408;409;411;415'),
  (312,'Magicien','Un utilisateur de magie érudit capable de manipuler les structures de la réalité.',6,1,2,'203;220','2:402;407;413;409;410;415');
