@@ -185,7 +185,7 @@ namespace Model
 
             string stm = "SELECT * FROM proficiency WHERE pID ='" + pID + "'";
 
-            using var cmd = new SQLiteCommand(stm, con);
+            using var cmd = new SQLiteCommand(stm, con); 
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
