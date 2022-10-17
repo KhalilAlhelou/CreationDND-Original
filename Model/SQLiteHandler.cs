@@ -213,7 +213,7 @@ namespace Model
             while (rdr.Read())
             {
 
-                listProficiencies.Add(new ProficiencyDTO(rdr.GetInt32(0), rdr.GetString(1));
+                listProficiencies.Add(new ProficiencyDTO(rdr.GetInt32(0), rdr.GetString(1)));
 
             }
             con.Close();

@@ -17,6 +17,8 @@ namespace Model
             SpellCaster = estSpellCaster;
             BonusMaitrise = bonusMaitrise;
             ListeAttributs = attributs;
+            this.competencesMaitrisable = competencesMaitrisable;
+            this.nombreDeCompetencesMaitrisable = nombreDeCompetencesMaitrisable;
         }
         public string Nom
         {
