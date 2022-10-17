@@ -115,11 +115,11 @@ namespace Model
             con.Close();
             return listRace;
         }
-
+        
         public List<ClassDTO> getAllClasse()
         {
             List<ClassDTO> listClasse = new List<ClassDTO>();
-            List<ProficiencyDTO> listProficiencies = new List<ProficiencyDTO>();
+            //List<ProficiencyDTO> listProficiencies = new List<ProficiencyDTO>();
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
@@ -144,15 +144,15 @@ namespace Model
 
                 string[] proficiencyList = proficiencyTmp[1].Split(';');
                 if (proficiencyList[0] == "0") {
-                    listProficiencies = getAllProficiencies();
+                    //listProficiencies = getAllProficiencies();
                 }
                 else {
                     foreach (var proficiency in proficiencyList)
                     {
-                        listProficiencies.Add(getProficiency(proficiency));
+                        //listProficiencies.Add(getProficiency(proficiency));
                     }
                 }
-                listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, profficiencyList, profficiencyAmount);
+                //listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, profficiencyAmount));
 
             }
             con.Close();
@@ -177,7 +177,7 @@ namespace Model
 
             return null;
         }
-        
+       /** 
         public ProficiencyDTO getProficiency(string pID)
         {
 
@@ -198,7 +198,7 @@ namespace Model
             return null;
         }
 
-
+        
         public List<ProficiencyDTO> getAllProficiencies()
         {
             //List<ProficiencyDTO> listProficiencies = new List<ProficiencyDTO>();
@@ -219,7 +219,7 @@ namespace Model
             con.Close();
             return listProficiencies;
         }
-        
+       **/
     }
 
 }
