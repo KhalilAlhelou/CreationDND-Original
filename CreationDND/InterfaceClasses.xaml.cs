@@ -42,5 +42,11 @@ namespace CreationDND
               }
               //comboBoxRaces_ChangerImage();
           }
+        public void redirectionPage(object sender, RoutedEventArgs e)
+        {
+            InterfaceChoisirCompetence pageCompetences = new InterfaceChoisirCompetence();
+            pageCompetences.Show();
+            this.Close();
+        }
     }
 }
