@@ -34,16 +34,9 @@ namespace CreationDND
             DataContext = _viewModel;
         }
 
-        
-
-        private void comboBox_AfficherPersonnage(object sender, SelectionChangedEventArgs e)
+        void genererPdf(object sender, RoutedEventArgs e)
         {
-
-            if (ComboBoxPersonnages.SelectedItem != null)
-            {
-              _viewModel.afficherRace(ComboBoxPersonnages.SelectedItem);
-            }
-            //comboBoxRaces_ChangerImage();
+            _viewModel.creerFichePersonnagePDF(ComboBoxPersonnages.SelectedItem);
         }
     }
 }

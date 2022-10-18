@@ -19,14 +19,14 @@
 
         <StackPanel Grid.Column="0" RenderTransformOrigin="0.489,0.49">
             <DockPanel Height="433">
-                <ComboBox x:Name="ComboBoxPersonnages" SelectionChanged="comboBox_AfficherPersonnage" DockPanel.Dock="Bottom" Height="49" Width="302" Margin="0,100,0,0" ItemsSource="{Binding listeRaces}"/>
+                <ComboBox x:Name="ComboBoxPersonnages" DockPanel.Dock="Bottom" Height="49" Width="302" Margin="0,100,0,0" ItemsSource="{Binding listePersonnages}"/>
             </DockPanel>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Margin="0,0,0,10">
 
             <DockPanel Height="430" Width="396">
-                <Button x:Name="choisirPersonnageSelectionnee" Height="60" Width="160" Content="Choisir personnage" Margin="0,100,0,0"/>
+                <Button x:Name="choisirPersonnageSelectionnee" Height="60" Width="160" Content="Choisir personnage" Margin="0,100,0,0" Click="genererPdf"/>
             </DockPanel>
 
         </StackPanel>

@@ -76,10 +76,6 @@ namespace Model {
             generateurPDF.GenererLePDFDuPersonnage(personnage, estTest);
         }
 
-        public void testPdf()
-        {
-            generateurPDF.GenererLePDFDuPersonnage(personnagesExistants[0], false);
-        }
 
         private void SauvegardeXml()
         {

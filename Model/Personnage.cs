@@ -123,5 +123,15 @@ namespace Model
 
             return elementPersonnage;
         }
+
+        public override string ToString()
+        {
+            if(nom == "")
+            {
+                return "Personnage";
+            }
+
+            return nom;
+        }
     }
 }

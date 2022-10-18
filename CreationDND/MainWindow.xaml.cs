@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ViewModel;
+
 
 //using static dbHandler;
 //using static raceCharacter;
@@ -48,10 +48,6 @@ namespace CreationDND
             Personnages pagePersonnages = new Personnages();
             pagePersonnages.Show();
             this.Close();
-
-            ViewModels v = ViewModels.getInstance;
-
-            v.testPdf();
         }
     }
 }
