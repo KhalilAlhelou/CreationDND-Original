@@ -42,10 +42,11 @@ namespace CreationDND
               }
               //comboBoxRaces_ChangerImage();
           }
-
-        public void sauvegardeBidon(object sender, RoutedEventArgs e)
+        public void redirectionPage(object sender, RoutedEventArgs e)
         {
-            _viewModel.ajouterClasse(ComboBox2.SelectedItem);
+            InterfaceChoisirCompetence pageCompetences = new InterfaceChoisirCompetence();
+            pageCompetences.Show();
+            this.Close();
         }
     }
 }

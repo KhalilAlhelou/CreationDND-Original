@@ -25,7 +25,7 @@
         <StackPanel Grid.Column="1" Margin="0,0,0,10">
             
             <DockPanel Height="299" Width="403" Grid.Row="0">
-                <TextBlock x:Name="TextBlockDescription" Text="{Binding descriptionRaceSelectionnee}" Margin="0,0, 0, 60" Width="400" Height="301" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                <TextBlock x:Name="TextBlockDescription" Text="{Binding descriptionRaceSelectionnee}" Margin="0,0, 0, 60" Width="380" Height="300" HorizontalAlignment="Center" TextWrapping="Wrap"/>
             </DockPanel>
             
             <DockPanel Height="135" Width="400">

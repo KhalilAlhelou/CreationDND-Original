@@ -20,6 +20,7 @@ namespace ViewModel
 
         public ObservableCollection<Race> listeRaces { get; set; }
         public ObservableCollection<Classe> listeClasses { get; set; }
+        public ObservableCollection<Race> listePersonnages { get; set; }
         public string descriptionRaceSelectionnee { get; set; } 
         public string descriptionClasseSelectionne { get; set; }
 
@@ -28,6 +29,7 @@ namespace ViewModel
             models = new Models();
             listeRaces = models.obtenirRaces();
             listeClasses = models.obtenirClasse();
+            listePersonnages = models.obtenirRaces(); // il faut changer obtenirRaces à obtenirPersonnage quand la methode est prête
 
         }
 
@@ -63,7 +65,15 @@ namespace ViewModel
             OnPropertyChange("descriptionRaceSelectionnee");
 
         }
+        // il faut changer la methode afin de recuperer les personnages
+        
+        /*public void afficherPersonnage(object personnageSelectionnee)
+        {
 
+            Race personne = personnageSelectionnee as Race;
+
+        }
+        */
         public void afficherClasse(object classeSelectionnee)
         {
             Classe classe = classeSelectionnee as Classe;
