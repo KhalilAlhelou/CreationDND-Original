@@ -71,6 +71,11 @@ namespace Model {
             chargerXML();
         }
 
+        public void ajouterLesCompetencesMaitrises(List<Competence> competences)
+        {
+            personnageEnCreation.ajouterCompetenceMaitrise(competences);
+        }
+
         public void GenererFichePersonnagePDF(Personnage personnage, bool estTest)
         {
             generateurPDF.GenererLePDFDuPersonnage(personnage, estTest);

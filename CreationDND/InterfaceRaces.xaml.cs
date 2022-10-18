@@ -48,7 +48,7 @@ namespace CreationDND
         public void changerPage_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             InterfaceClasses pageClasse = new InterfaceClasses();
-            _viewModel.ajouterRace(ComboBox1.SelectedItem);
+            _viewModel.ajouterRace(ComboBoxRaces.SelectedItem);
             pageClasse.Show();
             this.Close();
         }
