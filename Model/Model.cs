@@ -9,7 +9,7 @@ namespace Model {
 
     public class Models
     {
-        private dbHandler db;
+        private dbHandler bd;
         private Personnage personnageEnCreation;
         private ObservableCollection<Personnage> personnagesExistants;
         private XmlDocument document;
@@ -20,7 +20,7 @@ namespace Model {
         {
             personnagesExistants = new ObservableCollection<Personnage>();
             fichierXML = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/personnages.xml";
-            db = new dbHandler();
+            bd = new dbHandler();
             generateurPDF = new GenerateurPDF();
             chargerXML();
         }

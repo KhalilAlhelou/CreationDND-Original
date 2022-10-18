@@ -118,7 +118,7 @@ namespace Model
         public List<ClassDTO> getAllClasse()
         {
             List<ClassDTO> listClasse = new List<ClassDTO>();
-            List<ProficiencyDTO> listProficiencies = new List<ProficiencyDTO>();
+           
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
@@ -138,6 +138,7 @@ namespace Model
                     listAttribut.Add(getAttribut(attribut));
                 }
 
+                List<ProficiencyDTO> listProficiencies = new List<ProficiencyDTO>();
                 string[] proficiencyTmp = rdr.GetString(7).Split(':');
                 int profficiencyAmount = Int32.Parse(proficiencyTmp[0]);
 
