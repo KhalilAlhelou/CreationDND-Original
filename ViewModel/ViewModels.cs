@@ -20,6 +20,7 @@ namespace ViewModel
 
         public ObservableCollection<Race> listeRaces { get; set; }
         public ObservableCollection<Classe> listeClasses { get; set; }
+        public ObservableCollection<Personnage> listePersonnages { get; set; }
         public string descriptionRaceSelectionnee { get; set; } 
         public string descriptionClasseSelectionne { get; set; }
 
@@ -28,6 +29,7 @@ namespace ViewModel
             models = new Models();
             listeRaces = models.obtenirRaces();
             listeClasses = models.obtenirClasse();
+            listePersonnages = models.obtenirPersonnagesExistants(); 
 
         }
 
@@ -43,6 +45,18 @@ namespace ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        public void ajouterRace(object selectedItem)
+        {
+            Race race = (Race)selectedItem;
+            models.ajouterLaRace(race);
+        }
+
+        public void ajouterClasse(object selectedItem)
+        {
+            Classe classe = (Classe)selectedItem;
+            models.ajouterLaClasse(classe);
+        }
+
         public void afficherRace(object raceSelectionnee)
         {
             Race race = raceSelectionnee as Race;
@@ -52,6 +66,14 @@ namespace ViewModel
 
         }
 
+        public void creerFichePersonnagePDF(object personnageSelectionne)
+        {
+            Personnage personnage = (Personnage)personnageSelectionne;
+            models.GenererFichePersonnagePDF(personnage, false);
+
+
+        }
+        
         public void afficherClasse(object classeSelectionnee)
         {
             Classe classe = classeSelectionnee as Classe;
@@ -60,6 +82,8 @@ namespace ViewModel
             OnPropertyChange("descriptionClasseSelectionne");
 
         }
+
+        
 
     }   
 }

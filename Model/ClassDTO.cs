@@ -9,7 +9,7 @@ namespace Model
 {
     public class ClassDTO
     {
-        public ClassDTO (string nom, string description, int hpLvl1, bool estSpellCaster, int bonusMaitrise, List<AttributDTO> attributs)
+        public ClassDTO (string nom, string description, int hpLvl1, bool estSpellCaster, int bonusMaitrise, List<AttributDTO> attributs, List<ProficiencyDTO> competencesMaitrisable, int nombreDeCompetencesMaitrisable)
         {
             Nom = nom;
             Description = description;
@@ -17,6 +17,8 @@ namespace Model
             SpellCaster = estSpellCaster;
             BonusMaitrise = bonusMaitrise;
             ListeAttributs = attributs;
+            this.competencesMaitrisable = competencesMaitrisable;
+            this.nombreDeCompetencesMaitrisable = nombreDeCompetencesMaitrisable;
         }
         public string Nom
         {
@@ -49,6 +51,18 @@ namespace Model
         }
 
         public List<AttributDTO> ListeAttributs
+        {
+            get;
+            private set;
+        }
+
+        public List<ProficiencyDTO> competencesMaitrisable
+        {
+            get;
+            private set;
+        }
+
+        public int nombreDeCompetencesMaitrisable
         {
             get;
             private set;

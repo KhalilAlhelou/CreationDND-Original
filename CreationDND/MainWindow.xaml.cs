@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -14,8 +15,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 //using static dbHandler;
 //using static raceCharacter;
+
+using System.Windows;
 
 namespace CreationDND
 {
@@ -41,8 +45,9 @@ namespace CreationDND
 
         void viewOldCharacters(object sender, RoutedEventArgs e)
         {
-            btn2.Background = Brushes.Pink;
-
+            Personnages pagePersonnages = new Personnages();
+            pagePersonnages.Show();
+            this.Close();
         }
     }
 }
