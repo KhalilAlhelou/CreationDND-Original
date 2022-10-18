@@ -15,7 +15,6 @@ namespace Model
         public SQLiteHandler()
         {
             pathSQLite = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/dbCharacter.sqlite";
-            //string path = "Data/dbCharacter.sqlite";
             pathScriptSQL = "Data Source=" + pathSQLite + ";Version=3;";
             initializeDB();
 
@@ -177,7 +176,7 @@ namespace Model
 
             return null;
         }
-       
+     
         public ProficiencyDTO getProficiency(string pID)
         {
 
@@ -186,7 +185,7 @@ namespace Model
 
             string stm = "SELECT * FROM proficiency WHERE pID ='" + pID + "'";
 
-            using var cmd = new SQLiteCommand(stm, con);
+            using var cmd = new SQLiteCommand(stm, con); 
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
