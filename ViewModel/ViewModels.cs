@@ -89,7 +89,7 @@ namespace ViewModel
         public void afficherClasse(object classeSelectionnee)
         {
             Classe classe = classeSelectionnee as Classe;
-            descriptionClasseSelectionne = classe.description;
+            descriptionClasseSelectionne = models.obtenirDescriptionClasse(classe);
 
             OnPropertyChange("descriptionClasseSelectionne");
 

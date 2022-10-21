@@ -30,36 +30,48 @@ namespace Model
             Document document = new Document();
             Section section = document.AddSection();
 
-            AjouterParagraphe(section, nom, TAILLE_POLICE_TITRE);
+            AjouterParagraphe(section, nom, TAILLE_POLICE_TITRE, true);
 
             section.AddParagraph();
 
             texte = "Race : " + personnage.race.ToString();
-            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
             texte = "Classe : " + personnage.classe.ToString();
-            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
             section.AddParagraph();
 
             texte = "Force = " + personnage.force.ToString() + " (" + personnage.modForce.ToString() + ")";
-            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
             texte = "Dextérité = " + personnage.dexterite.ToString() + " (" + personnage.modDexterite.ToString() + ")";
-            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
             texte = "Constitution = " + personnage.constitution.ToString() + " (" + personnage.modConstitution.ToString() + ")";
-            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
             texte = "Intelligence = " + personnage.intelligence.ToString() + " (" + personnage.modIntelligence.ToString() + ")";
-            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
             texte = "Sagesse = " + personnage.sagesse.ToString() + " (" + personnage.modSagesse.ToString() + ")";
-            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
             texte = "Charisme = " + personnage.charisme.ToString() + " (" + personnage.modCharisme.ToString() + ")";
-            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL);
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
+            section.AddParagraph();
+
+            foreach (Attribut attribut in personnage.classe.listeAttributs)
+            {
+                texte = attribut.nom;
+                AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, true);
+
+                texte = attribut.description;
+                AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+                section.AddParagraph();
+            }
 
             PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer();
             pdfRenderer.Document = document;
@@ -83,11 +95,13 @@ namespace Model
 
         }
 
-        private void AjouterParagraphe(Section section, string texte, int tailleDePolice)
+        private void AjouterParagraphe(Section section, string texte, int tailleDePolice, bool enGras)
         {
             Paragraph paragraph = section.AddParagraph();
             FormattedText ft = paragraph.AddFormattedText(texte);
             ft.Font.Size = tailleDePolice;
+            ft.Font.Bold = enGras;
+            
         }
     }
 }

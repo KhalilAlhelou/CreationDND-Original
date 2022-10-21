@@ -31,9 +31,7 @@ namespace CreationDND
         
         public MainWindow()
         {
-            
             InitializeComponent();
-
         }
 
         void newCharacter(object sender, RoutedEventArgs e)

@@ -22,7 +22,11 @@ namespace Model {
             fichierXML = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/personnages.xml";
             bd = new dbHandler();
             generateurPDF = new GenerateurPDF();
-            chargerXML();
+            if (File.Exists(fichierXML))
+            {
+                chargerXML();
+            }
+            
         }
 
         public ObservableCollection<Race> obtenirRaces()
@@ -61,7 +65,7 @@ namespace Model {
         public void ajouterLaRace(Race race)
         {
             personnageEnCreation = new Personnage(race);
-            
+           
         }
 
         public void ajouterLaClasse(Classe classe)
@@ -96,6 +100,18 @@ namespace Model {
             root.AppendChild(personnageEnCreation.toXMl(document));
 
             document.Save(fichierXML);
+        }
+
+        public string obtenirDescriptionClasse(Classe classe)
+        {
+            string texte = classe.description + "\n\n";
+
+            foreach (Attribut attribut in classe.listeAttributs)
+            {
+                texte += attribut.nom + "\n" + attribut.description + "\n\n";
+            }
+
+            return texte;
         }
 
         private void chargerXML()
