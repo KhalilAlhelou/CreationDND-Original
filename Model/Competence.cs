@@ -16,5 +16,10 @@ namespace Model
             id = proficiencyDTO.id;
             nom = proficiencyDTO.nom;
         }
+
+        public override string ToString()
+        {
+            return nom;
+        }
     }
 }
