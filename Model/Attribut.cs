@@ -13,6 +13,12 @@ namespace Model
             this.description = attributDTO.DescriptionAttribut;
         }
 
+        public Attribut(string nom, string description)
+        {
+            this.nom = nom;
+            this.description = description;
+        }
+
         public Attribut (XmlElement element)
         {
             nom = element.GetAttribute("Nom");
