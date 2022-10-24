@@ -58,6 +58,22 @@ namespace Model {
             return personnagesExistants;
         }
 
+        public int obtenirNombreCompetencesMatrisable()
+        {
+            return personnageEnCreation.classe.nombreDeCompetencesMaitrisable;
+        }
+
+        public ObservableCollection<Competence> obtenirCompetencesMaitrisables()
+        {
+            ObservableCollection<Competence> listeCompetencesMaitrisables = new ObservableCollection<Competence>();
+            foreach (Competence competence in personnageEnCreation.classe.competencesMaitrisable)
+            {
+                listeCompetencesMaitrisables.Add(competence);
+            }
+
+            return listeCompetencesMaitrisables;
+        }
+
         public void ajouterLaRace(Race race)
         {
             personnageEnCreation = new Personnage(race);
