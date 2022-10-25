@@ -62,6 +62,25 @@ namespace Model
 
             section.AddParagraph();
 
+            texte = "Compétences maitrisées : ";
+
+            foreach (Competence competence in personnage.competencesMaitrises)
+            {
+                if(personnage.competencesMaitrises[personnage.competencesMaitrises.Count - 1] == competence)
+                {
+                    texte += competence + ".";
+                }
+                else
+                {
+                    texte += competence + ", ";
+                }
+                
+            }
+
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, true);
+
+            section.AddParagraph();
+
             foreach (Attribut attribut in personnage.classe.listeAttributs)
             {
                 texte = attribut.nom;

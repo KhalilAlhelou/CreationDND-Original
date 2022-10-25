@@ -87,13 +87,14 @@ namespace Model {
         public void ajouterLaClasse(Classe classe)
         {
             personnageEnCreation.ajouterClasse(classe);
-            SauvegardeXml();
-            chargerXML();
+            
         }
 
         public void ajouterLesCompetencesMaitrises(List<Competence> competences)
         {
             personnageEnCreation.ajouterCompetenceMaitrise(competences);
+            SauvegardeXml();
+            chargerXML();
         }
 
         public void GenererFichePersonnagePDF(Personnage personnage, bool estTest)

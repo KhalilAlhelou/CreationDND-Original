@@ -18,19 +18,25 @@ namespace Model
             nom = proficiencyDTO.nom;
         }
 
+        public Competence(XmlElement element)
+        {
+            id = Int32.Parse(element.GetAttribute("Id"));
+            nom = element.GetAttribute("Nom");
+        }
+
         public XmlNode toXMl(XmlDocument doc)
         {
             XmlElement elementCompetence = doc.CreateElement("Competence");
             elementCompetence.SetAttribute("Id", id.ToString());
             elementCompetence.SetAttribute("Nom", nom);
-            
+
 
             return elementCompetence;
         }
-        
+
         public override string ToString()
         {
             return nom;
         }
-    
+    }   
 }
