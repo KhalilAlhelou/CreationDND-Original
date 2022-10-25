@@ -71,6 +71,14 @@ namespace Model {
             chargerXML();
         }
 
+        public void ajouterEquipements(List<Equipement> listeEquipements)
+        {
+            foreach (Equipement equipement in listeEquipements)
+            {
+                personnageEnCreation.ajouterEquipement(equipement);
+            }
+        }
+
         public void ajouterLesCompetencesMaitrises(List<Competence> competences)
         {
             personnageEnCreation.ajouterCompetenceMaitrise(competences);

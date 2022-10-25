@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+
+[assembly: InternalsVisibleTo("TestCreationDND")]
 
 namespace Model
 {
@@ -14,6 +17,7 @@ namespace Model
 
         public Armure(string nom, int classeArmure, bool obtientBonusModDex, bool bonusModDexEstLimite) : base(nom)
         {
+            this.classeArmure = classeArmure;
             this.obtientBonusModDex = obtientBonusModDex;
             this.bonusModDexEstLimite = bonusModDexEstLimite;
         }
