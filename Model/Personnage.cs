@@ -27,8 +27,8 @@ namespace Model
         public int modIntelligence { get; private set; } = 0;
         public int modSagesse { get; private set; } = 0;
         public int modCharisme { get; private set; } = 0;
-
         public List<Competence> competencesMaitrises { get; private set; } = null;
+
 
         public Personnage(Race _race)
         {

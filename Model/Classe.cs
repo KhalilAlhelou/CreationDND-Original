@@ -19,6 +19,7 @@ namespace Model
         public List<Attribut> listeAttributs { get; private set; }
         public List<Competence> competencesMaitrisable { get; private set; }
         public int nombreDeCompetencesMaitrisable { get; private set; }
+        public int nombreDeChoixEquipement { get; private set; }
 
 
         public Classe (ClassDTO classeDTO)

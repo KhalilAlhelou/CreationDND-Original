@@ -8,6 +8,10 @@ namespace Model
 {
     public class Arme : Equipement
     {
-
+        public string deDeDegats { get; private set; }
+        public Arme(string nom, string deDeDegats) : base(nom)
+        {
+            this.deDeDegats = deDeDegats;
+        }
     }
 }

@@ -10,5 +10,9 @@ namespace Model
     {
         public string nom { get; set; }
 
+        public Equipement(string nom)
+        {
+            this.nom = nom;
+        }
     }
 }
