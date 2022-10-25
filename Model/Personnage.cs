@@ -116,10 +116,14 @@ namespace Model
 
             elementPersonnage.AppendChild(race.toXMl(doc));
 
-            if(classe != null)
+            elementPersonnage.AppendChild(classe.toXMl(doc));
+
+            XmlElement elementPersonnageCompetencesMatrisees = doc.CreateElement("CompetencesMaitrise");
+            foreach(Competence competence in competencesMaitrises)
             {
-                elementPersonnage.AppendChild(classe.toXMl(doc));
+                elementPersonnageCompetencesMatrisees.AppendChild(competence.toXMl(doc));
             }
+
 
             return elementPersonnage;
         }
