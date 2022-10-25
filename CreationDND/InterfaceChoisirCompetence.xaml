@@ -6,7 +6,14 @@
         xmlns:local="clr-namespace:CreationDND"
         mc:Ignorable="d"
         Title="InterfaceChoisirCompetence" Height="450" Width="812">
-    <Grid>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:InterfaceChoisirCompetence.cdmChoisirCompetence}"
+                        CanExecute="choisirCompetences_CanExecute"
+                        Executed="choisirCompetences_Executed"/>
+    </Window.CommandBindings>
+
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="400"/>
@@ -17,20 +24,20 @@
         </Grid.RowDefinitions>
 
         <StackPanel  Grid.Column="0" Grid.Row="0">
-            <ComboBox/>
+            <ComboBox x:Name="Competence1" IsEnabled="False" ItemsSource="{Binding listeCompetences}"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="0">
-            <ComboBox/>
+            <ComboBox x:Name="Competence2" IsEnabled="False" ItemsSource="{Binding listeCompetences}"/>
         </StackPanel>
 
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <ComboBox/>
+            <ComboBox x:Name="Competence3" IsEnabled="False" ItemsSource="{Binding listeCompetences}"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <ComboBox/>
-            <Button Height="60" Width="170" HorizontalAlignment="Right" Margin="0, 100, 15, 0"/>
+            <ComboBox x:Name="Competence4" IsEnabled="False" ItemsSource="{Binding listeCompetences}"/>
+            <Button Height="60" Width="170" HorizontalAlignment="Right" Margin="0, 100, 15, 0" Command="{x:Static local:InterfaceChoisirCompetence.cdmChoisirCompetence}" Content="Choisir competences"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -21,6 +21,7 @@ namespace ViewModel
         public ObservableCollection<Race> listeRaces { get; set; }
         public ObservableCollection<Classe> listeClasses { get; set; }
         public ObservableCollection<Personnage> listePersonnages { get; set; }
+        public ObservableCollection<Competence> listeCompetences { get; set; }
         public string descriptionRaceSelectionnee { get; set; } 
         public string descriptionClasseSelectionne { get; set; }
 
@@ -29,7 +30,8 @@ namespace ViewModel
             models = new Models();
             listeRaces = models.obtenirRaces();
             listeClasses = models.obtenirClasse();
-            listePersonnages = models.obtenirPersonnagesExistants(); 
+            listePersonnages = models.obtenirPersonnagesExistants();
+            
 
         }
 
@@ -95,7 +97,20 @@ namespace ViewModel
 
         }
 
-        
+        public int nombreCompetencesMaitrisables()
+        {
+            return models.obtenirNombreCompetencesMatrisable();
+        }
+
+        public ObservableCollection<Competence> competencesMaitrisables()
+        {
+            return models.obtenirCompetencesMaitrisables();
+        }
+
+        public void insererCompetencesComboBox()
+        {
+            listeCompetences = models.obtenirCompetencesMaitrisables();
+        }
 
     }   
 }

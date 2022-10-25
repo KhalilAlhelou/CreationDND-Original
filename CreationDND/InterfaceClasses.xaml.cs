@@ -46,6 +46,7 @@ namespace CreationDND
         }
         public void redirectionnerPage_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            _viewModel.ajouterClasse(ComboBoxClasses.SelectedItem);
             InterfaceChoisirCompetence pageCompetences = new InterfaceChoisirCompetence();
             _viewModel.ajouterClasse(ComboBoxClasses.SelectedItem);
             pageCompetences.Show();

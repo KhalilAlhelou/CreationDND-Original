@@ -27,5 +27,10 @@ namespace Model
 
             return elementCompetence;
         }
-    }
+        
+        public override string ToString()
+        {
+            return nom;
+        }
+    
 }
