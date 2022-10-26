@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 using System.Security.Cryptography;
+using System.Runtime.Intrinsics.Arm;
 
 namespace Model
 {
@@ -129,35 +130,61 @@ namespace Model
 
             while (rdr.Read())
             {
-                List<AttributDTO> listAttribut = new List<AttributDTO>();
+                List<AttributDTO> listAttribut = getClassAttributes(rdr.GetInt32(0));
+                
+                List<ProficiencyDTO> listProficiencies = getClassProficiencies(rdr.GetInt32(0));
 
-                string[] attributTmp = rdr.GetString(6).Split(';');
-
-                foreach (var attribut in attributTmp)
-                {
-                    listAttribut.Add(getAttribut(attribut));
-                }
-
-                List<ProficiencyDTO> listProficiencies = new List<ProficiencyDTO>();
-                string[] proficiencyTmp = rdr.GetString(7).Split(':');
-                int profficiencyAmount = Int32.Parse(proficiencyTmp[0]);
-
-                string[] proficiencyList = proficiencyTmp[1].Split(';');
-                if (proficiencyList[0] == "0") {
-                    listProficiencies = getAllProficiencies();
-                }
-                else {
-                    foreach (var proficiency in proficiencyList)
-                    {
-                        listProficiencies.Add(getProficiency(proficiency));
-                    }
-                }
-                listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, profficiencyAmount));
+                listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, rdr.GetInt32(6)));
 
             }
             con.Close();
             return listClasse;
         }
+
+        private List<ProficiencyDTO> getClassProficiencies(int classID)
+        {
+            List<ProficiencyDTO> listProficiencies = new List<ProficiencyDTO>();
+
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+
+            string stm = "SELECT a.pID, a.pName FROM proficiency a, classProficiency b WHERE b.idC =" + classID + " AND b.pID = a.pID";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                listProficiencies.Add(new ProficiencyDTO(rdr.GetInt32(0), rdr.GetString(1)));
+
+            }
+            con.Close();
+
+
+            return listProficiencies;
+        }
+
+        private List<AttributDTO> getClassAttributes(int classID)
+        {
+            List<AttributDTO> listAttribut = new List<AttributDTO>();
+
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+
+            string stm = "SELECT a.nameAttr, a.descAttr FROM attribute a, classAttribute b WHERE b.idC =" + classID + " AND b.idAttr = a.idAttr";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                listAttribut.Add(new AttributDTO(rdr.GetString(0), rdr.GetString(1)));
+            }
+            con.Close();
+
+            return listAttribut;
+        }
+
         public AttributDTO getAttribut(string attrID)
         {
 
