@@ -18,20 +18,22 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0" RenderTransformOrigin="0.489,0.49">
-            <DockPanel Height="433">
-                <ComboBox x:Name="ComboBoxPersonnages" DockPanel.Dock="Bottom" Height="49" Width="302" Margin="0,100,0,0" ItemsSource="{Binding listePersonnages}"/>
+            <DockPanel Height="433" RenderTransformOrigin="0.504,0.38">
+                <Image x:Name="img" Source="\Images\dnd logo.png" Height="152" Width="230" Margin="28, 20,-380, 100"/>
+                <Button x:Name="btnRetour" Content="Retour" DockPanel.Dock="Top" Height="38" Width="126" VerticalAlignment="Top" Margin="10,10,0,0" Click="btnRetourDePagePersonnage_Click" HorizontalAlignment="Left" FontFamily="Freestyle Script" FontSize="28"/>
+                <ComboBox x:Name="ComboBoxPersonnages" DockPanel.Dock="Bottom" Height="49" Width="302" Margin="0,200,0,0" ItemsSource="{Binding listePersonnages}"/>
             </DockPanel>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Margin="0,0,0,10">
 
             <DockPanel Height="430" Width="396">
-                <Button x:Name="choisirPersonnageSelectionnee" Height="60" Width="160" Content="Choisir personnage" Margin="0,100,0,0" Click="genererPdf"/>
+                <Button x:Name="choisirPersonnageSelectionnee" Height="60" Width="160" Content="Choisir personnage" Margin="0,260,0,0" Click="genererPdf" FontFamily="Freestyle Script" FontSize="28"/>
             </DockPanel>
 
         </StackPanel>
 
     </Grid>
-    
-   
+
+
 </Window>

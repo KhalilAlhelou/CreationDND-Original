@@ -21,11 +21,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="450"/>
         </Grid.RowDefinitions>
-        
+
         <StackPanel Grid.Column="0">
             <DockPanel Height="433">
-                <Image x:Name="img" Source="\Images\dnd logo.png" Height="143" Width="234" Margin="100, 0, 60, 200"/>
-                <ComboBox x:Name="ComboBoxClasses" ItemsSource="{Binding listeClasses}" SelectionChanged="comboBox_AfficherClasses" Height="34" Width="222" Margin="-400, 150, 0, 0"/>
+                <Button x:Name="btnRetourMain" Content="Retour" DockPanel.Dock="Top" Height="38" Width="126" VerticalAlignment="Top" Margin="10,10,0,0" Click="btnRetourDePageClasse_Click" HorizontalAlignment="Left" FontFamily="Freestyle Script" FontSize="28"/>
+                <Image x:Name="img" Source="\Images\dnd logo.png"   Width="180" Margin="120, 30, 60, 200" Height="159" RenderTransformOrigin="0.437,0.511"/>
+                <ComboBox x:Name="ComboBoxClasses" ItemsSource="{Binding listeClasses}" SelectionChanged="comboBox_AfficherClasses" Height="34" Width="222" Margin="-380,240,0,0" VerticalAlignment="Center"/>
             </DockPanel>
         </StackPanel>
 
@@ -35,7 +36,7 @@
             </DockPanel>
 
             <DockPanel Height="135" Width="400">
-                <Button x:Name="choisirClasseSelectionnee" Height="60" Margin="0,0, 0, 0" Width="160" Content="Choisir classe" Command="{x:Static local:InterfaceClasses.cmdRedirectionnerPage}"/>
+                <Button x:Name="choisirClasseSelectionnee" Height="60" Margin="0,0, 0, 0" Width="160" Content="Choisir classe" Command="{x:Static local:InterfaceClasses.cmdRedirectionnerPage}" FontFamily="Freestyle Script" FontSize="28"/>
             </DockPanel>
         </StackPanel>
     </Grid>

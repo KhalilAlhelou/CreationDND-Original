@@ -63,5 +63,12 @@ namespace CreationDND
                 e.CanExecute = true;
             }
         }
+
+        private void btnRetourDePageClasse_Click(object sender, RoutedEventArgs e)
+        {
+            Races races = new Races();
+            races.Show();
+            this.Close();
+        }
     }
 }
