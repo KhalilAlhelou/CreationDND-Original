@@ -1,11 +1,4 @@
 BEGIN TRANSACTION;
-DROP TABLE IF EXISTS "classAttribute";
-CREATE TABLE IF NOT EXISTS "classAttribute" (
-	"idC"	INTEGER NOT NULL,
-	"idAttr"	INTEGER NOT NULL,
-	FOREIGN KEY("idC") REFERENCES "class",
-	FOREIGN KEY("idAttr") REFERENCES "attribute"
-);
 DROP TABLE IF EXISTS "race";
 CREATE TABLE IF NOT EXISTS "race" (
 	"idR"	INTEGER NOT NULL,
@@ -19,16 +12,6 @@ CREATE TABLE IF NOT EXISTS "race" (
 	"bCharR"	INTEGER NOT NULL,
 	PRIMARY KEY("idR")
 );
-
-
-DROP TABLE IF EXISTS "classProficiency";
-CREATE TABLE IF NOT EXISTS "classProficiency" (
-	"idC"	INTEGER NOT NULL,
-	"pID"	INTEGER NOT NULL,
-	FOREIGN KEY("idC") REFERENCES "class",
-	FOREIGN KEY("pID") REFERENCES "proficiency"
-);
-
 DROP TABLE IF EXISTS "proficiency";
 CREATE TABLE IF NOT EXISTS "proficiency" (
 	"pID"	INTEGER NOT NULL,
@@ -53,10 +36,49 @@ CREATE TABLE IF NOT EXISTS "attribute" (
 	"descAttr"	TEXT NOT NULL,
 	PRIMARY KEY("idAttr")
 );
+DROP TABLE IF EXISTS "class_proficiency";
+CREATE TABLE IF NOT EXISTS "class_proficiency" (
+	"idC"	INTEGER NOT NULL,
+	"pID"	INTEGER NOT NULL,
+	FOREIGN KEY("pID") REFERENCES "proficiency",
+	FOREIGN KEY("idC") REFERENCES "class"
+);
+DROP TABLE IF EXISTS "class_attribute";
+CREATE TABLE IF NOT EXISTS "class_attribute" (
+	"idC"	INTEGER NOT NULL,
+	"idAttr"	INTEGER NOT NULL,
+	FOREIGN KEY("idC") REFERENCES "class",
+	FOREIGN KEY("idAttr") REFERENCES "attribute"
+);
+DROP TABLE IF EXISTS "weapontype";
+CREATE TABLE IF NOT EXISTS "weapontype" (
+	"wtID"	INTEGER,
+	"wtName"	TEXT,
+	PRIMARY KEY("wtID" AUTOINCREMENT)
+);
+DROP TABLE IF EXISTS "armortype";
+CREATE TABLE IF NOT EXISTS "armortype" (
+	"atID"	INTEGER,
+	"atName"	TEXT,
+	PRIMARY KEY("atID" AUTOINCREMENT)
+);
+DROP TABLE IF EXISTS "armor_armortype";
+CREATE TABLE IF NOT EXISTS "armor_armortype" (
+	"armorID"	INTEGER,
+	"atID"	INTEGER,
+	FOREIGN KEY("armorID") REFERENCES "armor",
+	FOREIGN KEY("atID") REFERENCES "armortype"
+);
+DROP TABLE IF EXISTS "weapon_weapontype";
+CREATE TABLE IF NOT EXISTS "weapon_weapontype" (
+	"weaponID"	INTEGER,
+	"wtID"	INTEGER,
+	FOREIGN KEY("wtID") REFERENCES "weapontype",
+	FOREIGN KEY("weaponID") REFERENCES "weapon"
+);
 DROP TABLE IF EXISTS "weapon";
 CREATE TABLE IF NOT EXISTS "weapon" (
 	"weaponID"	INTEGER,
-	"weaponType"	INTEGER,
 	"weaponName"	TEXT,
 	"weaponPrice"	TEXT,
 	"weaponDamage"	TEXT,
@@ -67,14 +89,26 @@ CREATE TABLE IF NOT EXISTS "weapon" (
 DROP TABLE IF EXISTS "armor";
 CREATE TABLE IF NOT EXISTS "armor" (
 	"armorID"	INTEGER,
-	"armorType"	INTEGER,
 	"armorName"	TEXT,
 	"armorPrice"	INTEGER,
 	"armorClass"	INTEGER,
 	"armorForce"	INTEGER,
-	"armorDiscretion"	INTEGER,
-	"armorWeigth"	INTEGER,
+	"armorDiscretionDisadvantage"	BOOLEAN,
+	"armorWeigth"	NUMERIC,
 	PRIMARY KEY("armorID" AUTOINCREMENT)
+);
+DROP TABLE IF EXISTS "weapondice";
+CREATE TABLE IF NOT EXISTS "weapondice" (
+	"wdID"	INTEGER,
+	"wdDiceRolls"	INTEGER,
+	"wdDiceSides"	INTEGER,
+	PRIMARY KEY("wdID")
+);
+DROP TABLE IF EXISTS "weaponDamageType";
+CREATE TABLE IF NOT EXISTS "weaponDamageType" (
+	"wdtID"	INTEGER,
+	"wdtName"	TEXT,
+	PRIMARY KEY("wdtID")
 );
 INSERT INTO "race" ("idR","nameR","descR","bForceR","bDexR","bConstR","bIntR","bSageR","bCharR") VALUES (110,'Sangdragon','Les Draconiques ressemblent beaucoup à des dragons se tenant debout sous une forme humanoïde, bien qu''ils n''aient ni ailes ni queue.',2,0,0,0,0,1),
  (120,'Nain de colline','Audacieux et robustes, les nains sont connus pour être d''habiles guerriers, mineurs et travailleurs de la pierre et du métal. En tant que nain des collines, vous avez des sens aiguisés, une profonde intuition et une remarquable résilience. Les nains d''or de Faerûn dans leur puissant royaume du sud sont des nains des collines, tout comme les Neidar exilés et les Klar avilis de Krynn dans le cadre de Dragonlance.',0,0,2,0,1,0),
@@ -108,8 +142,6 @@ INSERT INTO "proficiency" ("pID","pName") VALUES (401,'Acrobaties'),
  (416,'Représentation'),
  (417,'Supercherie'),
  (418,'Survie');
-
- 
 INSERT INTO "class" ("idC","nameC","descC","hitPointC","isSpellcaster","bProfficiency","bProfficiencyAmount") VALUES (301,'Barbare','Un guerrier féroce d''origine primitive qui peut entrer dans une rage de combat.',12,0,2,2),
  (302,'Barde','Un magicien inspirant dont le pouvoir fait écho à la musique de la création',8,1,2,3),
  (303,'Clerc','Un champion sacerdotal qui manie la magie divine au service d''une puissance supérieure.',8,1,2,2),
@@ -204,35 +236,7 @@ Vous pouvez utiliser un foyer arcanique (voir la section Équipement d''aventuri
  Vous avez appris à récupérer une partie de votre énergie magique en étudiant votre livre de sorts. Une fois par jour, lorsque vous terminez un court repos, vous pouvez choisir des emplacements de sorts dépensés pour récupérer. Les emplacements de sorts peuvent avoir un niveau combiné égal ou inférieur à la moitié de votre niveau de magicien (arrondi au supérieur), et aucun des emplacements ne peut être de 6e niveau ou plus.
 
  Par exemple, si vous êtes un sorcier de 4e niveau, vous pouvez récupérer jusqu''à deux niveaux d''emplacements de sorts. Vous pouvez récupérer soit un emplacement de sort de 2ème niveau, soit deux emplacements de sort de 1er niveau.');
-
- 
-INSERT INTO "classAttribute" ("idC","idAttr") VALUES (301,201),
- (301,202),
- (302,203),
- (302,204),
- (303,203),
- (303,205),
- (304,203),
- (304,206),
- (305,207),
- (305,208),
- (306,202),
- (306,209),
- (307,210),
- (307,211),
- (308,212),
- (308,213),
- (309,214),
- (309,215),
- (309,216),
- (310,203),
- (310,217),
- (311,218),
- (311,219),
- (312,203),
- (312,220);
-
-INSERT INTO "classProficiency" ("idC","pID") VALUES (301,405),
+INSERT INTO "class_proficiency" ("idC","pID") VALUES (301,405),
  (301,401),
  (301,408),
  (301,411),
@@ -325,4 +329,59 @@ INSERT INTO "classProficiency" ("idC","pID") VALUES (301,405),
  (312,415),
  (312,409),
  (312,410);
+INSERT INTO "class_attribute" ("idC","idAttr") VALUES (301,201),
+ (301,202),
+ (302,203),
+ (302,204),
+ (303,203),
+ (303,205),
+ (304,203),
+ (304,206),
+ (305,207),
+ (305,208),
+ (306,202),
+ (306,209),
+ (307,210),
+ (307,211),
+ (308,212),
+ (308,213),
+ (309,214),
+ (309,215),
+ (309,216),
+ (310,203),
+ (310,217),
+ (311,218),
+ (311,219),
+ (312,203),
+ (312,220);
+INSERT INTO "armortype" ("atID","atName") VALUES (501,'Armures légères'),
+ (502,'Armures intermédiaires'),
+ (503,'Armures lourdes'),
+ (504,'Bouclier');
+INSERT INTO "armor_armortype" ("armorID","atID") VALUES (601,501),
+ (602,501),
+ (603,501),
+ (604,502),
+ (605,502),
+ (606,502),
+ (607,502),
+ (608,502),
+ (609,503),
+ (610,503),
+ (611,503),
+ (612,503),
+ (613,504);
+INSERT INTO "armor" ("armorID","armorName","armorPrice","armorClass","armorForce","armorDiscretionDisadvantage","armorWeigth") VALUES (601,'Matelassée',500,11,0,1,4),
+ (602,'Cuir',1000,11,0,0,5),
+ (603,'Cuir clouté',4500,12,0,0,6.5),
+ (604,'Peau',1000,12,0,0,6),
+ (605,'Chemise de mailles',5000,13,0,0,10),
+ (606,'Écailles',5000,14,0,1,22.5),
+ (607,'Cuirasse',40000,14,0,0,10),
+ (608,'Demi-plate',75000,15,0,1,20),
+ (609,'Broigne',3000,14,0,1,20),
+ (610,'Cotee de mailles',7500,16,13,1,27.5),
+ (611,'Clibanion',20000,17,15,1,30),
+ (612,'Harnois',150000,18,15,1,32.5),
+ (613,'Bouclier',1000,2,0,0,3);
 COMMIT;
