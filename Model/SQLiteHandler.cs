@@ -36,7 +36,7 @@ namespace Model
             DirectoryInfo di = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/");
             di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
 
-            Debug.WriteLine("DB is being created");
+            //Debug.WriteLine("DB is being created");
             SQLiteConnection.CreateFile(pathSQLite);
         }
         public int executeInsertionSQL()

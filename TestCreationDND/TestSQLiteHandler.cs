@@ -98,7 +98,7 @@ namespace TestCreationDND
             Assert.AreEqual(2, listCompetence.Count);
         }
         [Test]
-        public void verifierAttributDTODeListeRequeteGetAllCompetenceDTOPourClassID()
+        public void verifierAttributDTODeListeRequeteGetAllAttributDTOPourClassID()
         {
             AttributDTO attributDTO = new AttributDTO("Inspiration bardique", "Vous pouvez inspirer les autres par des paroles ou de la musique émouvantes. Pour ce faire, vous utilisez une action bonus à votre tour pour choisir une créature autre que vous-même dans un rayon de 60 pieds de vous et qui peut vous entendre. Cette créature gagne un dé d'inspiration bardique, un d6.");
             List <AttributDTO> listAttribut = sqliteHandler.getClassAttributes(302);
