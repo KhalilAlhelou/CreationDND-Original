@@ -26,7 +26,7 @@ namespace Model
             return sqlHandler.getAllRace();
         }
 
-        public List<ClassDTO> getAllClasse()
+        public List<ClasseDTO> getAllClasse()
         {
             return sqlHandler.getAllClasse();
         }

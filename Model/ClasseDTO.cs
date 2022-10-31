@@ -7,9 +7,9 @@ using System.Xml.Linq;
 
 namespace Model
 {
-    public class ClassDTO
+    public class ClasseDTO
     {
-        public ClassDTO (string nom, string description, int hpLvl1, bool estSpellCaster, int bonusMaitrise, List<AttributDTO> attributs, List<CompetenceDTO> competencesMaitrisable, int nombreDeCompetencesMaitrisable)
+        public ClasseDTO (string nom, string description, int hpLvl1, bool estSpellCaster, int bonusMaitrise, List<AttributDTO> attributs, List<CompetenceDTO> competencesMaitrisable, int nombreDeCompetencesMaitrisable)
         {
             Nom = nom;
             Description = description;
@@ -70,7 +70,7 @@ namespace Model
 
         public override bool Equals(object? obj)
         {
-            return obj is ClassDTO dTO &&
+            return obj is ClasseDTO dTO &&
                    Nom == dTO.Nom &&
                    Description == dTO.Description &&
                    HpLvl1 == dTO.HpLvl1 &&

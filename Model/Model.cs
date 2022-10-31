@@ -40,11 +40,11 @@ namespace Model {
 
         public ObservableCollection<Classe> obtenirClasse()
         {
-            List<ClassDTO> listeDTO = bd.getAllClasse();
+            List<ClasseDTO> listeDTO = bd.getAllClasse();
 
             ObservableCollection<Classe> listeClasses = new ObservableCollection<Classe>();
 
-            foreach (ClassDTO classeDTO in listeDTO)
+            foreach (ClasseDTO classeDTO in listeDTO)
             {
                 listeClasses.Add(new Classe(classeDTO));
             }

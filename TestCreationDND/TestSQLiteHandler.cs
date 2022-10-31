@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System;
+using System.Linq;
 
 namespace TestCreationDND
 {
@@ -66,14 +67,14 @@ namespace TestCreationDND
         [Test]
         public void verifierTailleDeListeRequeteGetAllCompetenceDTO()
         {
-            List<CompetenceDTO> listCompetence = sqliteHandler.getAllProficiencies();
+            List<CompetenceDTO> listCompetence = sqliteHandler.getAllCompetences();
             Assert.AreEqual(18, listCompetence.Count);
         }
 
         [Test]
         public void verifierTailleDeListeRequeteGetAllClasseDTO()
         {
-            List<ClassDTO> listClasse = sqliteHandler.getAllClasse();
+            List<ClasseDTO> listClasse = sqliteHandler.getAllClasse();
             Assert.AreEqual(12, listClasse.Count);
         }
 
@@ -105,6 +106,48 @@ namespace TestCreationDND
             Assert.AreEqual(attributDTO, listAttribut[0]);
         }
 
+        [Test]
+        public void verifierZeroDuplicationListeAttributsDeRaces()
+        {
+            List<AttributDTO> listAttribut = sqliteHandler.getClassAttributes(302);
+            Assert.AreEqual(listAttribut.Count, listAttribut.Distinct().Count());
+            listAttribut[0] = listAttribut[1];
+            Assert.AreNotEqual(listAttribut.Count, listAttribut.Distinct().Count());
+        }
+        [Test]
+        public void verifierZeroDuplicationListeCompetencesDeRaces()
+        {
+            List<CompetenceDTO> listCompetence = sqliteHandler.getClassCompetences(302);
+            Assert.AreEqual(listCompetence.Count, listCompetence.Distinct().Count());
+            listCompetence[0] = listCompetence[1];
+            Assert.AreNotEqual(listCompetence.Count, listCompetence.Distinct().Count());
+        }
 
+        [Test]
+        public void verifierZeroDuplicationListeDeCompetences()
+        {
+            List<CompetenceDTO> listCompetence = sqliteHandler.getAllCompetences();
+            Assert.AreEqual(listCompetence.Count, listCompetence.Distinct().Count());
+            listCompetence[0] = listCompetence[1];
+            Assert.AreNotEqual(listCompetence.Count, listCompetence.Distinct().Count());
+        }
+
+        [Test]
+        public void verifierZeroDuplicationListeDeRaces()
+        {
+            List<RaceDTO> listRace = sqliteHandler.getAllRace();
+            Assert.AreEqual(listRace.Count, listRace.Distinct().Count());
+            listRace[0] = listRace[1];
+            Assert.AreNotEqual(listRace.Count, listRace.Distinct().Count());
+        }
+
+        [Test]
+        public void verifierZeroDuplicationListeDeClasses()
+        {
+            List<ClasseDTO> listClasse= sqliteHandler.getAllClasse();
+            Assert.AreEqual(listClasse.Count, listClasse.Distinct().Count());
+            listClasse[0] = listClasse[1];
+            Assert.AreNotEqual(listClasse.Count, listClasse.Distinct().Count());
+        }
     }
 }

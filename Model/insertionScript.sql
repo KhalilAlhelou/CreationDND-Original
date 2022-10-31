@@ -146,8 +146,8 @@ INSERT INTO "class" ("idC","nameC","descC","hitPointC","isSpellcaster","bProffic
  (305,'Guerrier','Un maître du combat martial, habile avec une variété d''armes et d''armures.',10,0,2,2),
  (306,'Moine','Un maître des arts martiaux, qui exploite la puissance du corps dans la poursuite de la perfection physique et spirituelle.',8,0,2,2),
  (307,'Paladin','Un guerrier saint lié à un serment sacré',10,0,2,2),
- (308,'Ranger','Un guerrier qui combat les menaces aux frontières de la civilisation.',10,0,2,3),
- (309,'Rogue','Un scélérat qui utilise la discrétion et la ruse pour surmonter les obstacles et les ennemis.',8,0,2,4),
+ (308,'Rôdeur','Un guerrier qui combat les menaces aux frontières de la civilisation.',10,0,2,3),
+ (309,'Roublard ','Un scélérat qui utilise la discrétion et la ruse pour surmonter les obstacles et les ennemis.',8,0,2,4),
  (310,'Ensorceleur','Un lanceur de sorts qui utilise la magie inhérente d''un don ou d''une lignée.',6,1,2,2),
  (311,'Sorcier','Manipulateur de magie issue d''un marché avec une entité extraplanaire.',8,0,2,2),
  (312,'Magicien','Un utilisateur de magie érudit capable de manipuler les structures de la réalité.',6,1,2,2);

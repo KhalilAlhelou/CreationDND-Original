@@ -120,9 +120,9 @@ namespace Model
             return listRace;
         }
         
-        public List<ClassDTO> getAllClasse()
+        public List<ClasseDTO> getAllClasse()
         {
-            List<ClassDTO> listClasse = new List<ClassDTO>();
+            List<ClasseDTO> listClasse = new List<ClasseDTO>();
            
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
@@ -138,7 +138,7 @@ namespace Model
                 
                 List<CompetenceDTO> listProficiencies = getClassCompetences(rdr.GetInt32(0));
 
-                listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, rdr.GetInt32(6)));
+                listClasse.Add(new ClasseDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, rdr.GetInt32(6)));
 
             }
             con.Close();
@@ -230,7 +230,7 @@ namespace Model
         }
 
         
-        public List<CompetenceDTO> getAllProficiencies()
+        public List<CompetenceDTO> getAllCompetences()
         {
             List<CompetenceDTO> listProficiencies = new List<CompetenceDTO>();
             using var con = new SQLiteConnection(pathScriptSQL);

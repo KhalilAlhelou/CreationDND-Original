@@ -21,7 +21,7 @@ namespace Model
         public int nombreDeCompetencesMaitrisable { get; private set; }
 
 
-        public Classe (ClassDTO classeDTO)
+        public Classe (ClasseDTO classeDTO)
         {
             this.nom = classeDTO.Nom;
             this.description = classeDTO.Description;
