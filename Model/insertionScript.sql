@@ -40,15 +40,15 @@ DROP TABLE IF EXISTS "class_proficiency";
 CREATE TABLE IF NOT EXISTS "class_proficiency" (
 	"idC"	INTEGER NOT NULL,
 	"pID"	INTEGER NOT NULL,
-	FOREIGN KEY("pID") REFERENCES "proficiency",
-	FOREIGN KEY("idC") REFERENCES "class"
+	FOREIGN KEY("idC") REFERENCES "class",
+	FOREIGN KEY("pID") REFERENCES "proficiency"
 );
 DROP TABLE IF EXISTS "class_attribute";
 CREATE TABLE IF NOT EXISTS "class_attribute" (
 	"idC"	INTEGER NOT NULL,
 	"idAttr"	INTEGER NOT NULL,
-	FOREIGN KEY("idC") REFERENCES "class",
-	FOREIGN KEY("idAttr") REFERENCES "attribute"
+	FOREIGN KEY("idAttr") REFERENCES "attribute",
+	FOREIGN KEY("idC") REFERENCES "class"
 );
 DROP TABLE IF EXISTS "weapontype";
 CREATE TABLE IF NOT EXISTS "weapontype" (
@@ -66,8 +66,8 @@ DROP TABLE IF EXISTS "armor_armortype";
 CREATE TABLE IF NOT EXISTS "armor_armortype" (
 	"armorID"	INTEGER,
 	"atID"	INTEGER,
-	FOREIGN KEY("armorID") REFERENCES "armor",
-	FOREIGN KEY("atID") REFERENCES "armortype"
+	FOREIGN KEY("atID") REFERENCES "armortype",
+	FOREIGN KEY("armorID") REFERENCES "armor"
 );
 DROP TABLE IF EXISTS "weapon_weapontype";
 CREATE TABLE IF NOT EXISTS "weapon_weapontype" (
@@ -75,16 +75,6 @@ CREATE TABLE IF NOT EXISTS "weapon_weapontype" (
 	"wtID"	INTEGER,
 	FOREIGN KEY("wtID") REFERENCES "weapontype",
 	FOREIGN KEY("weaponID") REFERENCES "weapon"
-);
-DROP TABLE IF EXISTS "weapon";
-CREATE TABLE IF NOT EXISTS "weapon" (
-	"weaponID"	INTEGER,
-	"weaponName"	TEXT,
-	"weaponPrice"	TEXT,
-	"weaponDamage"	TEXT,
-	"weaponWeigth"	INTEGER,
-	"weaponProperty"	TEXT,
-	PRIMARY KEY("weaponID" AUTOINCREMENT)
 );
 DROP TABLE IF EXISTS "armor";
 CREATE TABLE IF NOT EXISTS "armor" (
@@ -97,18 +87,29 @@ CREATE TABLE IF NOT EXISTS "armor" (
 	"armorWeigth"	NUMERIC,
 	PRIMARY KEY("armorID" AUTOINCREMENT)
 );
-DROP TABLE IF EXISTS "weapondice";
-CREATE TABLE IF NOT EXISTS "weapondice" (
-	"wdID"	INTEGER,
-	"wdDiceRolls"	INTEGER,
-	"wdDiceSides"	INTEGER,
-	PRIMARY KEY("wdID")
-);
-DROP TABLE IF EXISTS "weaponDamageType";
-CREATE TABLE IF NOT EXISTS "weaponDamageType" (
+DROP TABLE IF EXISTS "weapondamagetype";
+CREATE TABLE IF NOT EXISTS "weapondamagetype" (
 	"wdtID"	INTEGER,
 	"wdtName"	TEXT,
 	PRIMARY KEY("wdtID")
+);
+DROP TABLE IF EXISTS "weapon_weapondamagetype";
+CREATE TABLE IF NOT EXISTS "weapon_weapondamagetype" (
+	"weaponID"	INTEGER,
+	"wdtID"	INTEGER,
+	FOREIGN KEY("wdtID") REFERENCES "weapondamagetype",
+	FOREIGN KEY("weaponID") REFERENCES "weapon"
+);
+DROP TABLE IF EXISTS "weapon";
+CREATE TABLE IF NOT EXISTS "weapon" (
+	"weaponID"	INTEGER,
+	"weaponName"	TEXT,
+	"weaponPrice"	TEXT,
+	"weaponDiceAmount"	INTEGER,
+	"weaponDiceSides"	INTEGER,
+	"weaponWeigth"	INTEGER,
+	"weaponProperty"	TEXT,
+	PRIMARY KEY("weaponID" AUTOINCREMENT)
 );
 INSERT INTO "race" ("idR","nameR","descR","bForceR","bDexR","bConstR","bIntR","bSageR","bCharR") VALUES (110,'Sangdragon','Les Draconiques ressemblent beaucoup à des dragons se tenant debout sous une forme humanoïde, bien qu''ils n''aient ni ailes ni queue.',2,0,0,0,0,1),
  (120,'Nain de colline','Audacieux et robustes, les nains sont connus pour être d''habiles guerriers, mineurs et travailleurs de la pierre et du métal. En tant que nain des collines, vous avez des sens aiguisés, une profonde intuition et une remarquable résilience. Les nains d''or de Faerûn dans leur puissant royaume du sud sont des nains des collines, tout comme les Neidar exilés et les Klar avilis de Krynn dans le cadre de Dragonlance.',0,0,2,0,1,0),
@@ -354,6 +355,10 @@ INSERT INTO "class_attribute" ("idC","idAttr") VALUES (301,201),
  (311,219),
  (312,203),
  (312,220);
+INSERT INTO "weapontype" ("wtID","wtName") VALUES (901,'Armes de corps à corps courantes'),
+ (902,'Armes à distance courantes'),
+ (903,'Armes de corps à corps de guerre'),
+ (904,'Armes à distance de guerre');
 INSERT INTO "armortype" ("atID","atName") VALUES (501,'Armures légères'),
  (502,'Armures intermédiaires'),
  (503,'Armures lourdes'),
@@ -384,4 +389,44 @@ INSERT INTO "armor" ("armorID","armorName","armorPrice","armorClass","armorForce
  (611,'Clibanion',20000,17,15,1,30),
  (612,'Harnois',150000,18,15,1,32.5),
  (613,'Bouclier',1000,2,0,0,3);
+INSERT INTO "weapondamagetype" ("wdtID","wdtName") VALUES (801,'contondant'),
+ (802,'perforant'),
+ (803,'tranchant');
+INSERT INTO "weapon" ("weaponID","weaponName","weaponPrice","weaponDiceAmount","weaponDiceSides","weaponWeigth","weaponProperty") VALUES (701,'Bâton','20',1,6,2,NULL),
+ (702,NULL,NULL,1,4,0.5,NULL),
+ (703,NULL,NULL,1,4,1,NULL),
+ (704,NULL,NULL,1,6,1,NULL),
+ (705,NULL,NULL,1,6,1,NULL),
+ (706,NULL,NULL,1,6,1.5,NULL),
+ (707,NULL,NULL,1,4,1,NULL),
+ (708,NULL,NULL,1,6,2,NULL),
+ (709,NULL,NULL,1,8,5,NULL),
+ (710,NULL,NULL,1,4,1,NULL),
+ (711,NULL,NULL,1,8,2.5,NULL),
+ (712,NULL,NULL,1,6,1,NULL),
+ (713,NULL,NULL,1,4,0.1,NULL),
+ (714,NULL,NULL,1,4,0,NULL),
+ (715,NULL,NULL,1,6,1.5,NULL),
+ (716,NULL,NULL,1,10,3,NULL),
+ (717,NULL,NULL,1,6,3,NULL),
+ (718,NULL,NULL,1,6,1,NULL),
+ (719,NULL,NULL,1,8,1.5,NULL),
+ (720,NULL,NULL,1,8,1,NULL),
+ (721,NULL,NULL,1,4,1.5,NULL),
+ (722,NULL,NULL,1,12,3.5,NULL),
+ (723,NULL,NULL,1,8,2,NULL),
+ (724,NULL,NULL,1,10,3,NULL),
+ (725,NULL,NULL,1,12,3,NULL),
+ (726,NULL,NULL,1,6,5,NULL),
+ (727,NULL,NULL,1,8,1,NULL),
+ (728,NULL,NULL,1,8,2,NULL),
+ (729,NULL,NULL,1,8,1,NULL),
+ (730,NULL,NULL,1,10,9,NULL),
+ (731,NULL,NULL,1,8,1,NULL),
+ (732,NULL,NULL,1,6,2,NULL),
+ (733,NULL,NULL,1,6,1.5,NULL),
+ (734,NULL,NULL,1,10,9,NULL),
+ (735,NULL,NULL,1,8,1,NULL),
+ (736,NULL,NULL,1,0,1.5,NULL),
+ (737,NULL,NULL,1,1,0.5,NULL);
 COMMIT;
