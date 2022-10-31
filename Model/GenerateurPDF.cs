@@ -79,7 +79,7 @@ namespace Model
 
             AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, true);
 
-            section.AddParagraph();
+            section.AddPageBreak();
 
             foreach (Attribut attribut in personnage.classe.listeAttributs)
             {
