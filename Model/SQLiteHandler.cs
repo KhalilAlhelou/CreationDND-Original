@@ -152,7 +152,7 @@ namespace Model
                         listProficiencies.Add(getProficiency(proficiency));
                     }
                 }
-                listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, profficiencyAmount));
+                listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, profficiencyAmount, 0, null));
 
             }
             con.Close();

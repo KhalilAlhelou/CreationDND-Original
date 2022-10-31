@@ -16,6 +16,39 @@ namespace TestCreationDND
         }
 
         [Test]
+        public void creerEquipementAPartirDEquipementDTO()
+        {
+            EquipementDTO equipementDTO = new EquipementDTO("Test");
+
+            Equipement equipement = new Equipement(equipementDTO);
+
+            Assert.AreEqual(equipementDTO.nom, equipement.nom);
+
+        }
+
+        [Test]
+        public void creerArmeAPartirDArmeDTO()
+        {
+            ArmeDTO armeDTO = new ArmeDTO("Test", "1d8");
+
+            Arme arme = new Arme(armeDTO);
+
+            Assert.AreEqual(armeDTO.deDeDegats, arme.deDeDegats);
+
+        }
+
+        [Test]
+        public void creerArmureAPartirDArmureDTO()
+        {
+            ArmureDTO armureDTO = new ArmureDTO("Test", 14, true, false);
+
+            Armure armure = new Armure(armureDTO);
+
+            Assert.AreEqual(armureDTO.classeArmure, armure.classeArmure);
+
+        }
+
+        [Test]
         public void calculerLaClasseDArmureDUnPersonnagePortantUneArmure()
         {
             Armure armurePortee = new Armure("Armure de cuir", 11, true, false);

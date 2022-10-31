@@ -9,16 +9,12 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Competence
+    public class ArmeDTO : EquipementDTO
     {
-        public int id { get; private set; }
-        public string nom { get; private set; }
-
-        public Competence(ProficiencyDTO proficiencyDTO)
+        public string deDeDegats { get; private set; }
+        public ArmeDTO(string nom, string deDeDegats) : base(nom)
         {
-            id = proficiencyDTO.id;
-            nom = proficiencyDTO.nom;
+            this.deDeDegats = deDeDegats;
         }
-
     }
 }

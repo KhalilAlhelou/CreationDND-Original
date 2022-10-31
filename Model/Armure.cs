@@ -22,6 +22,13 @@ namespace Model
             this.bonusModDexEstLimite = bonusModDexEstLimite;
         }
 
+        public Armure(ArmureDTO armureDTO) : base(armureDTO.nom)
+        {
+            this.classeArmure = armureDTO.classeArmure;
+            this.obtientBonusModDex = armureDTO.obtientBonusModDex;
+            this.bonusModDexEstLimite = armureDTO.bonusModDexEstLimite;
+        }
+
         public int calculerClasseArmure(int modDex)
         {
             if (obtientBonusModDex)

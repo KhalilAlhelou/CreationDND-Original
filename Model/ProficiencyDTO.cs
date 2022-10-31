@@ -1,4 +1,8 @@
-﻿namespace Model
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("TestCreationDND")]
+
+namespace Model
 {
     public class ProficiencyDTO
     {

@@ -17,5 +17,10 @@ namespace Model
         {
             this.nom = nom;
         }
+
+        public Equipement(EquipementDTO equipementDTO)
+        {
+            this.nom = equipementDTO.nom;
+        }
     }
 }
