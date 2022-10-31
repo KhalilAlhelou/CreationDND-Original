@@ -148,7 +148,7 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT a.pID, a.pName FROM proficiency a, classProficiency b WHERE b.idC =" + classID + " AND b.pID = a.pID ORDER BY a.pName ASC";
+            string stm = "SELECT a.pID, a.pName FROM proficiency a, class_proficiency b WHERE b.idC =" + classID + " AND b.pID = a.pID ORDER BY a.pName ASC";
 
             using var cmd = new SQLiteCommand(stm, con);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
@@ -171,7 +171,7 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT a.nameAttr, a.descAttr FROM attribute a, classAttribute b WHERE b.idC =" + classID + " AND b.idAttr = a.idAttr ORDER BY a.nameAttr ASC";
+            string stm = "SELECT a.nameAttr, a.descAttr FROM attribute a, class_attribute b WHERE b.idC =" + classID + " AND b.idAttr = a.idAttr ORDER BY a.nameAttr ASC";
 
             using var cmd = new SQLiteCommand(stm, con);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
