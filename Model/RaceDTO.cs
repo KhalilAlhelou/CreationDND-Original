@@ -75,6 +75,20 @@ namespace Model {
             get;
             private set;
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is RaceDTO dTO &&
+                   IDRace == dTO.IDRace &&
+                   NameRace == dTO.NameRace &&
+                   DescRace == dTO.DescRace &&
+                   BonusForce == dTO.BonusForce &&
+                   BonusDex == dTO.BonusDex &&
+                   BonusConst == dTO.BonusConst &&
+                   BonusInt == dTO.BonusInt &&
+                   BonusSage == dTO.BonusSage &&
+                   BonusChar == dTO.BonusChar;
+        }
     }
 
 

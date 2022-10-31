@@ -11,7 +11,7 @@ namespace Model
         public int id { get; private set; }
         public string nom { get; private set; }
 
-        public Competence(ProficiencyDTO proficiencyDTO)
+        public Competence(CompetenceDTO proficiencyDTO)
         {
             id = proficiencyDTO.id;
             nom = proficiencyDTO.nom;

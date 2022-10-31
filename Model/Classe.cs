@@ -33,10 +33,10 @@ namespace Model
             
         }
 
-        private List<Competence> creerListeComptepenceMaitrisable(List<ProficiencyDTO> competencesMaitrisable)
+        private List<Competence> creerListeComptepenceMaitrisable(List<CompetenceDTO> competencesMaitrisable)
         {
             List<Competence> result = new List<Competence>();
-            foreach (ProficiencyDTO proficiencyDTO in competencesMaitrisable)
+            foreach (CompetenceDTO proficiencyDTO in competencesMaitrisable)
             {
                 result.Add(new Competence(proficiencyDTO));
             }

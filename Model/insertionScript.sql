@@ -121,7 +121,7 @@ INSERT INTO "race" ("idR","nameR","descR","bForceR","bDexR","bConstR","bIntR","b
  (180,'Gnome des roches','L''énergie et l''enthousiasme d''un gnome pour la vie transparaissent dans chaque centimètre de son petit corps. En tant que gnome des rochers, vous avez une inventivité et une résistance naturelles supérieures à celles des autres gnomes. La plupart des gnomes des mondes de D&D sont des gnomes de roche, y compris les gnomes bricoleurs de Dragonlance.',0,0,1,2,0,0),
  (181,'Gnome de foret','L''énergie et l''enthousiasme d''un gnome pour la vie transparaissent dans chaque centimètre de son petit corps. En tant que gnome des rochers, vous avez une inventivité et une résistance naturelles supérieures à celles des autres gnomes. La plupart des gnomes des mondes de D&D sont des gnomes de roche, y compris les gnomes bricoleurs de Dragonlance.',0,1,0,2,0,0),
  (190,'Tieffelin','Être accueilli par des regards et des chuchotements, subir la violence et les insultes dans la rue, voir la méfiance et la peur dans chaque regard : tel est le lot du tiefling.',0,0,0,1,0,2);
-INSERT INTO "proficiency" ("pID","pName") VALUES (401,'Acrobaties'),
+INSERT INTO "proficiency" ("pID","pName") VALUES (401,'Acrobatie'),
  (402,'Arcanes'),
  (403,'Athlétisme'),
  (404,'Discrétion'),
