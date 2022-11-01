@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="InterfaceEquipements" Height="450" Width="800">
     <Grid>
-        
+        <ComboBox x:Name="Equipement1" IsEnabled="False" Margin="268,16,268,376"/>
+
+        <ComboBox x:Name="Equipement2" IsEnabled="False" Margin="268,107,268,281"/>
+
+        <ComboBox x:Name="Equipement3" IsEnabled="False" Margin="268,192,268,199"/>
+
+        <ComboBox x:Name="Equipement4" IsEnabled="False" Margin="268,283,268,102"/>
+
+        <TextBlock x:Name="EquipementPreSet" Margin="268,363,268,19"/>
+
+        <Button x:Name="ChoisirEquipement" Content="Choisir Equipement" Margin="596,354,19,28"/>
     </Grid>
 </Window>
