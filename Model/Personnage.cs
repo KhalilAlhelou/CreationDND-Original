@@ -70,7 +70,7 @@ namespace Model
             calculerTousLesModificateurs();
         }
 
-        public Personnage(string nom, Race race, Classe classe, int force, int dexterite, int constitution, int intelligence, int sagesse, int charisme)
+        public Personnage(string nom, Race race, Classe classe, int force, int dexterite, int constitution, int intelligence, int sagesse, int charisme, List<Competence> competencesMaitrises)
         {
             this.nom = nom;
             this.race = race;
@@ -82,6 +82,7 @@ namespace Model
             this.sagesse = sagesse;
             this.charisme = charisme;
             inventaire = new List<Equipement>();
+            this.competencesMaitrises = competencesMaitrises;
             calculerTousLesModificateurs();
         }
 

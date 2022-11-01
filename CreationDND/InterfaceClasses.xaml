@@ -33,7 +33,7 @@
         <StackPanel Grid.Column="1" Margin="0,0,0,10">
             <DockPanel Height="299" Width="403" Grid.Row="0">
                 <ScrollViewer>
-                    <TextBlock x:Name="TextBlockDescriptionClasses" Text="{Binding descriptionClasseSelectionne}" FontSize="22" FontFamily="Freestyle Script" Margin="0,0, 0, 60" Width="375" Height="320" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="TextBlockDescriptionClasses" Text="{Binding descriptionClasseSelectionne}" FontSize="22" FontFamily="Freestyle Script" Margin="0,0, 0, 60" Width="403" Height="299" TextWrapping="Wrap"/>
                 </ScrollViewer>
             </DockPanel>
 

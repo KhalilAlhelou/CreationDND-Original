@@ -27,6 +27,12 @@ namespace Model
             nom = element.GetAttribute("Nom");
         }
 
+        public Competence(int id, string nom)
+        {
+            this.id = id;
+            this.nom = nom;
+        }
+
         public XmlNode toXMl(XmlDocument doc)
         {
             XmlElement elementCompetence = doc.CreateElement("Competence");
