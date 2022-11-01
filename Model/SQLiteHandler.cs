@@ -138,7 +138,7 @@ namespace Model
                 
                 List<CompetenceDTO> listProficiencies = getClassCompetences(rdr.GetInt32(0));
 
-                listClasse.Add(new ClasseDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, rdr.GetInt32(6)));
+                listClasse.Add(new ClasseDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, rdr.GetInt32(6), 0, null));
 
             }
             con.Close();

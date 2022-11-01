@@ -21,7 +21,7 @@ namespace TestCreationDND
         [Test]
         public void CreerCompetenceAPartirDeProficiencyDTO()
         {
-            ProficiencyDTO proficiencyDTO = new ProficiencyDTO(1, "test");
+            CompetenceDTO proficiencyDTO = new CompetenceDTO(1, "test");
             Competence competence = new Competence(proficiencyDTO);
 
             Assert.AreEqual(proficiencyDTO.nom, competence.nom);

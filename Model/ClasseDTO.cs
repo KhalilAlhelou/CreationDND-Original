@@ -9,8 +9,8 @@ namespace Model
 {
     public class ClasseDTO
     {
-        public ClassDTO (string nom, string description, int hpLvl1, bool estSpellCaster, int bonusMaitrise, List<AttributDTO> attributs, 
-            List<ProficiencyDTO> competencesMaitrisable, int nombreDeCompetencesMaitrisable, int nombreDeChoixEquipement, List<List<Equipement>> choixEquipements)
+        public ClasseDTO(string nom, string description, int hpLvl1, bool estSpellCaster, int bonusMaitrise, List<AttributDTO> attributs,
+            List<CompetenceDTO> competencesMaitrisable, int nombreDeCompetencesMaitrisable, int nombreDeChoixEquipement, List<List<Equipement>> choixEquipements)
         {
             Nom = nom;
             Description = description;
@@ -71,18 +71,18 @@ namespace Model
             private set;
         }
 
-        public List<List<Equipement>> choixEquipements 
-        { 
-            get; 
-            private set; 
+        public List<List<Equipement>> choixEquipements
+        {
+            get;
+            private set;
         }
 
-        public int nombreDeChoixEquipement 
-        { 
-            get; 
-            private set; 
+        public int nombreDeChoixEquipement
+        {
+            get;
+            private set;
         }
-        
+
         public override bool Equals(object? obj)
         {
             return obj is ClasseDTO dTO &&
@@ -95,5 +95,5 @@ namespace Model
                    EqualityComparer<List<CompetenceDTO>>.Default.Equals(competencesMaitrisable, dTO.competencesMaitrisable) &&
                    nombreDeCompetencesMaitrisable == dTO.nombreDeCompetencesMaitrisable;
         }
-    
+    }
 }

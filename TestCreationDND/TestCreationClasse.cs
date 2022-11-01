@@ -20,7 +20,7 @@ namespace TestCreationDND
         [Test]
         public void CreationDuClasseAPartirDUneClasseDTO()
         {
-            ClassDTO classDTO = new ClassDTO("Test", "Test", 1, false, 1, new List<AttributDTO>(), new List<ProficiencyDTO>(), 0, 0, null);
+            ClasseDTO classDTO = new ClasseDTO("Test", "Test", 1, false, 1, new List<AttributDTO>(), new List<CompetenceDTO>(), 0, 0, null);
             Classe classe = new Classe(classDTO);
 
             Assert.AreEqual(classDTO.Nom, classe.nom);

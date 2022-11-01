@@ -18,8 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="500"/>
         </Grid.RowDefinitions>
-        <ScrollViewer>
-            <StackPanel Grid.Column="0">
+        <StackPanel Grid.Column="0">
                 <Button x:Name="btnRetourDeDescriptinPersonnage" Content="Retour" DockPanel.Dock="Top" Height="38" Width="126" VerticalAlignment="Top" Margin="10,10,0,0" Click="btnRetourDeDescriptinPersonnage_Click" HorizontalAlignment="Left" FontFamily="Freestyle Script" FontSize="28"/>
                 <DockPanel  Height="200" Width="300" Grid.Row="0" Margin="0,20,0,0">
                     <TextBox FontFamily="Freestyle Script" FontSize="24"
@@ -38,25 +37,24 @@
                     </TextBox>
 
                 </DockPanel>
-                <DockPanel  Height="200" Width="300" Grid.Row="0" Margin="0,20,0,0">
-                    <TextBox FontFamily="Freestyle Script" FontSize="24"
-                      Name="tbMultiLine3"
+                <StackPanel Height="200" Width="300" Grid.Row="0" Margin="0,20,0,0">
+                    <TextBlock FontFamily="Freestyle Script" FontSize="24"
+                      x:Name="tbMultiLine3"
+                      Foreground="Black"
                       TextWrapping="Wrap"
-                      AcceptsReturn="True"
-                      VerticalScrollBarVisibility="Visible" Width="301" Height="95" HorizontalAlignment="Left" VerticalAlignment="Top">
-                        Points de vie actuels:
-                    </TextBox>
-                    <TextBox FontFamily="Freestyle Script" FontSize="24"
+                      Height="95" Text="Points de vie actuels: " Width="300" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                    <TextBlock FontFamily="Freestyle Script" FontSize="24"
                       x:Name="tbMultiLine4"
+                      Foreground="Black"
                       TextWrapping="Wrap"
-                      AcceptsReturn="True"
-                      VerticalScrollBarVisibility="Visible" Height="95" Text="Points de vie temporaires: " Width="300" Margin="-299,0,0,-3" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                </DockPanel>
+                      Height="95" Text="Points de vie temporaires: " Width="300"  HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                </StackPanel>
             </StackPanel>
-        </ScrollViewer>
+        
+            
         <StackPanel Grid.Column="1">
             <DockPanel  Height="255" Width="300" Grid.Row="2">
-                <TextBlock x:Name="competencesCase"  Text=" Compétences:" FontFamily="Freestyle Script" FontSize="24" Margin="0,0,0,0" Width="295" Height="250"/>
+                <TextBlock x:Name="competencesCase" Foreground="Black" Text="Competences :" FontFamily="Freestyle Script" FontSize="24" Margin="0,0,0,0" Width="295" Height="250"/>
             </DockPanel>
         </StackPanel>
     </Grid>
