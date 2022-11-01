@@ -10,12 +10,12 @@ namespace TestCreationDND
 {
     public class TestSQLiteHandler
     {
-        SQLiteHandler sqliteHandler;
+        SQLiteHandler sqliteHandler = new SQLiteHandler();
 
         [SetUp]
         public void Setup()
         {
-            sqliteHandler = new SQLiteHandler();
+            //if need be
         }
 
         [Test]
