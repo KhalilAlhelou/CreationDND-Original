@@ -41,7 +41,16 @@ namespace CreationDND
 
         void genererPdf(object sender, RoutedEventArgs e)
         {
-            _viewModel.creerFichePersonnagePDF(ComboBoxPersonnages.SelectedItem);
+            try
+            {
+                _viewModel.creerFichePersonnagePDF(ComboBoxPersonnages.SelectedItem);
+            }
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("Le fichier est ouvert. Veuillez le fermer pour pouvoir sauvegarde le fichier PDF.", "Erreur");
+            }
+
+
         }
 
         

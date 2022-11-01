@@ -58,6 +58,15 @@ namespace Model
             race = new Race(element.GetElementsByTagName("Race")[0] as XmlElement);
             classe = new Classe(element.GetElementsByTagName("Classe")[0] as XmlElement);
 
+            XmlNodeList competencesMaitriseesXml = element.GetElementsByTagName("Competence");
+
+            competencesMaitrises = new List<Competence>();
+
+            foreach(XmlElement competence in competencesMaitriseesXml)
+            {
+                competencesMaitrises.Add(new Competence(competence));
+            }
+
             calculerTousLesModificateurs();
         }
 
@@ -136,10 +145,15 @@ namespace Model
 
             elementPersonnage.AppendChild(race.toXMl(doc));
 
-            if(classe != null)
+            elementPersonnage.AppendChild(classe.toXMl(doc));
+
+            XmlElement elementPersonnageCompetencesMatrisees = doc.CreateElement("CompetencesMaitrise");
+            foreach(Competence competence in competencesMaitrises)
             {
-                elementPersonnage.AppendChild(classe.toXMl(doc));
+                elementPersonnageCompetencesMatrisees.AppendChild(competence.toXMl(doc));
             }
+
+            elementPersonnage.AppendChild(elementPersonnageCompetencesMatrisees);
 
             return elementPersonnage;
         }

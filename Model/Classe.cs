@@ -81,6 +81,17 @@ namespace Model
 
             nom = element.GetElementsByTagName("NomClasse").Item(0).InnerText;
             description = element.GetElementsByTagName("DescriptionClasse").Item(0).InnerText;
+
+            XmlNodeList attributs = element.GetElementsByTagName("Attribut");
+
+            listeAttributs = new List<Attribut>();
+
+            foreach (XmlElement attribut in attributs)
+            {
+                listeAttributs.Add(new Attribut(attribut));
+            }
+
+            
         }
 
         public int calculerPvAuNiv1(int modConstitution)
@@ -107,6 +118,8 @@ namespace Model
                 elementClasse.SetAttribute("estLanceurSort", "FALSE");
             }
 
+
+
             XmlElement elementClasseNom = doc.CreateElement("NomClasse");
             elementClasseNom.InnerText = nom;
             elementClasse.AppendChild(elementClasseNom);
@@ -114,6 +127,12 @@ namespace Model
             XmlElement elementClasseDescription = doc.CreateElement("DescriptionClasse");
             elementClasseDescription.InnerText = description;
             elementClasse.AppendChild(elementClasseDescription);
+
+
+            foreach(Attribut attribut in listeAttributs)
+            {
+                elementClasse.AppendChild(attribut.toXMl(doc));
+            }
 
             return elementClasse;
         }

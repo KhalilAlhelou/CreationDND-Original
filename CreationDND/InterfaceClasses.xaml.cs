@@ -48,6 +48,7 @@ namespace CreationDND
         {
             _viewModel.ajouterClasse(ComboBoxClasses.SelectedItem);
             InterfaceChoisirCompetence pageCompetences = new InterfaceChoisirCompetence();
+            _viewModel.ajouterClasse(ComboBoxClasses.SelectedItem);
             pageCompetences.Show();
             this.Close();
         }
