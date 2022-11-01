@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Model
 {
-    public class ClassDTO
+    public class ClasseDTO
     {
         public ClassDTO (string nom, string description, int hpLvl1, bool estSpellCaster, int bonusMaitrise, List<AttributDTO> attributs, 
             List<ProficiencyDTO> competencesMaitrisable, int nombreDeCompetencesMaitrisable, int nombreDeChoixEquipement, List<List<Equipement>> choixEquipements)
@@ -59,7 +59,7 @@ namespace Model
             private set;
         }
 
-        public List<ProficiencyDTO> competencesMaitrisable
+        public List<CompetenceDTO> competencesMaitrisable
         {
             get;
             private set;
@@ -82,5 +82,18 @@ namespace Model
             get; 
             private set; 
         }
-    }
+        
+        public override bool Equals(object? obj)
+        {
+            return obj is ClasseDTO dTO &&
+                   Nom == dTO.Nom &&
+                   Description == dTO.Description &&
+                   HpLvl1 == dTO.HpLvl1 &&
+                   SpellCaster == dTO.SpellCaster &&
+                   BonusMaitrise == dTO.BonusMaitrise &&
+                   EqualityComparer<List<AttributDTO>>.Default.Equals(ListeAttributs, dTO.ListeAttributs) &&
+                   EqualityComparer<List<CompetenceDTO>>.Default.Equals(competencesMaitrisable, dTO.competencesMaitrisable) &&
+                   nombreDeCompetencesMaitrisable == dTO.nombreDeCompetencesMaitrisable;
+        }
+    
 }

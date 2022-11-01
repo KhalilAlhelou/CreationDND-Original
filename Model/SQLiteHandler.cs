@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 using System.Security.Cryptography;
+using System.Runtime.Intrinsics.Arm;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("TestCreationDND")]
 
 namespace Model
 {
@@ -27,26 +31,28 @@ namespace Model
             }
             executeInsertionSQL();
         }
-        private void createFileDirectory()
+        public void createFileDirectory()
         {
             DirectoryInfo di = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/");
             di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
 
-            Debug.WriteLine("DB is being created");
+            //Debug.WriteLine("DB is being created");
             SQLiteConnection.CreateFile(pathSQLite);
         }
-        private void executeInsertionSQL()
+        public int executeInsertionSQL()
         {
             SQLiteConnection m_dbConnection = new SQLiteConnection(pathScriptSQL);
             string insertionRaceContents = File.ReadAllText("insertionScript.sql");
             m_dbConnection.Open();
             SQLiteCommand command = new SQLiteCommand(insertionRaceContents, m_dbConnection);
-            command.ExecuteNonQuery();
+            int rowsAffected = command.ExecuteNonQuery();
+            //Debug.WriteLine(rowsAffected);
             m_dbConnection.Close();
+            return rowsAffected;
         }
 
 
-
+/** -- DEPRICATED -- USE FOR TESTING ONLY --
         public void showTable(string tableName)
         {
 
@@ -68,25 +74,24 @@ namespace Model
                     break;
             }
         }
-
-        public RaceDTO getRace(string raceName)
+**/
+        public RaceDTO getRace(int raceID)
         {
 
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT * FROM race WHERE nameR ='" + raceName + "'";
+            string stm = "SELECT * FROM race WHERE idR ='" + raceID + "'";
 
             using var cmd = new SQLiteCommand(stm, con);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
             {
-                if (rdr.GetString(1).ToLower() == raceName.ToLower())
-                {
+               
 
                     return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8));
-                }
+                
             }
 
             return null;
@@ -115,9 +120,9 @@ namespace Model
             return listRace;
         }
         
-        public List<ClassDTO> getAllClasse()
+        public List<ClasseDTO> getAllClasse()
         {
-            List<ClassDTO> listClasse = new List<ClassDTO>();
+            List<ClasseDTO> listClasse = new List<ClasseDTO>();
            
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
@@ -129,36 +134,62 @@ namespace Model
 
             while (rdr.Read())
             {
-                List<AttributDTO> listAttribut = new List<AttributDTO>();
+                List<AttributDTO> listAttribut = getClassAttributes(rdr.GetInt32(0));
+                
+                List<CompetenceDTO> listProficiencies = getClassCompetences(rdr.GetInt32(0));
 
-                string[] attributTmp = rdr.GetString(6).Split(';');
-
-                foreach (var attribut in attributTmp)
-                {
-                    listAttribut.Add(getAttribut(attribut));
-                }
-
-                List<ProficiencyDTO> listProficiencies = new List<ProficiencyDTO>();
-                string[] proficiencyTmp = rdr.GetString(7).Split(':');
-                int profficiencyAmount = Int32.Parse(proficiencyTmp[0]);
-
-                string[] proficiencyList = proficiencyTmp[1].Split(';');
-                if (proficiencyList[0] == "0") {
-                    listProficiencies = getAllProficiencies();
-                }
-                else {
-                    foreach (var proficiency in proficiencyList)
-                    {
-                        listProficiencies.Add(getProficiency(proficiency));
-                    }
-                }
-                listClasse.Add(new ClassDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, profficiencyAmount, 0, null));
+                listClasse.Add(new ClasseDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, rdr.GetInt32(6)));
 
             }
             con.Close();
             return listClasse;
         }
-        public AttributDTO getAttribut(string attrID)
+
+        public List<CompetenceDTO> getClassCompetences(int classID)
+        {
+            List<CompetenceDTO> listProficiencies = new List<CompetenceDTO>();
+
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+
+            string stm = "SELECT a.pID, a.pName FROM proficiency a, class_proficiency b WHERE b.idC =" + classID + " AND b.pID = a.pID ORDER BY a.pName ASC";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                listProficiencies.Add(new CompetenceDTO(rdr.GetInt32(0), rdr.GetString(1)));
+
+            }
+            con.Close();
+
+
+            return listProficiencies;
+        }
+
+        public List<AttributDTO> getClassAttributes(int classID)
+        {
+            List<AttributDTO> listAttribut = new List<AttributDTO>();
+
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+
+            string stm = "SELECT a.nameAttr, a.descAttr FROM attribute a, class_attribute b WHERE b.idC =" + classID + " AND b.idAttr = a.idAttr ORDER BY a.nameAttr ASC";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                listAttribut.Add(new AttributDTO(rdr.GetString(0), rdr.GetString(1)));
+            }
+            con.Close();
+
+            return listAttribut;
+        }
+
+        public AttributDTO getAttribut(int attrID)
         {
 
             using var con = new SQLiteConnection(pathScriptSQL);
@@ -178,7 +209,7 @@ namespace Model
             return null;
         }
      
-        public ProficiencyDTO getProficiency(string pID)
+        public CompetenceDTO getCompetence(int pID)
         {
 
             using var con = new SQLiteConnection(pathScriptSQL);
@@ -191,7 +222,7 @@ namespace Model
 
             while (rdr.Read())
             {
-                return new ProficiencyDTO(rdr.GetInt32(0), rdr.GetString(1));
+                return new CompetenceDTO(rdr.GetInt32(0), rdr.GetString(1));
 
             }
 
@@ -199,9 +230,9 @@ namespace Model
         }
 
         
-        public List<ProficiencyDTO> getAllProficiencies()
+        public List<CompetenceDTO> getAllCompetences()
         {
-            List<ProficiencyDTO> listProficiencies = new List<ProficiencyDTO>();
+            List<CompetenceDTO> listProficiencies = new List<CompetenceDTO>();
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
@@ -213,7 +244,7 @@ namespace Model
             while (rdr.Read())
             {
 
-                listProficiencies.Add(new ProficiencyDTO(rdr.GetInt32(0), rdr.GetString(1)));
+                listProficiencies.Add(new CompetenceDTO(rdr.GetInt32(0), rdr.GetString(1)));
 
             }
             con.Close();

@@ -40,11 +40,11 @@ namespace Model {
 
         public ObservableCollection<Classe> obtenirClasse()
         {
-            List<ClassDTO> listeDTO = bd.getAllClasse();
+            List<ClasseDTO> listeDTO = bd.getAllClasse();
 
             ObservableCollection<Classe> listeClasses = new ObservableCollection<Classe>();
 
-            foreach (ClassDTO classeDTO in listeDTO)
+            foreach (ClasseDTO classeDTO in listeDTO)
             {
                 listeClasses.Add(new Classe(classeDTO));
             }
@@ -56,6 +56,22 @@ namespace Model {
         public ObservableCollection<Personnage> obtenirPersonnagesExistants()
         {
             return personnagesExistants;
+        }
+
+        public int obtenirNombreCompetencesMatrisable()
+        {
+            return personnageEnCreation.classe.nombreDeCompetencesMaitrisable;
+        }
+
+        public ObservableCollection<Competence> obtenirCompetencesMaitrisables()
+        {
+            ObservableCollection<Competence> listeCompetencesMaitrisables = new ObservableCollection<Competence>();
+            foreach (Competence competence in personnageEnCreation.classe.competencesMaitrisable)
+            {
+                listeCompetencesMaitrisables.Add(competence);
+            }
+
+            return listeCompetencesMaitrisables;
         }
 
         public void ajouterLaRace(Race race)
