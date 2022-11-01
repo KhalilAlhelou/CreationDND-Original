@@ -15,18 +15,18 @@ namespace Model
         {
 
         }
-
+        /**
         public void showTable(string tableName)
         {
 
             sqlHandler.showTable(tableName);
-        }
+        }**/
         public List<RaceDTO> getAllRace()
         {
             return sqlHandler.getAllRace();
         }
 
-        public List<ClassDTO> getAllClasse()
+        public List<ClasseDTO> getAllClasse()
         {
             return sqlHandler.getAllClasse();
         }

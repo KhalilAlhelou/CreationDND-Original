@@ -19,9 +19,11 @@ namespace Model
         public List<Attribut> listeAttributs { get; private set; }
         public List<Competence> competencesMaitrisable { get; private set; }
         public int nombreDeCompetencesMaitrisable { get; private set; }
+        public int nombreDeChoixEquipement { get; private set; }
+        public List<List<Equipement>> choixEquipements { get; private set; }
 
 
-        public Classe (ClassDTO classeDTO)
+        public Classe (ClasseDTO classeDTO)
         {
             this.nom = classeDTO.Nom;
             this.description = classeDTO.Description;
@@ -33,10 +35,10 @@ namespace Model
             
         }
 
-        private List<Competence> creerListeComptepenceMaitrisable(List<ProficiencyDTO> competencesMaitrisable)
+        private List<Competence> creerListeComptepenceMaitrisable(List<CompetenceDTO> competencesMaitrisable)
         {
             List<Competence> result = new List<Competence>();
-            foreach (ProficiencyDTO proficiencyDTO in competencesMaitrisable)
+            foreach (CompetenceDTO proficiencyDTO in competencesMaitrisable)
             {
                 result.Add(new Competence(proficiencyDTO));
             }

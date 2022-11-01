@@ -24,19 +24,19 @@
         </Grid.RowDefinitions>
 
         <StackPanel  Grid.Column="0" Grid.Row="0">
-            <ComboBox x:Name="Competence1" IsEnabled="False" ItemsSource="{Binding listeCompetences}"/>
+            <ComboBox x:Name="Competence1" IsEnabled="False" ItemsSource="{Binding listeCompetences}" FontSize="24" FontFamily="Freestyle Script"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="0">
-            <ComboBox x:Name="Competence2" IsEnabled="False" ItemsSource="{Binding listeCompetences}"/>
+            <ComboBox x:Name="Competence2" IsEnabled="False" ItemsSource="{Binding listeCompetences}" FontSize="24" FontFamily="Freestyle Script"/>
         </StackPanel>
 
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <ComboBox x:Name="Competence3" IsEnabled="False" ItemsSource="{Binding listeCompetences}"/>
+            <ComboBox x:Name="Competence3" IsEnabled="False" ItemsSource="{Binding listeCompetences}" FontSize="24" FontFamily="Freestyle Script"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <ComboBox x:Name="Competence4" IsEnabled="False" ItemsSource="{Binding listeCompetences}"/>
+            <ComboBox x:Name="Competence4" IsEnabled="False" ItemsSource="{Binding listeCompetences}" FontSize="24" FontFamily="Freestyle Script"/>
             <Button Height="60" Width="170" HorizontalAlignment="Right" Margin="0, 100, 15, 0" Command="{x:Static local:InterfaceChoisirCompetence.cdmChoisirCompetence}" Content="Choisir competences"/>
         </StackPanel>
     </Grid>

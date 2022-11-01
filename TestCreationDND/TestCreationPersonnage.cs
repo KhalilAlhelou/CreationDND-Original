@@ -24,6 +24,17 @@ namespace TestCreationDND
             Assert.AreEqual(1, perso.modCharisme);
         }
 
-        
+        [Test]
+        public void AjouterUneArmureDansInventaireEtEquiperArmure()
+        {
+            Armure armure = new Armure("Armure de cuir", 11, true, false); 
+            Race race = new Race("Elfe", "test", 1, 1, 1, 1, 1, 1);
+            Classe classe = new Classe("Mage", "Test", 4, true, null);
+            Personnage personnage = new Personnage("Bobby", race, classe, 15, 10, 12, 18, 8, 17);
+            personnage.ajouterEquipement(armure);
+            Assert.AreEqual(armure, personnage.armurePortee);
+
+        }
+
     }
 }

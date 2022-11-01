@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 namespace TestCreationDND
 {
 
-    public class Tests
+    public class TestCreationRace
     {
         private Models model;
         private RaceDTO raceDTO;

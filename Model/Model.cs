@@ -40,11 +40,11 @@ namespace Model {
 
         public ObservableCollection<Classe> obtenirClasse()
         {
-            List<ClassDTO> listeDTO = bd.getAllClasse();
+            List<ClasseDTO> listeDTO = bd.getAllClasse();
 
             ObservableCollection<Classe> listeClasses = new ObservableCollection<Classe>();
 
-            foreach (ClassDTO classeDTO in listeDTO)
+            foreach (ClasseDTO classeDTO in listeDTO)
             {
                 listeClasses.Add(new Classe(classeDTO));
             }
@@ -85,6 +85,14 @@ namespace Model {
             personnageEnCreation.ajouterClasse(classe);
             SauvegardeXml();
             chargerXML();
+        }
+
+        public void ajouterEquipements(List<Equipement> listeEquipements)
+        {
+            foreach (Equipement equipement in listeEquipements)
+            {
+                personnageEnCreation.ajouterEquipement(equipement);
+            }
         }
 
         public void ajouterLesCompetencesMaitrises(List<Competence> competences)
