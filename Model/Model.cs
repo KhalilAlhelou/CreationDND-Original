@@ -105,6 +105,11 @@ namespace Model {
             chargerXML();
         }
 
+        public void attribuerLesStatistiques(int[] statistiques)
+        {
+            personnageEnCreation.attribuerStatistique(statistiques);
+        }
+
         public void GenererFichePersonnagePDF(Personnage personnage, bool estTest)
         {
             generateurPDF.GenererLePDFDuPersonnage(personnage, estTest);

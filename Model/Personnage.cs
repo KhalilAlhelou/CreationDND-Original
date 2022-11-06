@@ -97,10 +97,22 @@ namespace Model
         {
             if(equipement is Armure && armurePortee == null)
             {
-                armurePortee = equipement as Armure;
+                armurePortee = (Armure)equipement;
+                calculerLaClasseArmure();
             }
 
            inventaire.Add(equipement);
+        }
+
+        public void attribuerStatistique(int[] statistiques)
+        {
+            force += statistiques[0];
+            dexterite += statistiques[1];
+            constitution += statistiques[2];
+            intelligence += statistiques[3];
+            sagesse += statistiques[4];
+            charisme += statistiques[5];
+            calculerTousLesModificateurs();
         }
 
         public void ajouterCompetenceMaitrise(List<Competence> listeCompetencesMaitrises)

@@ -36,7 +36,7 @@
                     <TextBlock x:Name="TextBlockDescriptionClasses" Text="{Binding descriptionClasseSelectionne}" FontSize="22" FontFamily="Freestyle Script" Margin="0,0, 0, 60" Width="403" Height="299" TextWrapping="Wrap"/>
                 </ScrollViewer>
             </DockPanel>
-
+       
             <DockPanel Height="135" Width="400">
                 <Button x:Name="choisirClasseSelectionnee" Height="60" Margin="0,0, 0, 0" Width="160" Content="Choisir classe" Command="{x:Static local:InterfaceClasses.cmdRedirectionnerPage}" FontFamily="Freestyle Script" FontSize="28"/>
             </DockPanel>

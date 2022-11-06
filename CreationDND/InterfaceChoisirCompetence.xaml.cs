@@ -91,6 +91,10 @@ namespace CreationDND
                         
                     }
                 }
+                if (!estSelectionne)
+                {
+                    break;
+                }
             }
 
 
