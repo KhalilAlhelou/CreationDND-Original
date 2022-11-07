@@ -36,20 +36,7 @@ CREATE TABLE IF NOT EXISTS "attribute" (
 	"descAttr"	TEXT NOT NULL,
 	PRIMARY KEY("idAttr")
 );
-DROP TABLE IF EXISTS "class_proficiency";
-CREATE TABLE IF NOT EXISTS "class_proficiency" (
-	"idC"	INTEGER NOT NULL,
-	"pID"	INTEGER NOT NULL,
-	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE,
-	FOREIGN KEY("pID") REFERENCES "proficiency" ON DELETE CASCADE
-);
-DROP TABLE IF EXISTS "class_attribute";
-CREATE TABLE IF NOT EXISTS "class_attribute" (
-	"idC"	INTEGER NOT NULL,
-	"idAttr"	INTEGER NOT NULL,
-	FOREIGN KEY("idAttr") REFERENCES "attribute" ON DELETE CASCADE,
-	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE
-);
+
 DROP TABLE IF EXISTS "weapontype";
 CREATE TABLE IF NOT EXISTS "weapontype" (
 	"wtID"	INTEGER,
@@ -91,6 +78,20 @@ CREATE TABLE IF NOT EXISTS "instrument" (
 	"instrumentID"	INTEGER,
 	"instrumentName"	TEXT,
 	PRIMARY KEY("instrumentID" AUTOINCREMENT)
+);
+DROP TABLE IF EXISTS "class_proficiency";
+CREATE TABLE IF NOT EXISTS "class_proficiency" (
+	"idC"	INTEGER NOT NULL,
+	"pID"	INTEGER NOT NULL,
+	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE,
+	FOREIGN KEY("pID") REFERENCES "proficiency" ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS "class_attribute";
+CREATE TABLE IF NOT EXISTS "class_attribute" (
+	"idC"	INTEGER NOT NULL,
+	"idAttr"	INTEGER NOT NULL,
+	FOREIGN KEY("idAttr") REFERENCES "attribute" ON DELETE CASCADE,
+	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS "armor_armortype";
 CREATE TABLE IF NOT EXISTS "armor_armortype" (
