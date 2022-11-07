@@ -1,4 +1,5 @@
 BEGIN TRANSACTION;
+DROP TABLE IF EXISTS "race";
 CREATE TABLE IF NOT EXISTS "race" (
 	"idR"	INTEGER NOT NULL,
 	"nameR"	TEXT NOT NULL,
@@ -11,11 +12,13 @@ CREATE TABLE IF NOT EXISTS "race" (
 	"bCharR"	INTEGER NOT NULL,
 	PRIMARY KEY("idR")
 );
+DROP TABLE IF EXISTS "proficiency";
 CREATE TABLE IF NOT EXISTS "proficiency" (
 	"pID"	INTEGER NOT NULL,
 	"pName"	INTEGER NOT NULL,
 	PRIMARY KEY("pID")
 );
+DROP TABLE IF EXISTS "class";
 CREATE TABLE IF NOT EXISTS "class" (
 	"idC"	INTEGER NOT NULL,
 	"nameC"	TEXT NOT NULL,
@@ -26,22 +29,41 @@ CREATE TABLE IF NOT EXISTS "class" (
 	"bProfficiencyAmount"	INTEGER NOT NULL,
 	PRIMARY KEY("idC")
 );
+DROP TABLE IF EXISTS "attribute";
 CREATE TABLE IF NOT EXISTS "attribute" (
 	"idAttr"	INTEGER NOT NULL,
 	"nameAttr"	TEXT NOT NULL,
 	"descAttr"	TEXT NOT NULL,
 	PRIMARY KEY("idAttr")
 );
+DROP TABLE IF EXISTS "class_proficiency";
+CREATE TABLE IF NOT EXISTS "class_proficiency" (
+	"idC"	INTEGER NOT NULL,
+	"pID"	INTEGER NOT NULL,
+	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE,
+	FOREIGN KEY("pID") REFERENCES "proficiency" ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS "class_attribute";
+CREATE TABLE IF NOT EXISTS "class_attribute" (
+	"idC"	INTEGER NOT NULL,
+	"idAttr"	INTEGER NOT NULL,
+	FOREIGN KEY("idAttr") REFERENCES "attribute" ON DELETE CASCADE,
+	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS "weapontype";
 CREATE TABLE IF NOT EXISTS "weapontype" (
 	"wtID"	INTEGER,
 	"wtName"	TEXT,
 	PRIMARY KEY("wtID" AUTOINCREMENT)
 );
+DROP TABLE IF EXISTS "armortype";
 CREATE TABLE IF NOT EXISTS "armortype" (
 	"atID"	INTEGER,
 	"atName"	TEXT,
 	PRIMARY KEY("atID" AUTOINCREMENT)
 );
+
+DROP TABLE IF EXISTS "armor";
 CREATE TABLE IF NOT EXISTS "armor" (
 	"armorID"	INTEGER,
 	"armorName"	TEXT,
@@ -51,45 +73,38 @@ CREATE TABLE IF NOT EXISTS "armor" (
 	"armorDiscretionDisadvantage"	BOOLEAN,
 	PRIMARY KEY("armorID" AUTOINCREMENT)
 );
+DROP TABLE IF EXISTS "weapon";
 CREATE TABLE IF NOT EXISTS "weapon" (
 	"weaponID"	INTEGER,
 	"weaponName"	TEXT,
 	"weaponDice"	TEXT,
 	PRIMARY KEY("weaponID" AUTOINCREMENT)
 );
+DROP TABLE IF EXISTS "equipment";
 CREATE TABLE IF NOT EXISTS "equipment" (
 	"equipmentID"	INTEGER,
 	"equipmentName"	TEXT,
 	PRIMARY KEY("equipmentID")
 );
+DROP TABLE IF EXISTS "instrument";
 CREATE TABLE IF NOT EXISTS "instrument" (
 	"instrumentID"	INTEGER,
 	"instrumentName"	TEXT,
 	PRIMARY KEY("instrumentID" AUTOINCREMENT)
 );
+DROP TABLE IF EXISTS "armor_armortype";
 CREATE TABLE IF NOT EXISTS "armor_armortype" (
 	"armorID"	INTEGER,
 	"atID"	INTEGER,
 	FOREIGN KEY("armorID") REFERENCES "armor" ON DELETE CASCADE,
 	FOREIGN KEY("atID") REFERENCES "armortype" ON DELETE CASCADE
 );
+DROP TABLE IF EXISTS "weapon_weapontype";
 CREATE TABLE IF NOT EXISTS "weapon_weapontype" (
 	"weaponID"	INTEGER,
 	"wtID"	INTEGER,
-	FOREIGN KEY("wtID") REFERENCES "weapontype" ON DELETE CASCADE,
-	FOREIGN KEY("weaponID") REFERENCES "weapon" ON DELETE CASCADE
-);
-CREATE TABLE IF NOT EXISTS "class_proficiency" (
-	"idC"	INTEGER NOT NULL,
-	"pID"	INTEGER NOT NULL,
-	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE,
-	FOREIGN KEY("pID") REFERENCES "proficiency" ON DELETE CASCADE
-);
-CREATE TABLE IF NOT EXISTS "class_attribute" (
-	"idC"	INTEGER NOT NULL,
-	"idAttr"	INTEGER NOT NULL,
-	FOREIGN KEY("idAttr") REFERENCES "attribute" ON DELETE CASCADE,
-	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE
+	FOREIGN KEY("weaponID") REFERENCES "weapon" ON DELETE CASCADE,
+	FOREIGN KEY("wtID") REFERENCES "weapontype" ON DELETE CASCADE
 );
 INSERT INTO "race" ("idR","nameR","descR","bForceR","bDexR","bConstR","bIntR","bSageR","bCharR") VALUES (110,'Sangdragon','Les Draconiques ressemblent beaucoup à des dragons se tenant debout sous une forme humanoïde, bien qu''ils n''aient ni ailes ni queue.',2,0,0,0,0,1),
  (120,'Nain de colline','Audacieux et robustes, les nains sont connus pour être d''habiles guerriers, mineurs et travailleurs de la pierre et du métal. En tant que nain des collines, vous avez des sens aiguisés, une profonde intuition et une remarquable résilience. Les nains d''or de Faerûn dans leur puissant royaume du sud sont des nains des collines, tout comme les Neidar exilés et les Klar avilis de Krynn dans le cadre de Dragonlance.',0,0,2,0,1,0),
