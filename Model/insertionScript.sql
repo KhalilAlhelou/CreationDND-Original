@@ -32,18 +32,6 @@ CREATE TABLE IF NOT EXISTS "attribute" (
 	"descAttr"	TEXT NOT NULL,
 	PRIMARY KEY("idAttr")
 );
-CREATE TABLE IF NOT EXISTS "class_proficiency" (
-	"idC"	INTEGER NOT NULL,
-	"pID"	INTEGER NOT NULL,
-	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE,
-	FOREIGN KEY("pID") REFERENCES "proficiency" ON DELETE CASCADE
-);
-CREATE TABLE IF NOT EXISTS "class_attribute" (
-	"idC"	INTEGER NOT NULL,
-	"idAttr"	INTEGER NOT NULL,
-	FOREIGN KEY("idAttr") REFERENCES "attribute" ON DELETE CASCADE,
-	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE
-);
 CREATE TABLE IF NOT EXISTS "weapontype" (
 	"wtID"	INTEGER,
 	"wtName"	TEXT,
@@ -53,18 +41,6 @@ CREATE TABLE IF NOT EXISTS "armortype" (
 	"atID"	INTEGER,
 	"atName"	TEXT,
 	PRIMARY KEY("atID" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "armor_armortype" (
-	"armorID"	INTEGER,
-	"atID"	INTEGER,
-	FOREIGN KEY("armorID") REFERENCES "armor" ON DELETE CASCADE,
-	FOREIGN KEY("atID") REFERENCES "armortype" ON DELETE CASCADE
-);
-CREATE TABLE IF NOT EXISTS "weapon_weapontype" (
-	"weaponID"	INTEGER,
-	"wtID"	INTEGER,
-	FOREIGN KEY("wtID") REFERENCES "weapontype" ON DELETE CASCADE,
-	FOREIGN KEY("weaponID") REFERENCES "weapon" ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "armor" (
 	"armorID"	INTEGER,
@@ -90,6 +66,30 @@ CREATE TABLE IF NOT EXISTS "instrument" (
 	"instrumentID"	INTEGER,
 	"instrumentName"	TEXT,
 	PRIMARY KEY("instrumentID" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "armor_armortype" (
+	"armorID"	INTEGER,
+	"atID"	INTEGER,
+	FOREIGN KEY("armorID") REFERENCES "armor" ON DELETE CASCADE,
+	FOREIGN KEY("atID") REFERENCES "armortype" ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS "weapon_weapontype" (
+	"weaponID"	INTEGER,
+	"wtID"	INTEGER,
+	FOREIGN KEY("wtID") REFERENCES "weapontype" ON DELETE CASCADE,
+	FOREIGN KEY("weaponID") REFERENCES "weapon" ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS "class_proficiency" (
+	"idC"	INTEGER NOT NULL,
+	"pID"	INTEGER NOT NULL,
+	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE,
+	FOREIGN KEY("pID") REFERENCES "proficiency" ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS "class_attribute" (
+	"idC"	INTEGER NOT NULL,
+	"idAttr"	INTEGER NOT NULL,
+	FOREIGN KEY("idAttr") REFERENCES "attribute" ON DELETE CASCADE,
+	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE
 );
 INSERT INTO "race" ("idR","nameR","descR","bForceR","bDexR","bConstR","bIntR","bSageR","bCharR") VALUES (110,'Sangdragon','Les Draconiques ressemblent beaucoup à des dragons se tenant debout sous une forme humanoïde, bien qu''ils n''aient ni ailes ni queue.',2,0,0,0,0,1),
  (120,'Nain de colline','Audacieux et robustes, les nains sont connus pour être d''habiles guerriers, mineurs et travailleurs de la pierre et du métal. En tant que nain des collines, vous avez des sens aiguisés, une profonde intuition et une remarquable résilience. Les nains d''or de Faerûn dans leur puissant royaume du sud sont des nains des collines, tout comme les Neidar exilés et les Klar avilis de Krynn dans le cadre de Dragonlance.',0,0,2,0,1,0),

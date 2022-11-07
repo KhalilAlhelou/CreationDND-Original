@@ -45,8 +45,9 @@ namespace Model
             string insertionRaceContents = File.ReadAllText("insertionScript.sql");
             m_dbConnection.Open();
             SQLiteCommand command = new SQLiteCommand(insertionRaceContents, m_dbConnection);
-            int rowsAffected = command.ExecuteNonQuery();
-            //Debug.WriteLine(rowsAffected);
+            command.ExecuteNonQuery();
+            int rowsAffected = 0;
+            Debug.WriteLine(rowsAffected);
             m_dbConnection.Close();
             return rowsAffected;
         }
