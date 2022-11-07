@@ -158,23 +158,7 @@ INSERT INTO "attribute" ("idAttr","nameAttr","descAttr") VALUES (201,'Rage','Au 
 
 
 
-
-
-
-
-
-
-
-
 Lorsque vous êtes en rage, vous bénéficiez des avantages suivants si vous ne portez pas d''armure lourde :
-
-
-
-
-
-
-
-
 
 
 
@@ -190,23 +174,7 @@ Vous avez l''avantage sur les tests de Force et les jets de sauvegarde de Force.
 
 
 
-
-
-
-
-
-
-
-
 Lorsque vous effectuez une attaque à l''arme de mêlée en utilisant la Force, vous bénéficiez d''un bonus au jet de dégâts qui augmente à mesure que vous gagnez des niveaux en tant que barbare, comme indiqué dans la colonne Dégâts de rage de la table Barbare.
-
-
-
-
-
-
-
-
 
 
 
@@ -222,14 +190,6 @@ Vous avez une résistance aux dégâts de matraquage, de perçage et d''entaille
 
 
 
-
-
-
-
-
-
-
-
 Si vous êtes capable de lancer des sorts, vous ne pouvez pas les lancer ou vous concentrer sur eux pendant votre rage.
 
 
@@ -238,23 +198,7 @@ Si vous êtes capable de lancer des sorts, vous ne pouvez pas les lancer ou vous
 
 
 
-
-
-
-
-
-
-
-
 Votre rage dure 1 minute. Elle se termine prématurément si vous êtes assommé ou si votre tour se termine et que vous n''avez pas attaqué une créature hostile depuis votre dernier tour ou subi de dégâts depuis. Vous pouvez également mettre fin à votre rage à votre tour en tant qu''action bonus.
-
-
-
-
-
-
-
-
 
 
 
@@ -278,23 +222,7 @@ Une fois que vous vous êtes mis en rage le nombre de fois indiqué pour votre n
 
 
 
-
-
-
-
-
-
-
-
 Vous gagnez les avantages suivants lorsque vous êtes désarmé ou que vous maniez uniquement des armes de moine et que vous ne portez pas d''armure ou ne maniez pas de bouclier :
-
-
-
-
-
-
-
-
 
 
 
@@ -310,23 +238,7 @@ Vous pouvez utiliser la Dextérité au lieu de la Force pour les jets d''attaque
 
 
 
-
-
-
-
-
-
-
-
 Vous pouvez lancer un d4 à la place des dégâts normaux de votre frappe à mains nues ou de votre arme de moine. Ce dé change à mesure que vous gagnez des niveaux de moine, comme indiqué dans la colonne Arts martiaux de la table des moines.
-
-
-
-
-
-
-
-
 
 
 
@@ -342,24 +254,8 @@ Lorsque vous utilisez l''action Attaque avec une frappe à mains nues ou une arm
 
 
 
-
-
-
-
-
-
-
-
 Certains monastères utilisent des formes spécialisées des armes de moine. Par exemple, vous pouvez utiliser une massue constituée de deux morceaux de bois reliés par une courte chaîne (appelée nunchaku) ou une faucille à la lame plus courte et plus droite (appelée kama). Quel que soit le nom que vous donnez à une arme de moine, vous pouvez utiliser les statistiques de jeu fournies pour cette arme dans la section Armes.'),
  (210,'Le sens divin','La présence d''un mal puissant est perceptible à vos sens comme une odeur nocive, et un bien puissant résonne à vos oreilles comme une musique céleste. Comme une action, vous pouvez ouvrir votre conscience pour détecter de telles forces. Jusqu''à la fin de votre prochain tour, vous connaissez l''emplacement de tout céleste, démon ou mort-vivant se trouvant à moins de 60 pieds de vous et qui n''est pas totalement couvert. Vous connaissez le type (céleste, démon ou mort-vivant) de tout être dont vous sentez la présence, mais pas son identité (le vampire Comte Strahd von Zarovich, par exemple). Dans le même rayon, vous détectez également la présence de tout lieu ou objet qui a été consacré ou profané, comme avec le sort hallow.
-
-
-
-
-
-
-
-
 
 
 
@@ -384,23 +280,7 @@ Vous pouvez utiliser cette caractéristique un nombre de fois égal à 1 + votre
 
 
 
-
-
-
-
-
-
-
-
  Vos recherches arcaniques et la magie que vous a conférée votre protecteur vous ont permis d''acquérir une certaine facilité avec les sorts. Voir les Règles des sorts pour les règles générales du lancement de sorts et la Liste des sorts pour la liste des sorts du sorcier.
-
-
-
-
-
-
-
-
 
 
 
@@ -416,23 +296,7 @@ Cantrips
 
 
 
-
-
-
-
-
-
-
-
 Vous connaissez deux cantrips de votre choix dans la liste des sorts de sorcier. Vous apprenez des cantrips supplémentaires de votre choix à des niveaux supérieurs, comme indiqué dans la colonne Cantrips Known de la table Warlock.
-
-
-
-
-
-
-
-
 
 
 
@@ -448,23 +312,7 @@ Emplacements pour les sorts
 
 
 
-
-
-
-
-
-
-
-
 La table des sorciers indique le nombre d''emplacements de sorts dont vous disposez pour lancer vos sorts de sorcier du 1er au 5e niveau. La table indique également le niveau de ces emplacements ; tous vos emplacements de sorts sont de même niveau. Pour lancer un de vos sorts de sorcier de 1er niveau ou plus, vous devez dépenser un emplacement de sort. Vous récupérez tous les emplacements de sorts de Pacte Magique dépensés lorsque vous terminez un repos court ou long.
-
-
-
-
-
-
-
-
 
 
 
@@ -480,23 +328,7 @@ Par exemple, lorsque vous êtes au 5e niveau, vous avez deux emplacements pour s
 
 
 
-
-
-
-
-
-
-
-
 Sorts connus de 1er niveau et plus
-
-
-
-
-
-
-
-
 
 
 
@@ -512,23 +344,7 @@ Au 1er niveau, vous connaissez deux sorts de 1er niveau de votre choix dans la l
 
 
 
-
-
-
-
-
-
-
-
 La colonne Sorts connus de la table des sorciers indique quand vous apprenez d''autres sorts de sorcier de votre choix, de 1er niveau et plus. Le sort que vous choisissez doit être d''un niveau qui n''est pas supérieur à celui indiqué dans la colonne Slot Level de la table pour votre niveau. Lorsque vous atteignez le 6e niveau, par exemple, vous apprenez un nouveau sort de sorcier, qui peut être de 1er, 2e ou 3e niveau.
-
-
-
-
-
-
-
-
 
 
 
@@ -544,23 +360,7 @@ De plus, lorsque vous gagnez un niveau dans cette classe, vous pouvez choisir un
 
 
 
-
-
-
-
-
-
-
-
 Capacité de lanceur de sorts
-
-
-
-
-
-
-
-
 
 
 
@@ -576,23 +376,7 @@ Le charisme est votre capacité de lanceur de sorts pour vos sorts de sorcier. V
 
 
 
-
-
-
-
-
-
-
-
 Valeur de sauvegarde des sorts = 8 + votre bonus de compétence + votre modificateur de Charisme.
-
-
-
-
-
-
-
-
 
 
 
@@ -608,23 +392,7 @@ Modificateur d''attaque des sorts = votre bonus de compétence + votre modificat
 
 
 
-
-
-
-
-
-
-
-
 Focalisation des sorts
-
-
-
-
-
-
-
-
 
 
 
@@ -641,23 +409,7 @@ Vous pouvez utiliser un foyer arcanique (voir la section Équipement d''aventuri
 
 
 
-
-
-
-
-
-
-
-
  Vous avez appris à récupérer une partie de votre énergie magique en étudiant votre livre de sorts. Une fois par jour, lorsque vous terminez un court repos, vous pouvez choisir des emplacements de sorts dépensés pour récupérer. Les emplacements de sorts peuvent avoir un niveau combiné égal ou inférieur à la moitié de votre niveau de magicien (arrondi au supérieur), et aucun des emplacements ne peut être de 6e niveau ou plus.
-
-
-
-
-
-
-
-
 
 
 
@@ -676,6 +428,7 @@ INSERT INTO "armortype" ("atID","atName") VALUES (501,'Armures légères'),
  (502,'Armures intermédiaires'),
  (503,'Armures lourdes'),
  (504,'Bouclier');
+
 
 INSERT INTO "armor" ("armorID","armorName","armorClass","armorDexState","armorForce","armorDiscretionDisadvantage") VALUES (601,'Matelassée',11,1,0,1),
  (602,'Cuir',11,1,0,0),
@@ -737,20 +490,7 @@ INSERT INTO "equipment" ("equipmentID","equipmentName") VALUES (101,'Un paquetag
  (108,'Focaliseur druidique'),
  (109,'Une sacoche a composantes'),
  (110,'un focaliseur');
- INSERT INTO "armor_armortype" ("armorID","atID") VALUES (601,501),
- (602,501),
- (603,501),
- (604,502),
- (605,502),
- (606,502),
- (607,502),
- (608,502),
- (609,503),
- (610,503),
- (611,503),
- (612,503),
- (613,504);
-INSERT INTO "weapon_weapontype" ("weaponID","wtID") VALUES (701,901),
+ INSERT INTO "weapon_weapontype" ("weaponID","wtID") VALUES (701,901),
  (702,901),
  (703,901),
  (704,901),
@@ -787,6 +527,19 @@ INSERT INTO "weapon_weapontype" ("weaponID","wtID") VALUES (701,901),
  (735,904),
  (736,904),
  (737,904);
+ INSERT INTO "armor_armortype" ("armorID","atID") VALUES (601,501),
+ (602,501),
+ (603,501),
+ (604,502),
+ (605,502),
+ (606,502),
+ (607,502),
+ (608,502),
+ (609,503),
+ (610,503),
+ (611,503),
+ (612,503),
+ (613,504);
  INSERT INTO "class_proficiency" ("idC","pID") VALUES (301,405),
  (301,401),
  (301,408),
