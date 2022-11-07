@@ -1,5 +1,4 @@
 BEGIN TRANSACTION;
-DROP TABLE IF EXISTS "race";
 CREATE TABLE IF NOT EXISTS "race" (
 	"idR"	INTEGER NOT NULL,
 	"nameR"	TEXT NOT NULL,
@@ -12,13 +11,11 @@ CREATE TABLE IF NOT EXISTS "race" (
 	"bCharR"	INTEGER NOT NULL,
 	PRIMARY KEY("idR")
 );
-DROP TABLE IF EXISTS "proficiency";
 CREATE TABLE IF NOT EXISTS "proficiency" (
 	"pID"	INTEGER NOT NULL,
 	"pName"	INTEGER NOT NULL,
 	PRIMARY KEY("pID")
 );
-DROP TABLE IF EXISTS "class";
 CREATE TABLE IF NOT EXISTS "class" (
 	"idC"	INTEGER NOT NULL,
 	"nameC"	TEXT NOT NULL,
@@ -29,54 +26,46 @@ CREATE TABLE IF NOT EXISTS "class" (
 	"bProfficiencyAmount"	INTEGER NOT NULL,
 	PRIMARY KEY("idC")
 );
-DROP TABLE IF EXISTS "attribute";
 CREATE TABLE IF NOT EXISTS "attribute" (
 	"idAttr"	INTEGER NOT NULL,
 	"nameAttr"	TEXT NOT NULL,
 	"descAttr"	TEXT NOT NULL,
 	PRIMARY KEY("idAttr")
 );
-DROP TABLE IF EXISTS "class_proficiency";
 CREATE TABLE IF NOT EXISTS "class_proficiency" (
 	"idC"	INTEGER NOT NULL,
 	"pID"	INTEGER NOT NULL,
 	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE,
 	FOREIGN KEY("pID") REFERENCES "proficiency" ON DELETE CASCADE
 );
-DROP TABLE IF EXISTS "class_attribute";
 CREATE TABLE IF NOT EXISTS "class_attribute" (
 	"idC"	INTEGER NOT NULL,
 	"idAttr"	INTEGER NOT NULL,
 	FOREIGN KEY("idAttr") REFERENCES "attribute" ON DELETE CASCADE,
 	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE
 );
-DROP TABLE IF EXISTS "weapontype";
 CREATE TABLE IF NOT EXISTS "weapontype" (
 	"wtID"	INTEGER,
 	"wtName"	TEXT,
 	PRIMARY KEY("wtID" AUTOINCREMENT)
 );
-DROP TABLE IF EXISTS "armortype";
 CREATE TABLE IF NOT EXISTS "armortype" (
 	"atID"	INTEGER,
 	"atName"	TEXT,
 	PRIMARY KEY("atID" AUTOINCREMENT)
 );
-DROP TABLE IF EXISTS "armor_armortype";
 CREATE TABLE IF NOT EXISTS "armor_armortype" (
 	"armorID"	INTEGER,
 	"atID"	INTEGER,
 	FOREIGN KEY("armorID") REFERENCES "armor" ON DELETE CASCADE,
 	FOREIGN KEY("atID") REFERENCES "armortype" ON DELETE CASCADE
 );
-DROP TABLE IF EXISTS "weapon_weapontype";
 CREATE TABLE IF NOT EXISTS "weapon_weapontype" (
 	"weaponID"	INTEGER,
 	"wtID"	INTEGER,
 	FOREIGN KEY("wtID") REFERENCES "weapontype" ON DELETE CASCADE,
 	FOREIGN KEY("weaponID") REFERENCES "weapon" ON DELETE CASCADE
 );
-DROP TABLE IF EXISTS "armor";
 CREATE TABLE IF NOT EXISTS "armor" (
 	"armorID"	INTEGER,
 	"armorName"	TEXT,
@@ -86,26 +75,21 @@ CREATE TABLE IF NOT EXISTS "armor" (
 	"armorDiscretionDisadvantage"	BOOLEAN,
 	PRIMARY KEY("armorID" AUTOINCREMENT)
 );
-DROP TABLE IF EXISTS "weapon";
 CREATE TABLE IF NOT EXISTS "weapon" (
 	"weaponID"	INTEGER,
 	"weaponName"	TEXT,
 	"weaponDice"	TEXT,
 	PRIMARY KEY("weaponID" AUTOINCREMENT)
 );
-DROP TABLE IF EXISTS "class_weapon";
-CREATE TABLE IF NOT EXISTS "class_weapon" (
-	"idC"	INTEGER NOT NULL,
-	"weaponID"	INTEGER NOT NULL,
-	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE,
-	FOREIGN KEY("weaponID") REFERENCES "weapon" ON DELETE CASCADE
+CREATE TABLE IF NOT EXISTS "equipment" (
+	"equipmentID"	INTEGER,
+	"equipmentName"	TEXT,
+	PRIMARY KEY("equipmentID")
 );
-DROP TABLE IF EXISTS "class_armor";
-CREATE TABLE IF NOT EXISTS "class_armor" (
-	"idC"	INTEGER NOT NULL,
-	"armorID"	INTEGER NOT NULL,
-	FOREIGN KEY("armorID") REFERENCES "armor" ON DELETE CASCADE,
-	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE
+CREATE TABLE IF NOT EXISTS "instrument" (
+	"instrumentID"	INTEGER,
+	"instrumentName"	TEXT,
+	PRIMARY KEY("instrumentID" AUTOINCREMENT)
 );
 INSERT INTO "race" ("idR","nameR","descR","bForceR","bDexR","bConstR","bIntR","bSageR","bCharR") VALUES (110,'Sangdragon','Les Draconiques ressemblent beaucoup à des dragons se tenant debout sous une forme humanoïde, bien qu''ils n''aient ni ailes ni queue.',2,0,0,0,0,1),
  (120,'Nain de colline','Audacieux et robustes, les nains sont connus pour être d''habiles guerriers, mineurs et travailleurs de la pierre et du métal. En tant que nain des collines, vous avez des sens aiguisés, une profonde intuition et une remarquable résilience. Les nains d''or de Faerûn dans leur puissant royaume du sud sont des nains des collines, tout comme les Neidar exilés et les Klar avilis de Krynn dans le cadre de Dragonlance.',0,0,2,0,1,0),
@@ -155,7 +139,15 @@ INSERT INTO "attribute" ("idAttr","nameAttr","descAttr") VALUES (201,'Rage','Au 
 
 
 
+
+
+
+
 Lorsque vous êtes en rage, vous bénéficiez des avantages suivants si vous ne portez pas d''armure lourde :
+
+
+
+
 
 
 
@@ -163,7 +155,15 @@ Vous avez l''avantage sur les tests de Force et les jets de sauvegarde de Force.
 
 
 
+
+
+
+
 Lorsque vous effectuez une attaque à l''arme de mêlée en utilisant la Force, vous bénéficiez d''un bonus au jet de dégâts qui augmente à mesure que vous gagnez des niveaux en tant que barbare, comme indiqué dans la colonne Dégâts de rage de la table Barbare.
+
+
+
+
 
 
 
@@ -171,7 +171,15 @@ Vous avez une résistance aux dégâts de matraquage, de perçage et d''entaille
 
 
 
+
+
+
+
 Si vous êtes capable de lancer des sorts, vous ne pouvez pas les lancer ou vous concentrer sur eux pendant votre rage.
+
+
+
+
 
 
 
@@ -179,8 +187,12 @@ Votre rage dure 1 minute. Elle se termine prématurément si vous êtes assommé
 
 
 
+
+
+
+
 Une fois que vous vous êtes mis en rage le nombre de fois indiqué pour votre niveau de barbare dans la colonne Rages de la table des barbares, vous devez terminer un long repos avant de pouvoir vous remettre en rage.'),
- (202,'Défense sans armure','Lorsque vous ne portez pas d''armure, votre classe d''armure est égale à 10 + votre modificateur de Dextérité + votre modificateur de Constitution. Vous pouvez utiliser un bouclier et bénéficier de cet avantage.'),
+ (202,'Défense sans armure (Barbare)','Lorsque vous ne portez pas d''armure, votre classe d''armure est égale à 10 + votre modificateur de Dextérité + votre modificateur de Constitution. Vous pouvez utiliser un bouclier et bénéficier de cet avantage.'),
  (203,'Spellcasting','Vous avez appris à démêler et à remodeler le tissu de la réalité en harmonie avec vos souhaits et votre musique. Vos sorts font partie de votre vaste répertoire, une magie que vous pouvez adapter à différentes situations. Consultez les Règles des sorts pour connaître les règles générales du lancement de sorts et la Liste des sorts pour connaître la liste des sorts.'),
  (204,'Inspiration bardique','Vous pouvez inspirer les autres par des paroles ou de la musique émouvantes. Pour ce faire, vous utilisez une action bonus à votre tour pour choisir une créature autre que vous-même dans un rayon de 60 pieds de vous et qui peut vous entendre. Cette créature gagne un dé d''inspiration bardique, un d6.'),
  (205,'Domaine Divin','Choisissez un domaine lié à votre divinité : connaissance, vie, lumière, nature, tempête, ruse ou guerre. Le domaine Vie est détaillé à la fin de la description de la classe et fournit des exemples de dieux qui lui sont associés. Votre choix vous confère des sorts de domaine et d''autres caractéristiques lorsque vous le choisissez au 1er niveau. Il vous accorde également des moyens supplémentaires d''utiliser Canalisation de la divinité lorsque vous gagnez cette caractéristique au 2e niveau, et des avantages supplémentaires aux 6e, 8e et 17e niveaux.'),
@@ -191,7 +203,15 @@ Une fois que vous vous êtes mis en rage le nombre de fois indiqué pour votre n
 
 
 
+
+
+
+
 Vous gagnez les avantages suivants lorsque vous êtes désarmé ou que vous maniez uniquement des armes de moine et que vous ne portez pas d''armure ou ne maniez pas de bouclier :
+
+
+
+
 
 
 
@@ -199,7 +219,15 @@ Vous pouvez utiliser la Dextérité au lieu de la Force pour les jets d''attaque
 
 
 
+
+
+
+
 Vous pouvez lancer un d4 à la place des dégâts normaux de votre frappe à mains nues ou de votre arme de moine. Ce dé change à mesure que vous gagnez des niveaux de moine, comme indiqué dans la colonne Arts martiaux de la table des moines.
+
+
+
+
 
 
 
@@ -207,8 +235,16 @@ Lorsque vous utilisez l''action Attaque avec une frappe à mains nues ou une arm
 
 
 
+
+
+
+
 Certains monastères utilisent des formes spécialisées des armes de moine. Par exemple, vous pouvez utiliser une massue constituée de deux morceaux de bois reliés par une courte chaîne (appelée nunchaku) ou une faucille à la lame plus courte et plus droite (appelée kama). Quel que soit le nom que vous donnez à une arme de moine, vous pouvez utiliser les statistiques de jeu fournies pour cette arme dans la section Armes.'),
  (210,'Le sens divin','La présence d''un mal puissant est perceptible à vos sens comme une odeur nocive, et un bien puissant résonne à vos oreilles comme une musique céleste. Comme une action, vous pouvez ouvrir votre conscience pour détecter de telles forces. Jusqu''à la fin de votre prochain tour, vous connaissez l''emplacement de tout céleste, démon ou mort-vivant se trouvant à moins de 60 pieds de vous et qui n''est pas totalement couvert. Vous connaissez le type (céleste, démon ou mort-vivant) de tout être dont vous sentez la présence, mais pas son identité (le vampire Comte Strahd von Zarovich, par exemple). Dans le même rayon, vous détectez également la présence de tout lieu ou objet qui a été consacré ou profané, comme avec le sort hallow.
+
+
+
+
 
 
 
@@ -225,7 +261,15 @@ Vous pouvez utiliser cette caractéristique un nombre de fois égal à 1 + votre
 
 
 
+
+
+
+
  Vos recherches arcaniques et la magie que vous a conférée votre protecteur vous ont permis d''acquérir une certaine facilité avec les sorts. Voir les Règles des sorts pour les règles générales du lancement de sorts et la Liste des sorts pour la liste des sorts du sorcier.
+
+
+
+
 
 
 
@@ -233,7 +277,15 @@ Cantrips
 
 
 
+
+
+
+
 Vous connaissez deux cantrips de votre choix dans la liste des sorts de sorcier. Vous apprenez des cantrips supplémentaires de votre choix à des niveaux supérieurs, comme indiqué dans la colonne Cantrips Known de la table Warlock.
+
+
+
+
 
 
 
@@ -241,7 +293,15 @@ Emplacements pour les sorts
 
 
 
+
+
+
+
 La table des sorciers indique le nombre d''emplacements de sorts dont vous disposez pour lancer vos sorts de sorcier du 1er au 5e niveau. La table indique également le niveau de ces emplacements ; tous vos emplacements de sorts sont de même niveau. Pour lancer un de vos sorts de sorcier de 1er niveau ou plus, vous devez dépenser un emplacement de sort. Vous récupérez tous les emplacements de sorts de Pacte Magique dépensés lorsque vous terminez un repos court ou long.
+
+
+
+
 
 
 
@@ -249,7 +309,15 @@ Par exemple, lorsque vous êtes au 5e niveau, vous avez deux emplacements pour s
 
 
 
+
+
+
+
 Sorts connus de 1er niveau et plus
+
+
+
+
 
 
 
@@ -257,7 +325,15 @@ Au 1er niveau, vous connaissez deux sorts de 1er niveau de votre choix dans la l
 
 
 
+
+
+
+
 La colonne Sorts connus de la table des sorciers indique quand vous apprenez d''autres sorts de sorcier de votre choix, de 1er niveau et plus. Le sort que vous choisissez doit être d''un niveau qui n''est pas supérieur à celui indiqué dans la colonne Slot Level de la table pour votre niveau. Lorsque vous atteignez le 6e niveau, par exemple, vous apprenez un nouveau sort de sorcier, qui peut être de 1er, 2e ou 3e niveau.
+
+
+
+
 
 
 
@@ -265,7 +341,15 @@ De plus, lorsque vous gagnez un niveau dans cette classe, vous pouvez choisir un
 
 
 
+
+
+
+
 Capacité de lanceur de sorts
+
+
+
+
 
 
 
@@ -273,7 +357,15 @@ Le charisme est votre capacité de lanceur de sorts pour vos sorts de sorcier. V
 
 
 
+
+
+
+
 Valeur de sauvegarde des sorts = 8 + votre bonus de compétence + votre modificateur de Charisme.
+
+
+
+
 
 
 
@@ -281,7 +373,15 @@ Modificateur d''attaque des sorts = votre bonus de compétence + votre modificat
 
 
 
+
+
+
+
 Focalisation des sorts
+
+
+
+
 
 
 
@@ -290,11 +390,20 @@ Vous pouvez utiliser un foyer arcanique (voir la section Équipement d''aventuri
 
 
 
+
+
+
+
  Vous avez appris à récupérer une partie de votre énergie magique en étudiant votre livre de sorts. Une fois par jour, lorsque vous terminez un court repos, vous pouvez choisir des emplacements de sorts dépensés pour récupérer. Les emplacements de sorts peuvent avoir un niveau combiné égal ou inférieur à la moitié de votre niveau de magicien (arrondi au supérieur), et aucun des emplacements ne peut être de 6e niveau ou plus.
 
 
 
- Par exemple, si vous êtes un sorcier de 4e niveau, vous pouvez récupérer jusqu''à deux niveaux d''emplacements de sorts. Vous pouvez récupérer soit un emplacement de sort de 2ème niveau, soit deux emplacements de sort de 1er niveau.');
+
+
+
+
+ Par exemple, si vous êtes un sorcier de 4e niveau, vous pouvez récupérer jusqu''à deux niveaux d''emplacements de sorts. Vous pouvez récupérer soit un emplacement de sort de 2ème niveau, soit deux emplacements de sort de 1er niveau.'),
+ (221,'Défense sans armure (Moine)','Dès le niveau 1, si vous ne portez pas d''armures ni de bouclier, votre CA est égal a 10+ votre modificateur de Dextérité + votre modificateur de Sagesse');
 INSERT INTO "class_proficiency" ("idC","pID") VALUES (301,405),
  (301,401),
  (301,408),
@@ -398,7 +507,7 @@ INSERT INTO "class_attribute" ("idC","idAttr") VALUES (301,201),
  (304,206),
  (305,207),
  (305,208),
- (306,202),
+ (306,221),
  (306,209),
  (307,210),
  (307,211),
@@ -421,7 +530,56 @@ INSERT INTO "armortype" ("atID","atName") VALUES (501,'Armures légères'),
  (502,'Armures intermédiaires'),
  (503,'Armures lourdes'),
  (504,'Bouclier');
-
+INSERT INTO "armor_armortype" ("armorID","atID") VALUES (601,501),
+ (602,501),
+ (603,501),
+ (604,502),
+ (605,502),
+ (606,502),
+ (607,502),
+ (608,502),
+ (609,503),
+ (610,503),
+ (611,503),
+ (612,503),
+ (613,504);
+INSERT INTO "weapon_weapontype" ("weaponID","wtID") VALUES (701,901),
+ (702,901),
+ (703,901),
+ (704,901),
+ (705,901),
+ (706,901),
+ (707,901),
+ (708,901),
+ (709,901),
+ (710,901),
+ (711,902),
+ (712,902),
+ (713,902),
+ (714,902),
+ (715,903),
+ (716,903),
+ (717,903),
+ (718,903),
+ (719,903),
+ (720,903),
+ (721,903),
+ (722,903),
+ (723,903),
+ (724,903),
+ (725,903),
+ (726,903),
+ (727,903),
+ (728,903),
+ (729,903),
+ (730,903),
+ (731,903),
+ (732,903),
+ (733,904),
+ (734,904),
+ (735,904),
+ (736,904),
+ (737,904);
 INSERT INTO "armor" ("armorID","armorName","armorClass","armorDexState","armorForce","armorDiscretionDisadvantage") VALUES (601,'Matelassée',11,1,0,1),
  (602,'Cuir',11,1,0,0),
  (603,'Cuir clouté',12,1,0,0),
@@ -435,19 +593,6 @@ INSERT INTO "armor" ("armorID","armorName","armorClass","armorDexState","armorFo
  (611,'Clibanion',17,0,15,1),
  (612,'Harnois',18,0,15,1),
  (613,'Bouclier',2,0,0,0);
- INSERT INTO "armor_armortype" ("armorID","atID") VALUES (601,501),
- (602,501),
- (603,501),
- (604,502),
- (605,502),
- (606,502),
- (607,502),
- (608,502),
- (609,503),
- (610,503),
- (611,503),
- (612,503),
- (613,504);
 INSERT INTO "weapon" ("weaponID","weaponName","weaponDice") VALUES (701,'Bâton','1d6'),
  (702,'Dague','1d4'),
  (703,'Gourdin','1d4'),
@@ -485,4 +630,14 @@ INSERT INTO "weapon" ("weaponID","weaponName","weaponDice") VALUES (701,'Bâton'
  (735,'Arc long','1d8'),
  (736,'Filet','0'),
  (737,'Sarbacane','1');
+INSERT INTO "equipment" ("equipmentID","equipmentName") VALUES (101,'Un paquetage d''explorateur'),
+ (102,'Un paquetage de diplomate'),
+ (103,'Un paquetage d''artiste'),
+ (104,'Un paquetage d''ecclésiastique'),
+ (105,'Carreaux'),
+ (106,'Symbole sacré'),
+ (107,'Bouclier de bois'),
+ (108,'Focaliseur druidique'),
+ (109,'Une sacoche a composantes'),
+ (110,'un focaliseur');
 COMMIT;
