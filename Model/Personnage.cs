@@ -113,6 +113,7 @@ namespace Model
             sagesse += statistiques[4];
             charisme += statistiques[5];
             calculerTousLesModificateurs();
+            calculerLaClasseArmure();
         }
 
         public void ajouterCompetenceMaitrise(List<Competence> listeCompetencesMaitrises)
@@ -143,6 +144,21 @@ namespace Model
 
         private void calculerLaClasseArmure()
         {
+            foreach(Attribut attribut in classe.listeAttributs)
+            {
+                if(attribut.nom.Equals("Défense sans armure (Moine)"))
+                {
+                    classeDArmure = 10 + modDexterite + modSagesse;
+                    return;
+                }
+
+                if(attribut.nom.Equals("Défense sans armure (Barbare)"))
+                {
+                    classeDArmure = 10 + modDexterite + modConstitution;
+                    return;
+                }
+            }
+
             classeDArmure = armurePortee.calculerClasseArmure(modDexterite);
         }
 

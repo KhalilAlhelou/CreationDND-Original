@@ -32,7 +32,7 @@
 
         <StackPanel Grid.Column="1" Margin="0,0,0,10">
             <DockPanel Height="299" Width="403" Grid.Row="0">
-                    <TextBox x:Name="TextBlockDescriptionClasses" Text="{Binding descriptionClasseSelectionne}" FontSize="22" FontFamily="Freestyle Script" Margin="0,0, 0, 60" Width="403" Height="299" TextWrapping="Wrap" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"/>
+                    <TextBox x:Name="TextBlockDescriptionClasses" Text="{Binding descriptionClasseSelectionne}" FontSize="22" FontFamily="Freestyle Script" Width="403" Height="299" TextWrapping="Wrap" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"/>
             </DockPanel>
        
             <DockPanel Height="135" Width="400">
