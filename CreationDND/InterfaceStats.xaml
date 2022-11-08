@@ -1,0 +1,31 @@
+﻿<Window x:Class="CreationDND.InterfaceStats"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CreationDND"
+        mc:Ignorable="d"
+        Title="InterfaceStats" Height="450" Width="800">
+    <Grid>
+        <TextBlock x:Name = "Stat1" Text="1" TextAlignment="Center" FontSize="24px" Margin="26,46,656,354"/>
+        <TextBlock x:Name = "Stat2" Text="2" TextAlignment="Center" FontSize="24px" Margin="149,46,524,356"/>
+        <TextBlock x:Name = "Stat3" Text="3" TextAlignment="Center" FontSize="24px" Margin="281,46,400,356"/>
+        <TextBlock x:Name = "Stat4" Text="4" TextAlignment="Center" FontSize="24px" Margin="26,191,656,209"/>
+        <TextBlock x:Name = "Stat5" Text="5" TextAlignment="Center" FontSize="24px" Margin="149,191,524,211"/>
+        <TextBlock x:Name = "Stat6" Text="6" TextAlignment="Center" FontSize="24px" Margin="281,193,400,209"/>
+
+       <!-- <Button x:Name="Roll1" Content="Rouler" Margin="26,106,655,296"/>
+        <Button x:Name="Roll1_Copy" Content="Rouler" Margin="157,106,524,296"/>
+        <Button x:Name="Roll1_Copy1" Content="Rouller" Margin="281,106,400,296"/>
+        <Button x:Name="Roll1_Copy2" Content="Rouller" Margin="26,254,655,148"/>
+        <Button x:Name="Roll1_Copy3" Content="Rouller" Margin="157,254,524,148"/>
+        <Button x:Name="Roll1_Copy4" Content="Rouller" Margin="281,254,400,148"/> -->
+
+        <ComboBox x:Name="CBStat1" FontSize="12px" Margin="458,370,223,32"/>
+        <ComboBox x:Name="CBStat2" FontSize="12px" Margin="636,95,45,307"/>
+        <ComboBox x:Name="CBStat3" FontSize="12px" Margin="458,95,223,307"/>
+        <ComboBox x:Name="CBStat4" FontSize="12px" Margin="636,238,45,164"/>
+        <ComboBox x:Name="CBStat5" FontSize="12px" Margin="458,238,223,164"/>
+        <ComboBox x:Name="CBStat6" FontSize="12px" Margin="636,370,45,32"/>
+    </Grid>
+</Window>
