@@ -1,7 +1,5 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,34 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-
-//using static dbHandler;
-//using static raceCharacter;
-
-using System.Windows;
+using ViewModel;
 
 namespace CreationDND
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour InterfacePersonnagesDescription.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class InterfacePersonnagesDescription : Window
     {
-        
-        public MainWindow()
+        private ViewModels _viewModel;
+
+        public InterfacePersonnagesDescription()
         {
             InitializeComponent();
+            _viewModel = ViewModels.getInstance;
+            DataContext = _viewModel;
         }
-
-        void newCharacter(object sender, RoutedEventArgs e)
-        {
-            Races pageRaces = new Races();
-            pageRaces.Show();
-            this.Close();
-        }
-
-        void viewOldCharacters(object sender, RoutedEventArgs e)
+        private void btnRetourDeDescriptinPersonnage_Click(object sender, RoutedEventArgs e)
         {
             Personnages pagePersonnages = new Personnages();
             pagePersonnages.Show();

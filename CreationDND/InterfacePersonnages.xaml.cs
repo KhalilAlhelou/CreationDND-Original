@@ -26,6 +26,7 @@ namespace CreationDND
     public partial class Personnages : Window
     {
         private ViewModels _viewModel;
+        public static RoutedCommand cmdGenererPdf = new RoutedCommand();
 
         public Personnages()
         {
@@ -33,10 +34,54 @@ namespace CreationDND
             _viewModel = ViewModels.getInstance;
             DataContext = _viewModel;
         }
+        public void changerPage_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            
+        }
 
         void genererPdf(object sender, RoutedEventArgs e)
         {
-            _viewModel.creerFichePersonnagePDF(ComboBoxPersonnages.SelectedItem);
+            try
+            {
+                _viewModel.creerFichePersonnagePDF(ComboBoxPersonnages.SelectedItem);
+            }
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("Le fichier est ouvert. Veuillez le fermer pour pouvoir sauvegarde le fichier PDF.", "Erreur");
+            }
+
+
         }
+
+        
+        private void btnRetourDePagePersonnage_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
+
+        private void pageDescription_click(object sender, RoutedEventArgs e)
+        {
+            InterfacePersonnagesDescription personnagesDescription = new InterfacePersonnagesDescription();
+            personnagesDescription.Show();
+            this.Close();
+        }
+
+        public void changerPage_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (ComboBoxPersonnages.SelectedItem == null)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+             
+            }
+        }
+
+       
+
     }
 }

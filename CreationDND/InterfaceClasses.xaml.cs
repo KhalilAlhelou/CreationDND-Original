@@ -48,6 +48,7 @@ namespace CreationDND
         {
             _viewModel.ajouterClasse(ComboBoxClasses.SelectedItem);
             InterfaceChoisirCompetence pageCompetences = new InterfaceChoisirCompetence();
+            _viewModel.ajouterClasse(ComboBoxClasses.SelectedItem);
             pageCompetences.Show();
             this.Close();
         }
@@ -62,6 +63,13 @@ namespace CreationDND
             {
                 e.CanExecute = true;
             }
+        }
+
+        private void btnRetourDePageClasse_Click(object sender, RoutedEventArgs e)
+        {
+            Races races = new Races();
+            races.Show();
+            this.Close();
         }
     }
 }

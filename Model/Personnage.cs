@@ -15,6 +15,8 @@ namespace Model
         public string nom { get; private set; } = "";
         public Race race { get; private set; }
         public Classe classe { get; private set; } = null;
+        public int classeDArmure { get; private set; } = 0;
+        public Armure armurePortee { get; private set; } = null;
         public int force { get; private set; } = 0;
         public int dexterite { get; private set; } = 0;
         public int constitution { get; private set; } = 0;
@@ -27,8 +29,9 @@ namespace Model
         public int modIntelligence { get; private set; } = 0;
         public int modSagesse { get; private set; } = 0;
         public int modCharisme { get; private set; } = 0;
-
         public List<Competence> competencesMaitrises { get; private set; } = null;
+        public List<Equipement> inventaire { get; private set; } = null;
+
 
         public Personnage(Race _race)
         {
@@ -55,10 +58,19 @@ namespace Model
             race = new Race(element.GetElementsByTagName("Race")[0] as XmlElement);
             classe = new Classe(element.GetElementsByTagName("Classe")[0] as XmlElement);
 
+            XmlNodeList competencesMaitriseesXml = element.GetElementsByTagName("Competence");
+
+            competencesMaitrises = new List<Competence>();
+
+            foreach(XmlElement competence in competencesMaitriseesXml)
+            {
+                competencesMaitrises.Add(new Competence(competence));
+            }
+
             calculerTousLesModificateurs();
         }
 
-        public Personnage(string nom, Race race, Classe classe, int force, int dexterite, int constitution, int intelligence, int sagesse, int charisme)
+        public Personnage(string nom, Race race, Classe classe, int force, int dexterite, int constitution, int intelligence, int sagesse, int charisme, List<Competence> competencesMaitrises)
         {
             this.nom = nom;
             this.race = race;
@@ -69,13 +81,26 @@ namespace Model
             this.intelligence = intelligence;
             this.sagesse = sagesse;
             this.charisme = charisme;
+            inventaire = new List<Equipement>();
+            this.competencesMaitrises = competencesMaitrises;
             calculerTousLesModificateurs();
         }
 
         public void ajouterClasse(Classe classe)
         {
             this.classe = classe;
+            inventaire = new List<Equipement>();
             
+        }
+
+        public void ajouterEquipement(Equipement equipement)
+        {
+            if(equipement is Armure && armurePortee == null)
+            {
+                armurePortee = equipement as Armure;
+            }
+
+           inventaire.Add(equipement);
         }
 
         public void ajouterCompetenceMaitrise(List<Competence> listeCompetencesMaitrises)
@@ -104,6 +129,11 @@ namespace Model
             return (int)Math.Floor(modNonArrondi);
         }
 
+        private void calculerLaClasseArmure()
+        {
+            classeDArmure = armurePortee.calculerClasseArmure(modDexterite);
+        }
+
         public XmlNode toXMl(XmlDocument doc)
         {
             XmlElement elementPersonnage = doc.CreateElement("Personnage");
@@ -116,10 +146,15 @@ namespace Model
 
             elementPersonnage.AppendChild(race.toXMl(doc));
 
-            if(classe != null)
+            elementPersonnage.AppendChild(classe.toXMl(doc));
+
+            XmlElement elementPersonnageCompetencesMatrisees = doc.CreateElement("CompetencesMaitrise");
+            foreach(Competence competence in competencesMaitrises)
             {
-                elementPersonnage.AppendChild(classe.toXMl(doc));
+                elementPersonnageCompetencesMatrisees.AppendChild(competence.toXMl(doc));
             }
+
+            elementPersonnage.AppendChild(elementPersonnageCompetencesMatrisees);
 
             return elementPersonnage;
         }
