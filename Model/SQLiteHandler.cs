@@ -158,7 +158,7 @@ namespace Model
             
             using var cmd = new SQLiteCommand(stm, con);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
-
+            Debug.WriteLine(v);
             while (rdr.Read())
             {
                 listChoiceCollection.Add(getClassOptionChoices(rdr.GetInt32(0)));
@@ -224,8 +224,8 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT armorName,armorClass,armorDexState  FROM instrument WHERE armorID ='" + v + "'";
-
+            string stm = "SELECT armorName,armorClass,armorDexState  FROM armor WHERE armorID ='" + v + "'";
+            Debug.WriteLine(v);
             using var cmd = new SQLiteCommand(stm, con);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
@@ -248,7 +248,7 @@ namespace Model
             List<EquipementDTO> listChoice = new List<EquipementDTO>();
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
-
+            Debug.WriteLine(v);
             string stm = "SELECT instrumentID FROM choice_instrument WHERE choiceID ='" + v + "'";
 
             using var cmd = new SQLiteCommand(stm, con);
