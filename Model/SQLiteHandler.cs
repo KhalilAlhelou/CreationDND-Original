@@ -137,6 +137,7 @@ namespace Model
                 List<AttributDTO> listAttribut = getClassAttributes(rdr.GetInt32(0));
                 
                 List<CompetenceDTO> listProficiencies = getClassCompetences(rdr.GetInt32(0));
+                List<List<x>> myList = new List<List<x>>();
 
                 listClasse.Add(new ClasseDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, rdr.GetInt32(6)));
 
