@@ -81,9 +81,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT * FROM race WHERE idR ='" + raceID + "'";
+            string stm = "SELECT * FROM race WHERE idR = @raceid";
 
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@raceid", raceID);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -154,9 +155,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT choiceCollectionID FROM class_choiceCollection WHERE idC ='" + v + "'";
+            string stm = "SELECT choiceCollectionID FROM class_choiceCollection WHERE idC = @idC";
             
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@idC",v);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
             Debug.WriteLine(v);
             while (rdr.Read())
@@ -176,9 +178,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT choiceID FROM choice_choiceCollection WHERE choiceCollectionID ='" + v + "'";
+            string stm = "SELECT choiceID FROM choice_choiceCollection WHERE choiceCollectionID = @v";
 
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", v);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -199,8 +202,8 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT armorID FROM choice_armor WHERE choiceID ='" + v + "'";
-
+            string stm = "SELECT armorID FROM choice_armor WHERE choiceID = @v";
+            cmd.Parameters.AddWithValue("@v", v);
             using var cmd = new SQLiteCommand(stm, con);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
@@ -224,9 +227,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT armorName,armorClass,armorDexState  FROM armor WHERE armorID ='" + v + "'";
-            Debug.WriteLine(v);
+            string stm = "SELECT armorName,armorClass,armorDexState  FROM armor WHERE armorID = @v";
+            
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", v);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -249,9 +253,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
             Debug.WriteLine(v);
-            string stm = "SELECT instrumentID FROM choice_instrument WHERE choiceID ='" + v + "'";
-
+            string stm = "SELECT instrumentID FROM choice_instrument WHERE choiceID = @v";
+            
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", v);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -273,9 +278,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT instrumentName FROM instrument WHERE instrumentID ='" + v + "'";
+            string stm = "SELECT instrumentName FROM instrument WHERE instrumentID = @v";
 
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", v);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -292,9 +298,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT equipmentID FROM choice_equipment WHERE choiceID ='" + v + "'";
+            string stm = "SELECT equipmentID FROM choice_equipment WHERE choiceID = @v";
 
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", v);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -315,9 +322,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT equipmentName FROM equipment WHERE equipmentID ='" + v + "'";
+            string stm = "SELECT equipmentName FROM equipment WHERE equipmentID = @v";
 
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", v);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -341,9 +349,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT weaponID FROM choice_weapon WHERE choiceID ='" + v + "'";
+            string stm = "SELECT weaponID FROM choice_weapon WHERE choiceID = @v";
 
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", v);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -364,9 +373,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT * FROM weapon WHERE weaponID ='" + v + "'";
+            string stm = "SELECT * FROM weapon WHERE weaponID = @v";
 
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", v);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -385,9 +395,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT a.pID, a.pName FROM proficiency a, class_proficiency b WHERE b.idC =" + classID + " AND b.pID = a.pID ORDER BY a.pName ASC";
+            string stm = "SELECT a.pID, a.pName FROM proficiency a, class_proficiency b WHERE b.idC = @v AND b.pID = a.pID ORDER BY a.pName ASC";
 
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", classID);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -408,9 +419,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT a.nameAttr, a.descAttr FROM attribute a, class_attribute b WHERE b.idC =" + classID + " AND b.idAttr = a.idAttr ORDER BY a.nameAttr ASC";
+            string stm = "SELECT a.nameAttr, a.descAttr FROM attribute a, class_attribute b WHERE b.idC = @v AND b.idAttr = a.idAttr ORDER BY a.nameAttr ASC";
 
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", classID);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -428,9 +440,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT * FROM attribute WHERE idAttr ='" + attrID + "'";
+            string stm = "SELECT * FROM attribute WHERE idAttr = @v";
 
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", attrID);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -448,9 +461,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT * FROM proficiency WHERE pID ='" + pID + "'";
+            string stm = "SELECT * FROM proficiency WHERE pID = @v";
 
-            using var cmd = new SQLiteCommand(stm, con); 
+            using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", pID);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
