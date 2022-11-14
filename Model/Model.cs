@@ -15,6 +15,7 @@ namespace Model {
         private XmlDocument document;
         private string fichierXML;
         private GenerateurPDF generateurPDF;
+        private readonly int[] VALEURS_DE_STATISTIQUES_FIXES = new int[] { 15, 14, 13, 12, 10, 8 };
 
         public Models()
         {
@@ -55,6 +56,11 @@ namespace Model {
 
             return listeClasses;
 
+        }
+
+        public int[] obtenirValeursDeStatistiquesFixes()
+        {
+            return VALEURS_DE_STATISTIQUES_FIXES;
         }
 
         public ObservableCollection<Personnage> obtenirPersonnagesExistants()
@@ -103,6 +109,11 @@ namespace Model {
             personnageEnCreation.ajouterCompetenceMaitrise(competences);
             SauvegardeXml();
             chargerXML();
+        }
+
+        public void attribuerLesStatistiques(int[] statistiques)
+        {
+            personnageEnCreation.attribuerStatistique(statistiques);
         }
 
         public void GenererFichePersonnagePDF(Personnage personnage, bool estTest)

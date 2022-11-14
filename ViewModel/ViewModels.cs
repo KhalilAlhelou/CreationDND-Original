@@ -97,6 +97,11 @@ namespace ViewModel
 
         }
 
+        public void ajouterLesStatistiques(int[] statistiques)
+        {
+            models.attribuerLesStatistiques(statistiques);
+        }
+
         public int nombreCompetencesMaitrisables()
         {
             return models.obtenirNombreCompetencesMatrisable();
