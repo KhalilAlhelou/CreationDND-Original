@@ -187,13 +187,62 @@ namespace Model
                 listChoice.AddRange(getWeaponChoice(rdr.GetInt32(0)));
                 listChoice.AddRange(getEquipmentChoice(rdr.GetInt32(0)));
                 listChoice.AddRange(getInstrumentChoice(rdr.GetInt32(0)));
-                //listChoice.AddRange(getArmorChoice(rdr.GetInt32(0)));
+                listChoice.AddRange(getArmorChoice(rdr.GetInt32(0)));
                 listChoiceCollection.Add(listChoice);
             }
             con.Close();
             return listChoiceCollection;
         }
+        public List<ArmureDTO> getArmorChoice(int v)
+        {
+            List<ArmureDTO> listChoice = new List<ArmureDTO>();
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
 
+            string stm = "SELECT armorID FROM choice_armor WHERE choiceID ='" + v + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                listChoice.Add(getArmorFromID(rdr.GetInt32(0)));
+            }
+            con.Close();
+
+            return listChoice;
+
+
+        }
+
+        //INSTRUMENTDTO?
+        private ArmureDTO getArmorFromID(int v)
+        {
+            
+            ArmureDTO equipementDTO;
+
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+
+            string stm = "SELECT armorName,armorClass,armorDexState  FROM instrument WHERE armorID ='" + v + "'";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                bool limitedDex = false;
+                if (rdr.GetInt32(2) >= 2) {
+                    limitedDex = true;
+                }
+
+                Debug.WriteLine(limitedDex);
+                equipementDTO = new ArmureDTO(rdr.GetString(0), rdr.GetInt32(1), Convert.ToBoolean(rdr.GetInt32(2)), limitedDex);
+                return equipementDTO;
+            }
+            con.Close();
+            return null;
+        }
         public List<EquipementDTO> getInstrumentChoice(int v)
         {
             List<EquipementDTO> listChoice = new List<EquipementDTO>();
