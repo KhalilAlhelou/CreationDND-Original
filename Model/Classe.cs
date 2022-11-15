@@ -32,6 +32,37 @@ namespace Model
             this.listeAttributs = creerListeAttributs(classeDTO.ListeAttributs);
             this.competencesMaitrisable = creerListeComptepenceMaitrisable(classeDTO.competencesMaitrisable);
             this.nombreDeCompetencesMaitrisable = classeDTO.nombreDeCompetencesMaitrisable;
+
+            this.choixEquipements = new List<List<Equipement>>();
+
+
+            
+            foreach (List<List<EquipementDTO>> choixEquipements in classeDTO.choixEquipements)
+            {   
+                List<Equipement> equipements = new List<Equipement>();
+
+                foreach(List<EquipementDTO> equipementChoix in choixEquipements)
+                {
+                    foreach(EquipementDTO equipementDTO in equipementChoix)
+                    {
+                        if(equipementDTO is ArmeDTO)
+                        {
+                            equipements.Add(new Arme((ArmeDTO)equipementDTO));
+                        }
+                        else if(equipementDTO is ArmureDTO)
+                        {
+                            equipements.Add(new Armure((ArmureDTO)equipementDTO));
+                        }
+                        else
+                        {
+                            equipements.Add(new Equipement(equipementDTO));
+                        }
+                    }
+
+                }
+
+                this.choixEquipements.Add(equipements);
+            }
             
         }
 

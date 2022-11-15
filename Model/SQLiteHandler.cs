@@ -203,8 +203,9 @@ namespace Model
             con.Open();
 
             string stm = "SELECT armorID FROM choice_armor WHERE choiceID = @v";
-            cmd.Parameters.AddWithValue("@v", v);
             using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", v);
+            
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
