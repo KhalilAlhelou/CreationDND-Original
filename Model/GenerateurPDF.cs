@@ -123,7 +123,6 @@ namespace Model
             string filename = nom + ".pdf";
             
             pdfRenderer.PdfDocument.Save(path + filename);
-            System.Diagnostics.Process.Start(@path + filename);
 
         }
 
