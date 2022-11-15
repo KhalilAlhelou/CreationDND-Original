@@ -5,57 +5,85 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CreationDND"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="900"
+      d:DesignHeight="450" d:DesignWidth="800"
       Title="InterfacePersonnagesDescription" Height="450" Width="800" Background="Black" Foreground="White">
 
-    <Grid Background="White">
+
+
+    <Grid Background="White" Margin="0,0,0,0">
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="266"/>
+            <ColumnDefinition Width="266"/>
+            <ColumnDefinition Width="266"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="500"/>
+            <RowDefinition Height="450"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="0">
-                <Button x:Name="btnRetourDeDescriptinPersonnage" Content="Retour" DockPanel.Dock="Top" Height="38" Width="126" VerticalAlignment="Top" Margin="10,10,0,0" Click="btnRetourDeDescriptinPersonnage_Click" HorizontalAlignment="Left" FontFamily="Freestyle Script" FontSize="28"/>
-                <DockPanel  Height="200" Width="300" Grid.Row="0" Margin="0,20,0,0">
-                    <TextBox FontFamily="Freestyle Script" FontSize="24"
-                      Name="tbMultiLine"
-                      TextWrapping="Wrap"
-                      AcceptsReturn="True"
-                      VerticalScrollBarVisibility="Visible" Width="150">
-                        Classe et niveau:
-                    </TextBox>
-                    <TextBox FontFamily="Freestyle Script" FontSize="24"
-                      Name="tbMultiLine2"
-                      TextWrapping="Wrap"
-                      AcceptsReturn="True"
-                      VerticalScrollBarVisibility="Visible">
-                        Race:
-                    </TextBox>
+        <StackPanel Grid.Column="0" Margin="0,0,0,28">
+            <Button x:Name="btnRetourDeDescriptinPersonnage" Content="Retour" DockPanel.Dock="Top" 
+                    Height="38" Width="126" VerticalAlignment="Top" Margin="10,10,0,0" 
+                    Click="btnRetourDeDescriptinPersonnage_Click" HorizontalAlignment="Left" 
+                    FontFamily="Freestyle Script" FontSize="28"/>
+            <DockPanel  Height="154" Width="261" Grid.Row="0" Margin="0,20,0,0">
+                <Border BorderThickness="0.5" BorderBrush="Black" Width="133">
+                    <ScrollViewer>
+                        <TextBlock FontFamily="Freestyle Script" FontSize="24"
+                      Name="classeEtNiveauCase" Foreground="Black"
+                      Text="Classe et niveau:" Margin="10,0,0,0"/>
+                    </ScrollViewer>
+                </Border>
+                <Border BorderThickness="0.5" BorderBrush="Black" Width="127" Height="154">
+                    <ScrollViewer>
+                        <TextBlock x:Name="raceCase" Foreground="Black" 
+                           Text="Races :" FontFamily="Freestyle Script"
+                           FontSize="24" Margin="10,0,0,0"/>
+                    </ScrollViewer>
+                </Border>
 
-                </DockPanel>
-                <StackPanel Height="200" Width="300" Grid.Row="0" Margin="0,20,0,0">
-                    <TextBlock FontFamily="Freestyle Script" FontSize="24"
+            </DockPanel>
+            <StackPanel Height="149" Width="262" Grid.Row="0" Margin="0,20,0,0">
+                <Border BorderThickness="0.5" BorderBrush="Black" Width="260" Height="72">
+                    <ScrollViewer>
+                        <TextBlock FontFamily="Freestyle Script" FontSize="24"
                       x:Name="tbMultiLine3"
                       Foreground="Black"
                       TextWrapping="Wrap"
-                      Height="95" Text="Points de vie actuels: " Width="300" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                    <TextBlock FontFamily="Freestyle Script" FontSize="24"
+                      Height="70" Text="Points de vie actuels: " Margin="10,0,0,0" />
+                    </ScrollViewer>
+                </Border>
+                <Border BorderThickness="0.5" BorderBrush="Black" Width="260" Height="75">
+                    <ScrollViewer>
+                        <TextBlock FontFamily="Freestyle Script" FontSize="24"
                       x:Name="tbMultiLine4"
                       Foreground="Black"
                       TextWrapping="Wrap"
-                      Height="95" Text="Points de vie temporaires: " Width="300"  HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                </StackPanel>
+                      Height="72" Text="Points de vie temporaires: " Margin="10,0,0,0"/>
+                    </ScrollViewer>
+                </Border>
             </StackPanel>
-        
-            
-        <StackPanel Grid.Column="1">
-            <DockPanel  Height="255" Width="300" Grid.Row="2">
-                <TextBlock x:Name="competencesCase" Foreground="Black" Text="Competences :" FontFamily="Freestyle Script" FontSize="24" Margin="0,0,0,0" Width="295" Height="250"/>
-            </DockPanel>
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="1" Margin="0,0,0,42" HorizontalAlignment="Center" Width="255">
+            <Border BorderThickness="0.5" BorderBrush="Black" Width="232" Height="212">
+                <ScrollViewer HorizontalAlignment="Left" Width="232">
+                    <TextBlock x:Name="competencesCase" Foreground="Black" 
+                           Text="Competences :" FontFamily="Freestyle Script"
+                           FontSize="24" Margin="10,0,0,0"/>
+                </ScrollViewer>
+            </Border>
+
+        </StackPanel>
+        <StackPanel Grid.Column="2" Margin="0,0,0,42" HorizontalAlignment="Center" Width="268">
+            <Border BorderThickness="0.5" BorderBrush="Black" Width="234" Height="212" HorizontalAlignment="Center">
+                <ScrollViewer HorizontalAlignment="Left" Width="224" Margin="10,0,0,0">
+                    <TextBlock x:Name="equipementsCase" Foreground="Black" 
+                           Text="Equipements :" FontFamily="Freestyle Script"
+                           FontSize="24" Width="202" TextWrapping="Wrap"/>
+                </ScrollViewer>
+            </Border>
         </StackPanel>
     </Grid>
 </Window>
