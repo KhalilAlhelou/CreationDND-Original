@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CreationDND"
         mc:Ignorable="d"
-        Title="InterfaceStats" Height="450" Width="800">
+        Title="InterfaceStats" Height="460" Width="812">
     <Grid>
-        <TextBlock x:Name = "Stat1" Text="1" TextAlignment="Center" FontSize="24px" Margin="26,111,656,289"/>
-        <TextBlock x:Name = "Stat2" Text="2" TextAlignment="Center" FontSize="24px" Margin="149,111,524,291"/>
-        <TextBlock x:Name = "Stat3" Text="3" TextAlignment="Center" FontSize="24px" Margin="281,111,400,291"/>
-        <TextBlock x:Name = "Stat4" Text="4" TextAlignment="Center" FontSize="24px" Margin="26,256,656,144"/>
-        <TextBlock x:Name = "Stat5" Text="5" TextAlignment="Center" FontSize="24px" Margin="149,256,524,146"/>
-        <TextBlock x:Name = "Stat6" Text="6" TextAlignment="Center" FontSize="24px" Margin="281,258,400,144"/>
+        <TextBlock x:Name = "Stat1" Text="1" TextAlignment="Center" FontSize="24px" Margin="26,93,656,302"/>
+        <TextBlock x:Name = "Stat2" Text="2" TextAlignment="Center" FontSize="24px" Margin="142,93,531,303"/>
+        <TextBlock x:Name = "Stat3" Text="3" TextAlignment="Center" FontSize="24px" Margin="281,93,400,302"/>
+        <TextBlock x:Name = "Stat4" Text="4" TextAlignment="Center" FontSize="24px" Margin="26,222,656,173"/>
+        <TextBlock x:Name = "Stat5" Text="5" TextAlignment="Center" FontSize="24px" Margin="142,222,531,173"/>
+        <TextBlock x:Name = "Stat6" Text="6" TextAlignment="Center" FontSize="24px" Margin="281,222,400,173"/>
 
      <!--   <Button x:Name="Roll1" Content="Rouler" Margin="26,171,655,231"/>
         <Button x:Name="Roll1_Copy" Content="Rouler" Margin="157,171,524,231"/>
@@ -28,6 +28,11 @@
         <ComboBox x:Name="CBStat5" FontSize="12px" Margin="458,238,223,164"/>
         <ComboBox x:Name="CBStat6" FontSize="12px" Margin="636,370,45,32"/>
 
-        <TextBlock x:Name="Force" Text="Force" Margin="458,45,223,360" TextAlignment="Center" FontFamily="Bold"/>
+        <TextBlock x:Name="Force" Text="Force" Margin="458,45,223,360" TextAlignment="Center" />
+        <TextBlock x:Name="Dexterite" Text="Dextérité" Margin="636,47,45,358" TextAlignment="Center" />
+        <TextBlock x:Name="Constitution" Text="Constitution" Margin="636,188,45,217" TextAlignment="Center" />
+        <TextBlock x:Name="Intelligence" Text="Intélligence" Margin="458,188,223,217" TextAlignment="Center" />
+        <TextBlock x:Name="Segesse" Text="Segesse" Margin="458,311,223,94" TextAlignment="Center" />
+        <TextBlock x:Name="Charisme" Text="Charisme" Margin="636,311,45,94" TextAlignment="Center" />
     </Grid>
 </Window>
