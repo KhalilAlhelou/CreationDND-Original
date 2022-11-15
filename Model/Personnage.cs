@@ -17,6 +17,7 @@ namespace Model
         public Classe classe { get; private set; } = null;
         public int classeDArmure { get; private set; } = 0;
         public Armure armurePortee { get; private set; } = null;
+        public int bonusMaitrise { get; private set; } = 0;
         public int force { get; private set; } = 0;
         public int dexterite { get; private set; } = 0;
         public int constitution { get; private set; } = 0;
@@ -54,6 +55,7 @@ namespace Model
             intelligence = Int32.Parse(element.GetAttribute("intelligence"));
             sagesse = Int32.Parse(element.GetAttribute("sagesse"));
             charisme = Int32.Parse(element.GetAttribute("charisme"));
+            bonusMaitrise = Int32.Parse(element.GetAttribute("bonusMaitrise"));
 
             race = new Race(element.GetElementsByTagName("Race")[0] as XmlElement);
             classe = new Classe(element.GetElementsByTagName("Classe")[0] as XmlElement);
@@ -89,6 +91,7 @@ namespace Model
         public void ajouterClasse(Classe classe)
         {
             this.classe = classe;
+            this.bonusMaitrise = 2;
             inventaire = new List<Equipement>();
             
         }
@@ -171,6 +174,7 @@ namespace Model
             elementPersonnage.SetAttribute("intelligence", intelligence.ToString());
             elementPersonnage.SetAttribute("sagesse", sagesse.ToString());
             elementPersonnage.SetAttribute("charisme", charisme.ToString());
+            elementPersonnage.SetAttribute("bonusMaitrise", bonusMaitrise.ToString());
 
             elementPersonnage.AppendChild(race.toXMl(doc));
 
