@@ -22,6 +22,7 @@ namespace ViewModel
         public ObservableCollection<Classe> listeClasses { get; set; }
         public ObservableCollection<Personnage> listePersonnages { get; set; }
         public ObservableCollection<Competence> listeCompetences { get; set; }
+        public ObservableCollection<Equipement> listeEquipements { get; set; }
         public string descriptionRaceSelectionnee { get; set; } 
         public string descriptionClasseSelectionne { get; set; }
 
@@ -116,7 +117,6 @@ namespace ViewModel
         {
             listeCompetences = models.obtenirCompetencesMaitrisables();
         }
-
     }   
 }
 

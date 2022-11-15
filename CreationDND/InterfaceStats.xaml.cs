@@ -11,26 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ViewModel;
 
 namespace CreationDND
 {
     /// <summary>
-    /// Lógica interna para InterfaceEquipements.xaml
+    /// Lógica interna para InterfaceStats.xaml
     /// </summary>
-    public partial class InterfaceEquipements : Window
+    public partial class InterfaceStats : Window
     {
-        public static RoutedCommand cmdChoisirEquipement = new RoutedCommand();
-
-        private ViewModels _viewModel;
-        List<ComboBox> comboBoxesEquipements = new List<ComboBox>();
-
-        public InterfaceEquipements()
+        public InterfaceStats()
         {
             InitializeComponent();
-
-            _viewModel = ViewModels.getInstance;
-            
         }
     }
 }

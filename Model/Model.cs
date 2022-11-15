@@ -84,6 +84,11 @@ namespace Model {
             return listeCompetencesMaitrisables;
         }
 
+       /* public ObservableCollection<Equipement> obtenirEquipements()
+        {
+
+        }*/
+
         public void ajouterLaRace(Race race)
         {
             personnageEnCreation = new Personnage(race);
