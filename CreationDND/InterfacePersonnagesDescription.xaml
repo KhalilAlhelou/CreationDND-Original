@@ -80,7 +80,7 @@
             <Border BorderThickness="0.5" BorderBrush="Black" Width="234" Height="212" HorizontalAlignment="Center">
                 <ScrollViewer HorizontalAlignment="Left" Width="224" Margin="10,0,0,0">
                     <TextBlock x:Name="equipementsCase" Foreground="Black" 
-                           Text="Equipements :" FontFamily="Freestyle Script"
+                           Text="Inventaires :" FontFamily="Freestyle Script"
                            FontSize="24" Width="202" TextWrapping="Wrap"/>
                 </ScrollViewer>
             </Border>
