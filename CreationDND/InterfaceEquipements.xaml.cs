@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,13 @@ namespace CreationDND
 
             _viewModel = ViewModels.getInstance;
             
+        }
+
+        public void onClickBtn(object sender, RoutedEventArgs e)
+        {
+            InterfaceStats pageStats = new InterfaceStats();
+            pageStats.Show();
+            this.Close();
         }
     }
 }
