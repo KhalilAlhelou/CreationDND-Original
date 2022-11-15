@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ViewModel;
 
 namespace CreationDND
 {
@@ -19,9 +20,13 @@ namespace CreationDND
     /// </summary>
     public partial class InterfaceStats : Window
     {
+        private ViewModels _viewModel;
         public InterfaceStats()
         {
             InitializeComponent();
+            _viewModel = ViewModels.getInstance;
+            _viewModel.inserserStats();
+            DataContext = _viewModel;
         }
     }
 }
