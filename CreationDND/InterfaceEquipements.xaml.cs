@@ -1,6 +1,6 @@
-﻿using Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,13 +25,29 @@ namespace CreationDND
 
         private ViewModels _viewModel;
         List<ComboBox> comboBoxesEquipements = new List<ComboBox>();
+        
 
         public InterfaceEquipements()
         {
             InitializeComponent();
 
             _viewModel = ViewModels.getInstance;
+            _viewModel.insererEquipements();
             
+            for(int i = 0; i < _viewModel.listeEquipementsChoix.Count; i++)
+            {
+                ComboBox comboBox = new ComboBox();
+                comboBox.Width = 400;
+                comboBox.Margin = new Thickness(5);
+                comboBox.ItemsSource = _viewModel.listeEquipementsChoix[i];
+                stack.Children.Add(comboBox);
+                comboBoxesEquipements.Add(comboBox);
+            }
+            
+            
+
+
+
         }
 
         public void onClickBtn(object sender, RoutedEventArgs e)

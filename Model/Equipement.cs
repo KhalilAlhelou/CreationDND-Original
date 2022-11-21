@@ -22,5 +22,10 @@ namespace Model
         {
             this.nom = equipementDTO.nom;
         }
+
+        public override string ToString()
+        {
+            return nom;
+        }
     }
 }

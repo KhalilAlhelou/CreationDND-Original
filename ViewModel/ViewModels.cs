@@ -22,10 +22,7 @@ namespace ViewModel
         public ObservableCollection<Classe> listeClasses { get; set; }
         public ObservableCollection<Personnage> listePersonnages { get; set; }
         public ObservableCollection<Competence> listeCompetences { get; set; }
-        public ObservableCollection<Equipement> listeEquipementsChoix1 { get; set; }
-        public ObservableCollection<Equipement> listeEquipementsChoix2 { get; set; }
-        public ObservableCollection<Equipement> listeEquipementsChoix3 { get; set; }
-        public ObservableCollection<Equipement> listeEquipementsChoix4 { get; set; }
+        public ObservableCollection<ObservableCollection<Equipement>> listeEquipementsChoix { get; set; }
 
         public string stat1 { get; set; }
         public string stat2 { get; set; }
@@ -140,9 +137,9 @@ namespace ViewModel
             listeCompetences = models.obtenirCompetencesMaitrisables();
         }
 
-        public ObservableCollection<ObservableCollection<Equipement>> insererEquipements()
+        public void insererEquipements()
         {
-            return models.obtenirEquipements();
+            listeEquipementsChoix = models.obtenirEquipements();
         }
     }   
 }
