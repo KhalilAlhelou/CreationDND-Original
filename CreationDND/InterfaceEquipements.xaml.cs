@@ -45,11 +45,53 @@ namespace CreationDND
             }
         }
 
-        public void onClickBtn(object sender, RoutedEventArgs e)
+        public void choisirEquipement_canExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            InterfaceStats pageStats = new InterfaceStats();
-            pageStats.Show();
+            bool equipSelect = false;
+
+            for (int i = 0; i < comboBoxesEquipements.Count; i++)
+            {
+                if (comboBoxesEquipements[i].IsEnabled)
+                {
+                    if (comboBoxesEquipements[i].SelectedItem == null)
+                    {
+                        equipSelect = false;
+                        break;
+                    }
+                    else
+                    {
+                        equipSelect = true;
+                    }
+                }
+            }
+
+            if (!equipSelect)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        public void choisirEquip_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            List<object> equipementsSelectionnes = new List<object>();
+
+            foreach (ComboBox comboBox in comboBoxesEquipements)
+            {
+                if (comboBox.IsEnabled)
+                {
+                    equipementsSelectionnes.Add(comboBox.SelectedItem);
+                }
+            }
+
+            InterfaceStats interfaceStats = new InterfaceStats();
+            _viewModel.ajouterLesEquipements(equipementsSelectionnes);
+            interfaceStats.Show();
             this.Close();
+
         }
     }
 }
