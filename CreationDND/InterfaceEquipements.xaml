@@ -8,7 +8,7 @@
         Title="InterfaceEquipements" Height="450" Width="800">
     <Grid>
 
-        <StackPanel x:Name="stack">
+        <StackPanel x:Name="Stack">
             
             
         </StackPanel>
