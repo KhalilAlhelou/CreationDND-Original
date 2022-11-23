@@ -10,7 +10,7 @@ namespace Model
     public class ClasseDTO
     {
         public ClasseDTO(string nom, string description, int hpLvl1, bool estSpellCaster, int bonusMaitrise, List<AttributDTO> attributs,
-            List<CompetenceDTO> competencesMaitrisable, int nombreDeCompetencesMaitrisable, int nombreDeChoixEquipement, List<List<List<EquipementDTO>>> choixEquipements)
+            List<CompetenceDTO> competencesMaitrisable, int nombreDeCompetencesMaitrisable, int nombreDeChoixEquipement, List<List<Equipement>> choixEquipements)
         {
             Nom = nom;
             Description = description;
@@ -71,7 +71,7 @@ namespace Model
             private set;
         }
 
-        public List<List<List<EquipementDTO>>> choixEquipements
+        public List<List<Equipement>> choixEquipements
         {
             get;
             private set;

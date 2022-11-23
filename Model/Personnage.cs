@@ -17,7 +17,6 @@ namespace Model
         public Classe classe { get; private set; } = null;
         public int classeDArmure { get; private set; } = 0;
         public Armure armurePortee { get; private set; } = null;
-        public int bonusMaitrise { get; private set; } = 0;
         public int force { get; private set; } = 0;
         public int dexterite { get; private set; } = 0;
         public int constitution { get; private set; } = 0;
@@ -55,7 +54,6 @@ namespace Model
             intelligence = Int32.Parse(element.GetAttribute("intelligence"));
             sagesse = Int32.Parse(element.GetAttribute("sagesse"));
             charisme = Int32.Parse(element.GetAttribute("charisme"));
-            bonusMaitrise = Int32.Parse(element.GetAttribute("bonusMaitrise"));
 
             race = new Race(element.GetElementsByTagName("Race")[0] as XmlElement);
             classe = new Classe(element.GetElementsByTagName("Classe")[0] as XmlElement);
@@ -91,7 +89,6 @@ namespace Model
         public void ajouterClasse(Classe classe)
         {
             this.classe = classe;
-            this.bonusMaitrise = 2;
             inventaire = new List<Equipement>();
             
         }
@@ -100,23 +97,10 @@ namespace Model
         {
             if(equipement is Armure && armurePortee == null)
             {
-                armurePortee = (Armure)equipement;
-                calculerLaClasseArmure();
+                armurePortee = equipement as Armure;
             }
 
            inventaire.Add(equipement);
-        }
-
-        public void attribuerStatistique(int[] statistiques)
-        {
-            force += statistiques[0];
-            dexterite += statistiques[1];
-            constitution += statistiques[2];
-            intelligence += statistiques[3];
-            sagesse += statistiques[4];
-            charisme += statistiques[5];
-            calculerTousLesModificateurs();
-            calculerLaClasseArmure();
         }
 
         public void ajouterCompetenceMaitrise(List<Competence> listeCompetencesMaitrises)
@@ -147,21 +131,6 @@ namespace Model
 
         private void calculerLaClasseArmure()
         {
-            foreach(Attribut attribut in classe.listeAttributs)
-            {
-                if(attribut.nom.Equals("Défense sans armure (Moine)"))
-                {
-                    classeDArmure = 10 + modDexterite + modSagesse;
-                    return;
-                }
-
-                if(attribut.nom.Equals("Défense sans armure (Barbare)"))
-                {
-                    classeDArmure = 10 + modDexterite + modConstitution;
-                    return;
-                }
-            }
-
             classeDArmure = armurePortee.calculerClasseArmure(modDexterite);
         }
 
@@ -174,7 +143,6 @@ namespace Model
             elementPersonnage.SetAttribute("intelligence", intelligence.ToString());
             elementPersonnage.SetAttribute("sagesse", sagesse.ToString());
             elementPersonnage.SetAttribute("charisme", charisme.ToString());
-            elementPersonnage.SetAttribute("bonusMaitrise", bonusMaitrise.ToString());
 
             elementPersonnage.AppendChild(race.toXMl(doc));
 

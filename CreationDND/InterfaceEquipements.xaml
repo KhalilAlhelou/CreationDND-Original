@@ -17,6 +17,6 @@
 
         <TextBlock x:Name="EquipementPreSet" Margin="268,363,268,19"/>
 
-        <Button x:Name="ChoisirEquipement" Content="Choisir Equipement" Margin="596,354,19,28" Click="onClickBtn" ClickMode="Press"/>
+        <Button x:Name="ChoisirEquipement" Content="Choisir Equipement" Margin="596,354,19,28"/>
     </Grid>
 </Window>

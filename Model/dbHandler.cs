@@ -30,12 +30,8 @@ namespace Model
         {
             return sqlHandler.getAllClasse();
         }
-        
-        public CompetenceDTO getCompetence(int id)
-        {
-            return sqlHandler.getCompetence(id);
-        }
 
+       
 
 
     }

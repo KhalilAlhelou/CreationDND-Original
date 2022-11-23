@@ -30,8 +30,6 @@ namespace Model
             Document document = new Document();
             Section section = document.AddSection();
 
-            // Page 1
-
             AjouterParagraphe(section, nom, TAILLE_POLICE_TITRE, true);
 
             section.AddParagraph();
@@ -43,7 +41,7 @@ namespace Model
             AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
             section.AddParagraph();
-                
+
             texte = "Force = " + personnage.force.ToString() + " (" + personnage.modForce.ToString() + ")";
             AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
@@ -60,13 +58,6 @@ namespace Model
             AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
             texte = "Charisme = " + personnage.charisme.ToString() + " (" + personnage.modCharisme.ToString() + ")";
-            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
-
-            section.AddParagraph();
-
-            texte = "Bonus de maitrise (+" + personnage.bonusMaitrise.ToString() + ")";
-            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
-            texte = "Bonus d'initiative (" + personnage.modDexterite.ToString() + ")";
             AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
             section.AddParagraph();
@@ -90,9 +81,6 @@ namespace Model
 
             section.AddPageBreak();
 
-
-            // Page 2
-
             foreach (Attribut attribut in personnage.classe.listeAttributs)
             {
                 texte = attribut.nom;
@@ -109,14 +97,14 @@ namespace Model
             pdfRenderer.RenderDocument();
 
 
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\";
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/";
 
             if (!estTest)
             {    
                 FolderBrowserDialog fbd = new FolderBrowserDialog();
                 if(fbd.ShowDialog() == DialogResult.OK)
                 {
-                    path = fbd.SelectedPath + "\\";
+                    path = fbd.SelectedPath + "/";
                 }
             }
 
