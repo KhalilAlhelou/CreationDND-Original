@@ -17,6 +17,9 @@
 
         <TextBlock x:Name="EquipementPreSet" Margin="268,363,268,19"/>
 
-        <Button x:Name="ChoisirEquipement" Content="Choisir Equipement" Margin="596,354,19,28"/>
+        <Button x:Name="btnRetour" Content="Retour" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="38" Width="126"
+                Click="btnRetourDePageEquipements_Click" FontFamily="Andalus" FontSize="20"/>
+
+        <Button x:Name="ChoisirEquipement" Content="Choisir Equipement" Margin="596,354,19,28" FontFamily="Andalus" FontSize="18" />
     </Grid>
 </Window>

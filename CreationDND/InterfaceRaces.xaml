@@ -24,9 +24,9 @@
 
         <StackPanel Grid.Column="0">
             <DockPanel Height="433">
-                <Button x:Name="btnRetourMain" Content="Retour" DockPanel.Dock="Top" Height="38" Width="126" VerticalAlignment="Top" Margin="10,10,0,0" Click="btnRetourDePageRace_Click" HorizontalAlignment="Left" FontFamily="Freestyle Script" FontSize="28"/>
+                <Button x:Name="btnRetourMain" Content="Retour" DockPanel.Dock="Top" Height="38" Width="126" VerticalAlignment="Top" Margin="10,10,0,0" Click="btnRetourDePageRace_Click" HorizontalAlignment="Left" FontFamily="Andalus" FontSize="20"/>
                 <Image x:Name="img" Source="\Images\dnd logo.png" Width="238" Margin="100, 20, 60, 200" Height="156"/>
-                <ComboBox x:Name="ComboBoxRaces" FontSize="24" FontFamily="Freestyle Script" SelectionChanged="comboBox_AfficherRace" Height="34" Width="222" Margin="-400,240,0,0" ItemsSource="{Binding listeRaces}"/>
+                <ComboBox x:Name="ComboBoxRaces" FontFamily="Andalus" FontSize="18" SelectionChanged="comboBox_AfficherRace" Height="34" Width="222" Margin="-400,240,0,0" ItemsSource="{Binding listeRaces}"/>
             </DockPanel>
         </StackPanel>
 
@@ -34,13 +34,13 @@
 
             <DockPanel Height="299" Width="403" Grid.Row="0">
                 <ScrollViewer>
-                    <TextBlock x:Name="TextBlockDescription" Text="{Binding descriptionRaceSelectionnee}"  FontSize="21" FontFamily="Freestyle Script" Margin="0,0, 0, 60" Width="378" Height="317" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="TextBlockDescription" Text="{Binding descriptionRaceSelectionnee}"  FontFamily="Andalus" FontSize="16" Margin="0,0, 0, 60" Width="378" Height="317" TextWrapping="Wrap"/>
                 </ScrollViewer>
 
             </DockPanel>
 
             <DockPanel Height="135" Width="400">
-                <Button x:Name="choisirRaceSelectionnee" Height="60" Margin="0,0, 0, 0" Width="160" Content="Choisir race" Command="{x:Static local:Races.cmdChangerPage}" FontFamily="Freestyle Script" FontSize="28"/>
+                <Button x:Name="choisirRaceSelectionnee" Height="60" Margin="0,0, 0, 0" Width="160" Content="Choisir race" Command="{x:Static local:Races.cmdChangerPage}" FontFamily="Andalus" FontSize="18"/>
             </DockPanel>
 
         </StackPanel>
