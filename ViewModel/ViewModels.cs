@@ -22,6 +22,22 @@ namespace ViewModel
         public ObservableCollection<Classe> listeClasses { get; set; }
         public ObservableCollection<Personnage> listePersonnages { get; set; }
         public ObservableCollection<Competence> listeCompetences { get; set; }
+        public ObservableCollection<Equipement> listeEquipementsChoix1 { get; set; }
+        public ObservableCollection<Equipement> listeEquipementsChoix2 { get; set; }
+        public ObservableCollection<Equipement> listeEquipementsChoix3 { get; set; }
+        public ObservableCollection<Equipement> listeEquipementsChoix4 { get; set; }
+
+        public string stat1 { get; set; }
+        public string stat2 { get; set; }
+        public string stat3 { get; set; }
+        public string stat4 { get; set; }
+        public string stat5 { get; set; }
+        public string stat6 { get; set; }
+
+        public ObservableCollection<int> listeStats { get; set; }
+
+        public string choixEquipementUnique { get; set; }
+
         public string descriptionRaceSelectionnee { get; set; } 
         public string descriptionClasseSelectionne { get; set; }
 
@@ -97,21 +113,37 @@ namespace ViewModel
 
         }
 
+        public void ajouterLesStatistiques(int[] statistiques)
+        {
+            models.attribuerLesStatistiques(statistiques);
+        }
+
         public int nombreCompetencesMaitrisables()
         {
             return models.obtenirNombreCompetencesMatrisable();
         }
 
-        public ObservableCollection<Competence> competencesMaitrisables()
+        public void inserserStats()
         {
-            return models.obtenirCompetencesMaitrisables();
-        }
+            listeStats = models.obtenirValeursDeStatistiquesFixes();
 
+            stat1 = listeStats[0].ToString();
+            stat2 = listeStats[1].ToString();
+            stat3 = listeStats[2].ToString();
+            stat4 = listeStats[3].ToString();
+            stat5 = listeStats[4].ToString();
+            stat6 = listeStats[5].ToString();
+        }
+        
         public void insererCompetencesComboBox()
         {
             listeCompetences = models.obtenirCompetencesMaitrisables();
         }
 
+        public ObservableCollection<ObservableCollection<Equipement>> insererEquipements()
+        {
+            return models.obtenirEquipements();
+        }
     }   
 }
 

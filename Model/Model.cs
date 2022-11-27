@@ -15,6 +15,7 @@ namespace Model {
         private XmlDocument document;
         private string fichierXML;
         private GenerateurPDF generateurPDF;
+        private readonly ObservableCollection<int> VALEURS_DE_STATISTIQUES_FIXES = new ObservableCollection<int> { 15, 14, 13, 12, 10, 8 };
 
         public Models()
         {
@@ -57,6 +58,11 @@ namespace Model {
 
         }
 
+        public ObservableCollection<int> obtenirValeursDeStatistiquesFixes()
+        {
+            return VALEURS_DE_STATISTIQUES_FIXES;
+        }
+
         public ObservableCollection<Personnage> obtenirPersonnagesExistants()
         {
             return personnagesExistants;
@@ -76,6 +82,19 @@ namespace Model {
             }
 
             return listeCompetencesMaitrisables;
+        }
+
+        public ObservableCollection<ObservableCollection<Equipement>> obtenirEquipements()
+        {
+            ObservableCollection<ObservableCollection<Equipement>> list = new ObservableCollection<ObservableCollection<Equipement>>();
+
+            foreach (List<Equipement> choix in personnageEnCreation.classe.choixEquipements)
+            {
+                list.Add(new ObservableCollection<Equipement>(choix));
+            }
+
+            return list;
+            
         }
 
         public void ajouterLaRace(Race race)
@@ -103,6 +122,11 @@ namespace Model {
             personnageEnCreation.ajouterCompetenceMaitrise(competences);
             SauvegardeXml();
             chargerXML();
+        }
+
+        public void attribuerLesStatistiques(int[] statistiques)
+        {
+            personnageEnCreation.attribuerStatistique(statistiques);
         }
 
         public void GenererFichePersonnagePDF(Personnage personnage, bool estTest)

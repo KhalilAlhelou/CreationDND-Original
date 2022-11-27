@@ -32,11 +32,15 @@
 
         <StackPanel Grid.Column="1" Margin="0,0,0,10">
             <DockPanel Height="299" Width="403" Grid.Row="0">
+<<<<<<< HEAD
                 <ScrollViewer>
                     <TextBlock x:Name="TextBlockDescriptionClasses" Text="{Binding descriptionClasseSelectionne}" FontFamily="Andalus" FontSize="16" Margin="0,0, 0, 60" Width="403" Height="299" TextWrapping="Wrap"/>
                 </ScrollViewer>
+=======
+                    <TextBox x:Name="TextBlockDescriptionClasses" Text="{Binding descriptionClasseSelectionne}" FontSize="22" FontFamily="Freestyle Script" Width="403" Height="299" TextWrapping="Wrap" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"/>
+>>>>>>> parent of c91838d (Revert "Merge branch 'master' into modifier_interfaces_reste")
             </DockPanel>
-
+       
             <DockPanel Height="135" Width="400">
                 <Button x:Name="choisirClasseSelectionnee" Height="60" Margin="0,0, 0, 0" Width="160" Content="Choisir classe" Command="{x:Static local:InterfaceClasses.cmdRedirectionnerPage}" FontFamily="Andalus" FontSize="18"/>
             </DockPanel>

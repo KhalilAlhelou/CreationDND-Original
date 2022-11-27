@@ -17,9 +17,13 @@
 
         <TextBlock x:Name="EquipementPreSet" Margin="268,363,268,19"/>
 
+<<<<<<< HEAD
         <Button x:Name="btnRetour" Content="Retour" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="38" Width="126"
                 Click="btnRetourDePageEquipements_Click" FontFamily="Andalus" FontSize="20"/>
 
         <Button x:Name="ChoisirEquipement" Content="Choisir Equipement" Margin="596,354,19,28" FontFamily="Andalus" FontSize="18" />
+=======
+        <Button x:Name="ChoisirEquipement" Content="Choisir Equipement" Margin="596,354,19,28" Click="onClickBtn" ClickMode="Press"/>
+>>>>>>> parent of c91838d (Revert "Merge branch 'master' into modifier_interfaces_reste")
     </Grid>
 </Window>
