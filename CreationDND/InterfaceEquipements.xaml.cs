@@ -40,7 +40,7 @@ namespace CreationDND
                 comboBox.Width = 400;
                 comboBox.Margin = new Thickness(5);
                 comboBox.ItemsSource = _viewModel.listeEquipementsChoix[i];
-                stack.Children.Add(comboBox);
+                Stack.Children.Add(comboBox);
                 comboBoxesEquipements.Add(comboBox);
             }
             
