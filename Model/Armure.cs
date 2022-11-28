@@ -4,12 +4,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 [assembly: InternalsVisibleTo("TestCreationDND")]
 
 namespace Model
 {
-    public class Armure : Equipement
+    public class Armure : Equipement, ISauvergardeXML
     {
         public int classeArmure { get; private set; }
         public bool obtientBonusModDex { get; private set; }
@@ -29,6 +30,31 @@ namespace Model
             this.bonusModDexEstLimite = armureDTO.bonusModDexEstLimite;
         }
 
+        public Armure(XmlElement element) : base(element)
+        {
+            classeArmure = Int32.Parse(element.GetAttribute("ClasseArmure"));
+
+            if (element.GetAttribute("ObtientBonusDex").Equals("TRUE"))
+            {
+                obtientBonusModDex = true;
+            }
+            else
+            {
+                obtientBonusModDex = false;
+            }
+
+            if (element.GetAttribute("bonusModDexEstLimite").Equals("TRUE"))
+            {
+                bonusModDexEstLimite = true;
+            }
+            else
+            {
+                bonusModDexEstLimite = false;
+            }
+
+
+        }
+
         public int calculerClasseArmure(int modDex)
         {
             if (obtientBonusModDex)
@@ -42,6 +68,34 @@ namespace Model
             }
 
             return classeArmure;
+        }
+
+        public new XmlNode toXMl(XmlDocument doc)
+        {
+            XmlElement elementArmure = doc.CreateElement("Armure");
+            elementArmure.SetAttribute("Nom", nom);
+            elementArmure.SetAttribute("ClasseArmure", classeArmure.ToString());
+
+            if (obtientBonusModDex)
+            {
+                elementArmure.SetAttribute("ObtientBonusDex", "TRUE");
+            }
+            else
+            {
+                elementArmure.SetAttribute("ObtientBonusDex", "FALSE");
+            }
+
+            if (bonusModDexEstLimite)
+            {
+                elementArmure.SetAttribute("bonusModDexEstLimite", "TRUE");
+            }
+            else
+            {
+                elementArmure.SetAttribute("bonusModDexEstLimite", "FALSE");
+            }
+            
+
+            return elementArmure;
         }
     }
 }

@@ -44,6 +44,7 @@ namespace Model
             sagesse += race.bSage;
             charisme += race.bChar;
             calculerTousLesModificateurs();
+            inventaire = new List<Equipement>();
 
         }
 
@@ -69,6 +70,39 @@ namespace Model
                 competencesMaitrises.Add(new Competence(competence));
             }
 
+            inventaire = new List<Equipement>();
+
+            XmlNodeList armureXML = element.GetElementsByTagName("Armure");
+
+            if(armureXML != null)
+            {
+                foreach(XmlElement armure in armureXML)
+                {
+                    inventaire.Add(new Armure(armure));
+                }
+            }
+
+            XmlNodeList armeXML = element.GetElementsByTagName("Arme");
+
+            if (armeXML != null)
+            {
+                foreach (XmlElement arme in armeXML)
+                {
+                    inventaire.Add(new Arme(arme));
+                }
+            }
+
+            XmlNodeList equipementXML = element.GetElementsByTagName("Equipement");
+
+            if (equipementXML != null)
+            {
+                foreach (XmlElement equipement in equipementXML)
+                {
+                    inventaire.Add(new Equipement(equipement));
+                }
+            }
+
+
             calculerTousLesModificateurs();
         }
 
@@ -92,8 +126,6 @@ namespace Model
         {
             this.classe = classe;
             this.bonusMaitrise = 2;
-            inventaire = new List<Equipement>();
-            
         }
 
         public void ajouterEquipement(Equipement equipement)
@@ -102,9 +134,18 @@ namespace Model
             {
                 armurePortee = (Armure)equipement;
                 calculerLaClasseArmure();
+                inventaire.Add((Armure)equipement);
+
+            } else if(equipement is Arme)
+            {
+                inventaire.Add((Arme)equipement);
+
+            } else
+            {
+                inventaire.Add(equipement);
             }
 
-           inventaire.Add(equipement);
+           
         }
 
         public void attribuerStatistique(int[] statistiques)
@@ -187,6 +228,27 @@ namespace Model
             }
 
             elementPersonnage.AppendChild(elementPersonnageCompetencesMatrisees);
+
+            XmlElement elementInventaire = doc.CreateElement("Inventaire");
+            foreach (Equipement equipement in inventaire)
+            {
+                if(equipement is Armure)
+                {   
+                    Armure armure = (Armure)equipement;
+                    elementInventaire.AppendChild(armure.toXMl(doc));
+
+                }else if(equipement is Arme)
+                {
+                    Arme arme = (Arme)equipement;
+                    elementInventaire.AppendChild(arme.toXMl(doc));
+                }
+                else
+                {
+                    elementInventaire.AppendChild(equipement.toXMl(doc));
+                }
+            }
+
+            elementPersonnage.AppendChild(elementInventaire);
 
             return elementPersonnage;
         }

@@ -93,6 +93,48 @@ namespace Model
 
             // Page 2
 
+            texte = "Inventaire";
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, true);
+
+            foreach(Equipement equipement in personnage.inventaire)
+            {
+                if(equipement is Arme)
+                {
+                    Arme arme = (Arme)equipement;
+
+                    texte = "- " + arme.nom + " -> " + arme.deDeDegats + " de dégats";
+                    AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+                    continue;
+                }
+
+                if(equipement is Armure)
+                {
+                    Armure armure = (Armure)equipement;
+
+                    texte = "- " + armure.nom + " -> Classe d'armure : " + armure.classeArmure;
+
+                    if (armure.obtientBonusModDex)
+                    {
+                        texte += " + modificateur de dextérité";
+                        if (armure.bonusModDexEstLimite)
+                        {
+                            texte += "(maximum de +2)"; 
+                        }
+                    }
+
+                    AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+                    continue;
+                }
+
+                texte = "- " + equipement.nom;
+                AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+            }
+
+
+            section.AddPageBreak();
+
+            // Page 3
+
             foreach (Attribut attribut in personnage.classe.listeAttributs)
             {
                 texte = attribut.nom;

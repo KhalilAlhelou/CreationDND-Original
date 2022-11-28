@@ -44,14 +44,23 @@ namespace CreationDND
                 comboBoxesEquipements.Add(comboBox);
             }
             
-            
 
+        }
 
+        private void ajouterEquipement()
+        {
+            List<object> listeEquipementsChoisis = new List<object>();
+            foreach(ComboBox comboBox in comboBoxesEquipements)
+            {
+                listeEquipementsChoisis.Add(comboBox.SelectedItem);
+            }
 
+            _viewModel.ajouterLesEquipements(listeEquipementsChoisis);
         }
 
         public void onClickBtn(object sender, RoutedEventArgs e)
         {
+            ajouterEquipement();
             InterfaceStats pageStats = new InterfaceStats();
             pageStats.Show();
             this.Close();

@@ -31,6 +31,7 @@ namespace TestCreationDND
             model.ajouterLaRace(race);
             model.ajouterLaClasse(classe);
             model.ajouterLesCompetencesMaitrises(competence);
+            model.ajouterEquipements(new List<Equipement>());
 
             ObservableCollection<Personnage> personnages = model.obtenirPersonnagesExistants();
 

@@ -84,6 +84,17 @@ namespace ViewModel
             models.ajouterLesCompetencesMaitrises(competences);
         }
 
+        public void ajouterLesEquipements(List<object> equipementsChoisisObject)
+        {
+            List<Equipement> equipementsChoisis = new List<Equipement>();
+            foreach (object equipement in equipementsChoisisObject)
+            {
+                equipementsChoisis.Add((Equipement)equipement);
+            }
+
+            models.ajouterEquipements(equipementsChoisis);
+        }
+
         public void afficherRace(object raceSelectionnee)
         {
             Race race = raceSelectionnee as Race;
