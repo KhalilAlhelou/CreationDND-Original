@@ -6,8 +6,14 @@
         xmlns:local="clr-namespace:CreationDND"
         mc:Ignorable="d"
         Title="InterfaceEquipements" Height="450" Width="800">
-    <Grid>
 
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:InterfaceEquipements.cmdChoisirEquipement}"
+                        CanExecute="choisirEquipement_canExecute"
+                        Executed="choisirEquip_Executed"/>
+    </Window.CommandBindings>
+
+    <Grid>
         <StackPanel x:Name="Stack">
             
             
@@ -23,6 +29,6 @@
 
         <TextBlock x:Name="EquipementPreSet" Margin="268,363,268,19"/>-->
 
-        <Button x:Name="ChoisirEquipement" Content="Choisir Equipement" Margin="596,354,19,28" Click="onClickBtn" ClickMode="Press"/>
+        <Button x:Name="ChoisirEquipement" Content="Choisir Equipement" Margin="596,354,19,28" ClickMode="Press" Command="{x:Static local:InterfaceEquipements.cmdChoisirEquipement}"/>
     </Grid>
 </Window>

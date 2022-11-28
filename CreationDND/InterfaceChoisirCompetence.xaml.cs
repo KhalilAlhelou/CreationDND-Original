@@ -64,14 +64,6 @@ namespace CreationDND
             this.Close();
         }
 
-
-        private void btnRetourDePageCompetences_Click(object sender, RoutedEventArgs e)
-        {
-            InterfaceClasses classes = new InterfaceClasses();
-            classes.Show();
-            this.Close();
-        }
-
         public void choisirCompetences_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             bool estSelectionne = false;
@@ -133,6 +125,12 @@ namespace CreationDND
                 e.CanExecute = true;
             }
 
+        }
+        private void btnRetourDePageCompetences_Click(object sender, RoutedEventArgs e)
+        {
+            InterfaceClasses classes = new InterfaceClasses();
+            classes.Show();
+            this.Close();
         }
     }
 }

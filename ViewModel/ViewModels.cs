@@ -91,7 +91,6 @@ namespace ViewModel
             {
                 equipementsChoisis.Add((Equipement)equipement);
             }
-
             models.ajouterEquipements(equipementsChoisis);
         }
 
