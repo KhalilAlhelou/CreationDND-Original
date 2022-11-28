@@ -260,7 +260,7 @@ namespace Model
             return listProficiencies;
         }
 
-        private List<List<List<EquipementDTO>>> getClassChoices(int classID)
+        public List<List<List<EquipementDTO>>> getClassChoices(int classID)
         {
             List<List<List<EquipementDTO>>> listChoiceCollection = new List<List<List<EquipementDTO>>>();
 
@@ -281,7 +281,7 @@ namespace Model
             return listChoiceCollection;
         }
 
-        private List<List<EquipementDTO>> getClassOptionChoices(int choiceCollectionID)
+        public List<List<EquipementDTO>> getClassOptionChoices(int choiceCollectionID)
         {
 
             List<List<EquipementDTO>> listChoiceCollection = new List<List<EquipementDTO>>();
@@ -303,7 +303,7 @@ namespace Model
             return listChoiceCollection;
         }
 
-        private List<EquipementDTO> getAllFromChoiceCollection(int choiceID)
+        public List<EquipementDTO> getAllFromChoiceCollection(int choiceID)
         {
             List<string> equipmentTypes = new List<string> { "armor", "instrument", "equipment", "weapon" };
             List<EquipementDTO> listChoice = new List<EquipementDTO>();
@@ -339,7 +339,7 @@ namespace Model
 
         }
 
-        private string getCorrectEquipmentQuery(string type,bool fromID)
+        public string getCorrectEquipmentQuery(string type,bool fromID)
         {
             if (type == "armor")
             {
@@ -388,7 +388,7 @@ namespace Model
             return null;
         }
 
-        private EquipementDTO getEquipmentFromID(int equipmentID, String type)
+        public EquipementDTO getEquipmentFromID(int equipmentID, String type)
         { 
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
@@ -409,7 +409,7 @@ namespace Model
             return null;
         }
 
-        private EquipementDTO getCorrectEquipment(SQLiteDataReader rdr, string type)
+        public EquipementDTO getCorrectEquipment(SQLiteDataReader rdr, string type)
         {
             if (type == "armor")
             {
