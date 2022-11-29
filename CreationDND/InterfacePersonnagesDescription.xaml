@@ -25,11 +25,11 @@
             <Button x:Name="btnRetourDeDescriptinPersonnage" Content="Retour" DockPanel.Dock="Top" 
                     Height="38" Width="126" VerticalAlignment="Top" Margin="10,10,0,0" 
                     Click="btnRetourDeDescriptinPersonnage_Click" HorizontalAlignment="Left" 
-                    FontFamily="Freestyle Script" FontSize="28"/>
+                    FontFamily="Andalus" FontSize="20"/>
             <DockPanel  Height="154" Width="261" Grid.Row="0" Margin="0,20,0,0">
                 <Border BorderThickness="0.5" BorderBrush="Black" Width="133">
                     <ScrollViewer>
-                        <TextBlock FontFamily="Freestyle Script" FontSize="24"
+                        <TextBlock FontFamily="Andalus" FontSize="16"
                       Name="classeEtNiveauCase" Foreground="Black"
                       Text="Classe et niveau:" Margin="10,0,0,0"/>
                     </ScrollViewer>
@@ -37,8 +37,7 @@
                 <Border BorderThickness="0.5" BorderBrush="Black" Width="127" Height="154">
                     <ScrollViewer>
                         <TextBlock x:Name="raceCase" Foreground="Black" 
-                           Text="Races :" FontFamily="Freestyle Script"
-                           FontSize="24" Margin="10,0,0,0"/>
+                           Text="Races :" FontFamily="Andalus" FontSize="16" Margin="10,0,0,0"/>
                     </ScrollViewer>
                 </Border>
 
@@ -46,7 +45,7 @@
             <StackPanel Height="149" Width="262" Grid.Row="0" Margin="0,20,0,0">
                 <Border BorderThickness="0.5" BorderBrush="Black" Width="260" Height="72">
                     <ScrollViewer>
-                        <TextBlock FontFamily="Freestyle Script" FontSize="24"
+                        <TextBlock FontFamily="Andalus" FontSize="16"
                       x:Name="tbMultiLine3"
                       Foreground="Black"
                       TextWrapping="Wrap"
@@ -55,7 +54,7 @@
                 </Border>
                 <Border BorderThickness="0.5" BorderBrush="Black" Width="260" Height="75">
                     <ScrollViewer>
-                        <TextBlock FontFamily="Freestyle Script" FontSize="24"
+                        <TextBlock FontFamily="Andalus" FontSize="16"
                       x:Name="tbMultiLine4"
                       Foreground="Black"
                       TextWrapping="Wrap"
@@ -70,8 +69,7 @@
             <Border BorderThickness="0.5" BorderBrush="Black" Width="232" Height="212">
                 <ScrollViewer HorizontalAlignment="Left" Width="232">
                     <TextBlock x:Name="competencesCase" Foreground="Black" 
-                           Text="Competences :" FontFamily="Freestyle Script"
-                           FontSize="24" Margin="10,0,0,0"/>
+                           Text="Competences :" FontFamily="Andalus" FontSize="16" Margin="10,0,0,0"/>
                 </ScrollViewer>
             </Border>
 
@@ -80,8 +78,7 @@
             <Border BorderThickness="0.5" BorderBrush="Black" Width="234" Height="212" HorizontalAlignment="Center">
                 <ScrollViewer HorizontalAlignment="Left" Width="224" Margin="10,0,0,0">
                     <TextBlock x:Name="equipementsCase" Foreground="Black" 
-                           Text="Equipements :" FontFamily="Freestyle Script"
-                           FontSize="24" Width="202" TextWrapping="Wrap"/>
+                           Text="Inventaires :" FontFamily="Andalus" FontSize="16" Width="202" TextWrapping="Wrap"/>
                 </ScrollViewer>
             </Border>
         </StackPanel>

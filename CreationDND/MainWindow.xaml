@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
-        <TextBlock FontSize="38" FontWeight="Bold" Margin="39,47,64,0" VerticalAlignment="Top" FontFamily="Freestyle Script" HorizontalAlignment="Center">
+        <TextBlock FontSize="34" FontWeight="Bold" Margin="39,47,64,0" VerticalAlignment="Top" FontFamily="Andalus" HorizontalAlignment="Center">
 			Création de Personnage de Donjons et Dragons
         </TextBlock>
         <Border>
@@ -17,13 +17,13 @@
         
 		<Button Name="btn1" Background="LightBlue"
         BorderBrush="Black" BorderThickness="1"
-        Click="newCharacter" ClickMode="Press" Margin="64,278,597,88" FontFamily="Freestyle Script" FontSize="24">
+        Click="newCharacter" ClickMode="Press" Margin="64,278,597,88" FontFamily="Andalus" FontSize="14">
 			Nouveau Personnage
 		</Button>
 
 		<Button Name="btn2" Background="LightBlue"
         BorderBrush="Black" BorderThickness="1"
-        Click="viewOldCharacters" ClickMode="Press" Margin="597,278,64,88" FontFamily="Freestyle Script" FontSize="24">
+        Click="viewOldCharacters" ClickMode="Press" Margin="597,278,64,88" FontFamily="Andalus" FontSize="14">
             Voir personnage
 		</Button>
 	</Grid>

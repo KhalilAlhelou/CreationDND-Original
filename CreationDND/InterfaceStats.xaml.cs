@@ -28,5 +28,12 @@ namespace CreationDND
             _viewModel.inserserStats();
             DataContext = _viewModel;
         }
+
+        private void btnRetourDePageStats_Click(object sender, RoutedEventArgs e)
+        {
+            InterfaceEquipements retour_a_equipements = new InterfaceEquipements();
+            retour_a_equipements.Show();
+            this.Close();
+        }
     }
 }

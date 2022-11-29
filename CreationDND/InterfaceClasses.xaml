@@ -24,19 +24,24 @@
 
         <StackPanel Grid.Column="0">
             <DockPanel Height="433">
-                <Button x:Name="btnRetourMain" Content="Retour" DockPanel.Dock="Top" Height="38" Width="126" VerticalAlignment="Top" Margin="10,10,0,0" Click="btnRetourDePageClasse_Click" HorizontalAlignment="Left" FontFamily="Freestyle Script" FontSize="28"/>
+                <Button x:Name="btnRetourMain" Content="Retour" DockPanel.Dock="Top" Height="38" Width="126" VerticalAlignment="Top" Margin="10,10,0,0" Click="btnRetourDePageClasse_Click" HorizontalAlignment="Left" FontFamily="Andalus" FontSize="20"/>
                 <Image x:Name="img" Source="\Images\dnd logo.png"   Width="180" Margin="120, 30, 60, 200" Height="159" RenderTransformOrigin="0.437,0.511"/>
-                <ComboBox x:Name="ComboBoxClasses" ItemsSource="{Binding listeClasses}" FontSize="24" FontFamily="Freestyle Script" SelectionChanged="comboBox_AfficherClasses" Height="34" Width="222" Margin="-380,240,0,0" VerticalAlignment="Center"/>
+                <ComboBox x:Name="ComboBoxClasses" ItemsSource="{Binding listeClasses}" FontFamily="Andalus" FontSize="18" SelectionChanged="comboBox_AfficherClasses" Height="34" Width="222" Margin="-380,240,0,0" VerticalAlignment="Center"/>
             </DockPanel>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Margin="0,0,0,10">
             <DockPanel Height="299" Width="403" Grid.Row="0">
-                    <TextBox x:Name="TextBlockDescriptionClasses" Text="{Binding descriptionClasseSelectionne}" FontSize="22" FontFamily="Freestyle Script" Width="403" Height="299" TextWrapping="Wrap" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"/>
+                <ScrollViewer>
+                    <TextBox x:Name="TextBlockDescriptionClasses" Text="{Binding descriptionClasseSelectionne}" FontFamily="Andalus" FontSize="16" Width="403" Height="299" TextWrapping="Wrap" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"/>
+                </ScrollViewer>
+
+                
+
             </DockPanel>
        
             <DockPanel Height="135" Width="400">
-                <Button x:Name="choisirClasseSelectionnee" Height="60" Margin="0,0, 0, 0" Width="160" Content="Choisir classe" Command="{x:Static local:InterfaceClasses.cmdRedirectionnerPage}" FontFamily="Freestyle Script" FontSize="28"/>
+                <Button x:Name="choisirClasseSelectionnee" Height="60" Margin="0,0, 0, 0" Width="160" Content="Choisir classe" Command="{x:Static local:InterfaceClasses.cmdRedirectionnerPage}" FontFamily="Andalus" FontSize="18"/>
             </DockPanel>
         </StackPanel>
     </Grid>

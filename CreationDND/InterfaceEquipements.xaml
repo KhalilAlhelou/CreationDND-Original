@@ -29,6 +29,6 @@
 
         <TextBlock x:Name="EquipementPreSet" Margin="268,363,268,19"/>-->
 
-        <Button x:Name="ChoisirEquipement" Content="Choisir Equipement" Margin="596,354,19,28" ClickMode="Press" Command="{x:Static local:InterfaceEquipements.cmdChoisirEquipement}"/>
+        <Button x:Name="ChoisirEquipement" Content="Choisir Equipement" FontFamily="Andalus" FontSize="20" Margin="596,354,19,28" ClickMode="Press" Command="{x:Static local:InterfaceEquipements.cmdChoisirEquipement}"/>
     </Grid>
 </Window>

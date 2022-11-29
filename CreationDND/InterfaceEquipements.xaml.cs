@@ -106,5 +106,12 @@ namespace CreationDND
             this.Close();
 
         }
+
+        private void btnRetourDePageEquipements_Click(object sender, RoutedEventArgs e)
+        {
+            InterfaceChoisirCompetence InterfaceCompetences = new InterfaceChoisirCompetence();
+            InterfaceCompetences.Show();
+            this.Close();
+        }
     }
 }
