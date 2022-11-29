@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class ArmureDTO : EquipementDTO
+    public class ArmureDTO : EquipementDTO, IEquatable<ArmureDTO?>
     {
         public int classeArmure { get; private set; }
         public bool obtientBonusModDex { get; private set; }
@@ -20,6 +20,30 @@ namespace Model
             this.classeArmure = classeArmure;
             this.obtientBonusModDex = obtientBonusModDex;
             this.bonusModDexEstLimite = bonusModDexEstLimite;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return Equals(obj as ArmureDTO);
+        }
+
+        public bool Equals(ArmureDTO? other)
+        {
+            return other is not null &&
+                   nom == other.nom &&
+                   classeArmure == other.classeArmure &&
+                   obtientBonusModDex == other.obtientBonusModDex &&
+                   bonusModDexEstLimite == other.bonusModDexEstLimite;
+        }
+
+        public static bool operator ==(ArmureDTO? left, ArmureDTO? right)
+        {
+            return EqualityComparer<ArmureDTO>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(ArmureDTO? left, ArmureDTO? right)
+        {
+            return !(left == right);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System;
 using System.Linq;
+using System.Data.SQLite;
 
 namespace TestCreationDND
 {
@@ -15,14 +16,16 @@ namespace TestCreationDND
         [SetUp]
         public void Setup()
         {
-            //if need be
+
         }
 
         [Test]
         public void verifierFichierSQLiteCreer()
         {
+
             string pathSQLite = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/dbCharacter.sqlite";
             Assert.IsTrue(File.Exists(pathSQLite));
+
         }
 
         [Test]
@@ -149,5 +152,32 @@ namespace TestCreationDND
             listClasse[0] = listClasse[1];
             Assert.AreNotEqual(listClasse.Count, listClasse.Distinct().Count());
         }
+
+        [Test]
+        public void verifierGetEquipmentFromID()
+        {
+            ArmureDTO armureDTO = new ArmureDTO("Armure Matelassée", 11, true, false);
+            Assert.AreEqual(armureDTO, sqliteHandler.getEquipmentFromID(601, "armor"));
+
+            ArmeDTO armeDTO = new ArmeDTO("Bâton","1d6");
+            Assert.AreEqual(armeDTO, sqliteHandler.getEquipmentFromID(701, "weapon"));
+
+            EquipementDTO instrumentDTO = new EquipementDTO("Chalemie");
+            Assert.AreEqual(instrumentDTO, sqliteHandler.getEquipmentFromID(1, "instrument"));
+
+            EquipementDTO equipementDTO  = new EquipementDTO("Un paquetage d'explorateur");
+            Assert.AreEqual(equipementDTO, sqliteHandler.getEquipmentFromID(101, "equipment"));
+          
+        }
+
+        [Test]
+        public void verifierSQLQueryListEquipment()
+        {
+            string testQuery = "SELECT * FROM choice_weapon WHERE choiceID = @v";
+            Assert.AreEqual(testQuery, sqliteHandler.getCorrectEquipmentQuery("weapon",false));
+        }
+
+
+
     }
 }

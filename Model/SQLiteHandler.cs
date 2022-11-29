@@ -7,6 +7,7 @@ using System;
 using System.Security.Cryptography;
 using System.Runtime.Intrinsics.Arm;
 using System.Runtime.CompilerServices;
+using System.Data;
 
 [assembly: InternalsVisibleTo("TestCreationDND")]
 
@@ -36,7 +37,7 @@ namespace Model
             DirectoryInfo di = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/");
             di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
 
-            //Debug.WriteLine("DB is being created");
+
             SQLiteConnection.CreateFile(pathSQLite);
         }
         public int executeInsertionSQL()
@@ -46,35 +47,35 @@ namespace Model
             m_dbConnection.Open();
             SQLiteCommand command = new SQLiteCommand(insertionRaceContents, m_dbConnection);
             int rowsAffected = command.ExecuteNonQuery();
-            Debug.WriteLine(rowsAffected);
+
             m_dbConnection.Close();
             return rowsAffected;
         }
 
 
-/** -- DEPRICATED -- USE FOR TESTING ONLY --
-        public void showTable(string tableName)
-        {
+        /** -- DEPRICATED -- USE FOR TESTING ONLY --
+                public void showTable(string tableName)
+                {
 
-            using var con = new SQLiteConnection(pathScriptSQL);
-            con.Open();
+                    using var con = new SQLiteConnection(pathScriptSQL);
+                    con.Open();
 
-            string stm = "SELECT * FROM " + tableName;
+                    string stm = "SELECT * FROM " + tableName;
 
-            using var cmd = new SQLiteCommand(stm, con);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
+                    using var cmd = new SQLiteCommand(stm, con);
+                    using SQLiteDataReader rdr = cmd.ExecuteReader();
 
-            switch (tableName)
-            {
-                case "race":
-                    while (rdr.Read())
+                    switch (tableName)
                     {
-                        Debug.WriteLine(rdr);
+                        case "race":
+                            while (rdr.Read())
+                            {
+                                Debug.WriteLine(rdr);
+                            }
+                            break;
                     }
-                    break;
-            }
-        }
-**/
+                }
+        **/
         public RaceDTO getRace(int raceID)
         {
 
@@ -89,10 +90,10 @@ namespace Model
 
             while (rdr.Read())
             {
-               
 
-                    return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8));
-                
+
+                return new RaceDTO(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8));
+
             }
 
             return null;
@@ -120,11 +121,11 @@ namespace Model
             con.Close();
             return listRace;
         }
-        
+
         public List<ClasseDTO> getAllClasse()
         {
             List<ClasseDTO> listClasse = new List<ClasseDTO>();
-           
+
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
@@ -136,257 +137,16 @@ namespace Model
             while (rdr.Read())
             {
                 List<AttributDTO> listAttribut = getClassAttributes(rdr.GetInt32(0));
-                
+
                 List<CompetenceDTO> listProficiencies = getClassCompetences(rdr.GetInt32(0));
                 List<List<List<EquipementDTO>>> listChoice = getClassChoices(rdr.GetInt32(0));
-   
+
 
                 listClasse.Add(new ClasseDTO(rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetBoolean(4), rdr.GetInt32(5), listAttribut, listProficiencies, rdr.GetInt32(6), 0, listChoice));
 
             }
             con.Close();
             return listClasse;
-        }
-
-        private List<List<List<EquipementDTO>>> getClassChoices(int v)
-        {
-            List<List<List<EquipementDTO>>> listChoiceCollection = new List<List<List<EquipementDTO>>>();
-
-            using var con = new SQLiteConnection(pathScriptSQL);
-            con.Open();
-
-            string stm = "SELECT choiceCollectionID FROM class_choiceCollection WHERE idC = @idC";
-            
-            using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@idC",v);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-            Debug.WriteLine(v);
-            while (rdr.Read())
-            {
-                listChoiceCollection.Add(getClassOptionChoices(rdr.GetInt32(0)));
-            }
-            con.Close();
-
-            return listChoiceCollection;
-        }
-
-        private List<List<EquipementDTO>> getClassOptionChoices(int v)
-        {
-
-            List<List<EquipementDTO>> listChoiceCollection = new List<List<EquipementDTO>>();
-            
-            using var con = new SQLiteConnection(pathScriptSQL);
-            con.Open();
-
-            string stm = "SELECT choiceID FROM choice_choiceCollection WHERE choiceCollectionID = @v";
-
-            using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", v);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                List<EquipementDTO> listChoice = new List<EquipementDTO>();
-                listChoice.AddRange(getWeaponChoice(rdr.GetInt32(0)));
-                listChoice.AddRange(getEquipmentChoice(rdr.GetInt32(0)));
-                listChoice.AddRange(getInstrumentChoice(rdr.GetInt32(0)));
-                listChoice.AddRange(getArmorChoice(rdr.GetInt32(0)));
-                listChoiceCollection.Add(listChoice);
-            }
-            con.Close();
-            return listChoiceCollection;
-        }
-        public List<ArmureDTO> getArmorChoice(int v)
-        {
-            List<ArmureDTO> listChoice = new List<ArmureDTO>();
-            using var con = new SQLiteConnection(pathScriptSQL);
-            con.Open();
-
-            string stm = "SELECT armorID FROM choice_armor WHERE choiceID = @v";
-            using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", v);
-            
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                listChoice.Add(getArmorFromID(rdr.GetInt32(0)));
-            }
-            con.Close();
-
-            return listChoice;
-
-
-        }
-
-        //INSTRUMENTDTO?
-        private ArmureDTO getArmorFromID(int v)
-        {
-            
-            ArmureDTO equipementDTO;
-
-            using var con = new SQLiteConnection(pathScriptSQL);
-            con.Open();
-
-            string stm = "SELECT armorName,armorClass,armorDexState  FROM armor WHERE armorID = @v";
-            
-            using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", v);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                bool limitedDex = false;
-                if (rdr.GetInt32(2) >= 2) {
-                    limitedDex = true;
-                }
-
-                Debug.WriteLine(limitedDex);
-                equipementDTO = new ArmureDTO(rdr.GetString(0), rdr.GetInt32(1), Convert.ToBoolean(rdr.GetInt32(2)), limitedDex);
-                return equipementDTO;
-            }
-            con.Close();
-            return null;
-        }
-        public List<EquipementDTO> getInstrumentChoice(int v)
-        {
-            List<EquipementDTO> listChoice = new List<EquipementDTO>();
-            using var con = new SQLiteConnection(pathScriptSQL);
-            con.Open();
-            Debug.WriteLine(v);
-            string stm = "SELECT instrumentID FROM choice_instrument WHERE choiceID = @v";
-            
-            using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", v);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                listChoice.Add(getInstrumentFromID(rdr.GetInt32(0)));
-            }
-            con.Close();
-
-            return listChoice;
-
-
-        }
-
-        //INSTRUMENTDTO?
-        private EquipementDTO getInstrumentFromID(int v)
-        {
-            EquipementDTO equipementDTO;
-
-            using var con = new SQLiteConnection(pathScriptSQL);
-            con.Open();
-
-            string stm = "SELECT instrumentName FROM instrument WHERE instrumentID = @v";
-
-            using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", v);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                equipementDTO = new EquipementDTO(rdr.GetString(0));
-                return equipementDTO;
-            }
-            con.Close();
-            return null;
-        }
-        public List<EquipementDTO> getEquipmentChoice(int v)
-        {
-            List<EquipementDTO> listChoice = new List<EquipementDTO>();
-            using var con = new SQLiteConnection(pathScriptSQL);
-            con.Open();
-
-            string stm = "SELECT equipmentID FROM choice_equipment WHERE choiceID = @v";
-
-            using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", v);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                listChoice.Add(getEquipmentFromID(rdr.GetInt32(0)));
-            }
-            con.Close();
-
-            return listChoice;
-
-
-        }
-
-        private EquipementDTO getEquipmentFromID(int v)
-        {
-            EquipementDTO equipementDTO;
-
-            using var con = new SQLiteConnection(pathScriptSQL);
-            con.Open();
-
-            string stm = "SELECT equipmentName FROM equipment WHERE equipmentID = @v";
-
-            using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", v);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                equipementDTO = new EquipementDTO(rdr.GetString(0));
-                return equipementDTO;
-            }
-            con.Close();
-            return null;
-        }
-
-
-
-
-
-
-
-        public List<ArmeDTO> getWeaponChoice(int v)
-        {
-            List<ArmeDTO> listChoice = new List<ArmeDTO>();
-            using var con = new SQLiteConnection(pathScriptSQL);
-            con.Open();
-
-            string stm = "SELECT weaponID FROM choice_weapon WHERE choiceID = @v";
-
-            using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", v);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                listChoice.Add(getWeaponFromID(rdr.GetInt32(0))); 
-            }
-            con.Close();
-
-            return listChoice;
-
-
-        }
-
-        private ArmeDTO getWeaponFromID(int v)
-        {
-            ArmeDTO armeDTO;
-
-            using var con = new SQLiteConnection(pathScriptSQL);
-            con.Open();
-
-            string stm = "SELECT * FROM weapon WHERE weaponID = @v";
-
-            using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", v);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                armeDTO = new ArmeDTO(rdr.GetString(1),rdr.GetString(2));
-                return armeDTO;
-            }
-            con.Close();
-            return null;
         }
 
         public List<CompetenceDTO> getClassCompetences(int classID)
@@ -455,7 +215,8 @@ namespace Model
 
             return null;
         }
-     
+
+        // refractor this //
         public CompetenceDTO getCompetence(int pID)
         {
 
@@ -477,7 +238,7 @@ namespace Model
             return null;
         }
 
-        
+
         public List<CompetenceDTO> getAllCompetences()
         {
             List<CompetenceDTO> listProficiencies = new List<CompetenceDTO>();
@@ -498,7 +259,180 @@ namespace Model
             con.Close();
             return listProficiencies;
         }
-       
-    }
 
+        public List<List<List<EquipementDTO>>> getClassChoices(int classID)
+        {
+            List<List<List<EquipementDTO>>> listChoiceCollection = new List<List<List<EquipementDTO>>>();
+
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+
+            string stm = "SELECT choiceCollectionID FROM class_choiceCollection WHERE idC = @idC";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@idC", classID);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                listChoiceCollection.Add(getClassOptionChoices(rdr.GetInt32(0)));
+            }
+            con.Close();
+
+            return listChoiceCollection;
+        }
+
+        public List<List<EquipementDTO>> getClassOptionChoices(int choiceCollectionID)
+        {
+
+            List<List<EquipementDTO>> listChoiceCollection = new List<List<EquipementDTO>>();
+
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+
+            string stm = "SELECT choiceID FROM choice_choiceCollection WHERE choiceCollectionID = @v";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", choiceCollectionID);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                listChoiceCollection.Add(getAllFromChoiceCollection(rdr.GetInt32(0)));
+            }
+            con.Close();
+            return listChoiceCollection;
+        }
+
+        public List<EquipementDTO> getAllFromChoiceCollection(int choiceID)
+        {
+            List<string> equipmentTypes = new List<string> { "armor", "instrument", "equipment", "weapon" };
+            List<EquipementDTO> listChoice = new List<EquipementDTO>();
+            foreach (string type in equipmentTypes)
+            {
+                listChoice.AddRange(getEquipmentChoice(choiceID, type));
+            }
+            return listChoice;
+        }
+
+        public List<EquipementDTO> getEquipmentChoice(int choiceID, string type)
+        {
+            List<EquipementDTO> listChoice = new List<EquipementDTO>();
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+
+            string stm = getCorrectEquipmentQuery(type, false);
+            using var cmd = new SQLiteCommand(stm, con);
+
+            cmd.Parameters.AddWithValue("@v", choiceID);
+
+
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                listChoice.Add(getEquipmentFromID(rdr.GetInt32(1), type));
+            }
+            con.Close();
+
+            return listChoice;
+
+
+        }
+
+        public string getCorrectEquipmentQuery(string type,bool fromID)
+        {
+            if (type == "armor")
+            {
+                if (fromID)
+                {
+                    return "SELECT * FROM armor WHERE armorID = @v"; ;
+                }
+                else {
+                    return "SELECT * FROM choice_armor WHERE choiceID = @v";
+                }
+              
+            }
+            else if (type == "weapon")
+            {
+                if (fromID)
+                {
+                    return "SELECT * FROM weapon WHERE weaponID = @v"; 
+                }
+                else {
+                    return "SELECT * FROM choice_weapon WHERE choiceID = @v";
+                }
+                
+            }
+            else if (type == "instrument")
+            {
+                if (fromID)
+                {
+                    return "SELECT * FROM instrument WHERE instrumentID = @v"; ;
+                }
+                else {
+                    return "SELECT * FROM choice_instrument WHERE choiceID = @v";
+                }
+            }
+            else if (type == "equipment")
+            {
+                if (fromID)
+                {
+                    return "SELECT * FROM equipment WHERE equipmentID = @v"; ;
+                }
+                else { 
+                    return "SELECT * FROM choice_equipment WHERE choiceID = @v";
+                }
+                
+            }
+
+            return null;
+        }
+
+        public EquipementDTO getEquipmentFromID(int equipmentID, String type)
+        { 
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+
+            string stm = getCorrectEquipmentQuery(type, true); 
+
+            using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", equipmentID);
+
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+                return getCorrectEquipment(rdr, type);
+            }
+            con.Close();
+            return null;
+        }
+
+        public EquipementDTO getCorrectEquipment(SQLiteDataReader rdr, string type)
+        {
+            if (type == "armor")
+            {
+                bool limitedDex = false;
+                if (rdr.GetInt32(3) >= 2)
+                {
+                    limitedDex = true;
+                }
+                return new ArmureDTO(rdr.GetString(1), rdr.GetInt32(2), Convert.ToBoolean(rdr.GetInt32(3)), limitedDex);
+            }
+            else if (type == "weapon")
+            {
+                return new ArmeDTO(rdr.GetString(1), rdr.GetString(2));
+            }
+            else if (type == "instrument")
+            {
+                return new EquipementDTO(rdr.GetString(1));
+            }
+            else if (type == "equipment")
+            {
+                return new EquipementDTO(rdr.GetString(1));
+            }
+            return null;
+        }
+    }
 }
