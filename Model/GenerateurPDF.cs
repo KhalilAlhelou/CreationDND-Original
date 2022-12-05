@@ -42,6 +42,14 @@ namespace Model
             texte = "Classe : " + personnage.classe.ToString();
             AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
 
+            texte = "PV maximum : " + personnage.pvMax.ToString() + " PV";
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            section.AddParagraph();
+
+            texte = "PV actuels : ___________";
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
             section.AddParagraph();
                 
             texte = "Force = " + personnage.force.ToString() + " (" + personnage.modForce.ToString() + ")";

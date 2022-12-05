@@ -30,6 +30,7 @@ namespace Model
         public int modIntelligence { get; private set; } = 0;
         public int modSagesse { get; private set; } = 0;
         public int modCharisme { get; private set; } = 0;
+        public int pvMax { get; private set; }
         public List<Competence> competencesMaitrises { get; private set; } = null;
         public List<Equipement> inventaire { get; private set; } = null;
 
@@ -177,6 +178,7 @@ namespace Model
             modIntelligence = calculerUnModificateur(intelligence);
             modSagesse = calculerUnModificateur(sagesse);
             modCharisme = calculerUnModificateur(charisme);
+            pvMax = classe.calculerPvAuNiv1(modConstitution);
 
         }
 
