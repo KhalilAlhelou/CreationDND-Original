@@ -388,7 +388,7 @@ namespace Model
             return null;
         }
 
-        public EquipementDTO getEquipmentFromID(int equipmentID, String type)
+        public EquipementDTO getEquipmentFromID(int equipmentID, string type)
         { 
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
@@ -432,6 +432,59 @@ namespace Model
             {
                 return new EquipementDTO(rdr.GetString(1));
             }
+            return null;
+        }
+
+        public List<EquipementDTO> getWeaponFromGroup(int groupID, string table)
+        {
+            List<EquipementDTO> listArmes = new List<EquipementDTO>();
+
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+            string stm = getGroupQuery(table);
+          
+
+            using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", groupID);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                listArmes.Add(getCorrectEquipment(rdr, table));
+            }
+            con.Close();
+
+
+            return listArmes;
+        }
+
+        private string getGroupQuery(string table)
+        {
+           
+
+            if (table == "armor")
+            {
+
+                return "SELECT a.armorName, a.armorClass, a.armorDexState FROM armor a, armor_armortype b WHERE b.atID = @v AND a.armorID = b.armorID ORDER BY a.armorName ASC";
+            
+            }
+            else if (table == "weapon")
+            {
+
+                return "SELECT a.weaponName, a.weaponDice FROM weapon a, weapon_weapontype b WHERE b.wtID = @v AND a.weaponID = b.weaponID ORDER BY a.weaponName ASC";
+
+            }
+            else if (table == "instrument")
+            {
+
+                
+            }
+            else if (table == "equipment")
+            {
+
+              
+            }
+
             return null;
         }
     }
