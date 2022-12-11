@@ -169,7 +169,6 @@ namespace Model
             }
             con.Close();
 
-
             return listProficiencies;
         }
 
@@ -424,7 +423,6 @@ namespace Model
 
             while (rdr.Read())
             {
-
                 return getCorrectEquipment(rdr, type);
             }
             con.Close();
@@ -456,7 +454,7 @@ namespace Model
             }
             else if (type == "armortype" || type == "weapontype")
             {
-                return new GroupeDTO(rdr.GetString(1), type, rdr.GetInt32(3));
+                return new GroupeDTO(rdr.GetString(1), type, rdr.GetInt32(0));
             }
             return null;
         }
@@ -468,7 +466,6 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
             string stm = getGroupQuery(type);
-          
 
             using var cmd = new SQLiteCommand(stm, con);
             cmd.Parameters.AddWithValue("@v", groupID);
@@ -486,20 +483,16 @@ namespace Model
 
         private string getGroupQuery(string type)
         {
-           
-
+          
             if (type == "armor")
             {
-
                 return "SELECT a.armorName, a.armorClass, a.armorDexState FROM armor a, armor_armortype b WHERE b.atID = @v AND a.armorID = b.armorID ORDER BY a.armorName ASC";
             
             }
             else if (type == "weapon")
             {
                 return "SELECT a.weaponName, a.weaponDice FROM weapon a, weapon_weapontype b WHERE b.wtID = @v AND a.weaponID = b.weaponID ORDER BY a.weaponName ASC";
-
             }
-
 
             return null;
         }
