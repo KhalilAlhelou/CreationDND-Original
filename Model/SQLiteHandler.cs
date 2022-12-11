@@ -438,7 +438,7 @@ namespace Model
                 {
                     limitedDex = true;
                 }
-                return new ArmureDTO(rdr.GetString(1), rdr.GetInt32(2), Convert.ToBoolean(rdr.GetInt32(3)), limitedDex);
+                return new ArmureDTO(rdr.GetString(1), rdr.GetInt32(2), Convert.ToBoolean(rdr.GetInt32(3)), limitedDex, Convert.ToBoolean(rdr.GetInt32(6)));
             }
             else if (type == "weapon")
             {

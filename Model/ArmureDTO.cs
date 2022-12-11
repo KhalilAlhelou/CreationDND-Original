@@ -15,11 +15,14 @@ namespace Model
         public bool obtientBonusModDex { get; private set; }
         public bool bonusModDexEstLimite { get; private set; }
 
-        public ArmureDTO(string nom, int classeArmure, bool obtientBonusModDex, bool bonusModDexEstLimite) : base(nom)
+        public bool estBouclier { get; private set; }
+
+        public ArmureDTO(string nom, int classeArmure, bool obtientBonusModDex, bool bonusModDexEstLimite, bool estBouclier) : base(nom)
         {
             this.classeArmure = classeArmure;
             this.obtientBonusModDex = obtientBonusModDex;
             this.bonusModDexEstLimite = bonusModDexEstLimite;
+            this.estBouclier = estBouclier;
         }
 
         public override bool Equals(object? obj)
@@ -33,6 +36,7 @@ namespace Model
                    nom == other.nom &&
                    classeArmure == other.classeArmure &&
                    obtientBonusModDex == other.obtientBonusModDex &&
+                   estBouclier == other.estBouclier &&
                    bonusModDexEstLimite == other.bonusModDexEstLimite;
         }
 
