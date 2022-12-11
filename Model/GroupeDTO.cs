@@ -11,9 +11,9 @@ namespace Model
 {
     public class GroupeDTO : EquipementDTO
     {
-        public int groupType { get; private set; }
+        public string groupType { get; private set; }
         public int groupId { get; private set; }
-        public GroupeDTO(string nom, int groupType, int groupId) : base(nom)
+        public GroupeDTO(string nom, string groupType, int groupId) : base(nom)
         {
             this.groupType = groupType; 
             this.groupId = groupId;

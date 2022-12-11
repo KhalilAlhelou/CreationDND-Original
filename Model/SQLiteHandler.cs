@@ -454,16 +454,20 @@ namespace Model
             {
                 return new EquipementDTO(rdr.GetString(1));
             }
+            else if (type == "armortype" || type == "weapontype")
+            {
+                return new GroupeDTO(rdr.GetString(1), type, rdr.GetInt32(3));
+            }
             return null;
         }
 
-        public List<EquipementDTO> getItemFromGroup(int groupID, string table)
+        public List<EquipementDTO> getItemFromGroup(int groupID, string type)
         {
             List<EquipementDTO> listArmes = new List<EquipementDTO>();
 
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
-            string stm = getGroupQuery(table);
+            string stm = getGroupQuery(type);
           
 
             using var cmd = new SQLiteCommand(stm, con);
@@ -472,7 +476,7 @@ namespace Model
 
             while (rdr.Read())
             {
-                listArmes.Add(getCorrectEquipment(rdr, table));
+                listArmes.Add(getCorrectEquipment(rdr, type));
             }
             con.Close();
 
@@ -480,31 +484,22 @@ namespace Model
             return listArmes;
         }
 
-        private string getGroupQuery(string table)
+        private string getGroupQuery(string type)
         {
            
 
-            if (table == "armor")
+            if (type == "armor")
             {
 
                 return "SELECT a.armorName, a.armorClass, a.armorDexState FROM armor a, armor_armortype b WHERE b.atID = @v AND a.armorID = b.armorID ORDER BY a.armorName ASC";
             
             }
-            else if (table == "weapon")
+            else if (type == "weapon")
             {
-
                 return "SELECT a.weaponName, a.weaponDice FROM weapon a, weapon_weapontype b WHERE b.wtID = @v AND a.weaponID = b.weaponID ORDER BY a.weaponName ASC";
 
             }
-            else if (table == "instrument")
-            {
 
-                
-            }
-            else if (table == "equipment")
-            {
-
-            }
 
             return null;
         }

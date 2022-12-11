@@ -11,10 +11,10 @@ namespace Model
 {
     public class Groupe : Equipement
     {
-        public int groupType { get; private set; }
+        public string groupType { get; private set; }
         public int groupId { get; private set; }
 
-        public Groupe(string nom, int groupType, int groupId) : base(nom)
+        public Groupe(string nom, string groupType, int groupId) : base(nom)
         {
             this.groupType = groupType;
             this.groupId = groupId;
