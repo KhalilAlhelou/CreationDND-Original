@@ -305,7 +305,7 @@ namespace Model
 
         public List<EquipementDTO> getAllFromChoiceCollection(int choiceID)
         {
-            List<string> equipmentTypes = new List<string> { "armor", "instrument", "equipment", "weapon" };
+            List<string> equipmentTypes = new List<string> { "armor", "instrument", "equipment", "weapon","weapontype","armortype" };
             List<EquipementDTO> listChoice = new List<EquipementDTO>();
             foreach (string type in equipmentTypes)
             {
@@ -382,9 +382,31 @@ namespace Model
                 else { 
                     return "SELECT * FROM choice_equipment WHERE choiceID = @v";
                 }
-                
-            }
 
+            }
+            else if (type == "weapontype")
+            {
+                if (fromID)
+                {
+                    return "SELECT * FROM weapontype WHERE wtID = @v"; ;
+                }
+                else
+                {
+                    return "SELECT * FROM choice_weapontype WHERE choiceID = @v";
+                }
+
+            }
+            else if (type == "armortype")
+            {
+                if (fromID)
+                {
+                    return "SELECT * FROM armortype WHERE atID = @v"; 
+                }
+                else
+                {
+                    return "SELECT * FROM choice_armortype WHERE choiceID = @v";
+                }
+            }
             return null;
         }
 
@@ -435,7 +457,7 @@ namespace Model
             return null;
         }
 
-        public List<EquipementDTO> getWeaponFromGroup(int groupID, string table)
+        public List<EquipementDTO> getItemFromGroup(int groupID, string table)
         {
             List<EquipementDTO> listArmes = new List<EquipementDTO>();
 
@@ -482,7 +504,6 @@ namespace Model
             else if (table == "equipment")
             {
 
-              
             }
 
             return null;
