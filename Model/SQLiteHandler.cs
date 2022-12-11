@@ -304,7 +304,7 @@ namespace Model
 
         public List<EquipementDTO> getAllFromChoiceCollection(int choiceID)
         {
-            List<string> equipmentTypes = new List<string> { "armor", "instrument", "equipment", "weapon","weapontype","armortype" };
+            List<string> equipmentTypes = new List<string> { "armor", "instrument", "equipment", "weapon","weapontype","armortype"};
             List<EquipementDTO> listChoice = new List<EquipementDTO>();
             foreach (string type in equipmentTypes)
             {
@@ -461,7 +461,7 @@ namespace Model
 
         public List<EquipementDTO> getItemFromGroup(int groupID, string type)
         {
-            List<EquipementDTO> listArmes = new List<EquipementDTO>();
+            List<EquipementDTO> listItem = new List<EquipementDTO>();
 
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
@@ -473,23 +473,23 @@ namespace Model
 
             while (rdr.Read())
             {
-                listArmes.Add(getCorrectEquipment(rdr, type));
+                listItem.Add(getCorrectEquipment(rdr, type));
             }
             con.Close();
 
 
-            return listArmes;
+            return listItem;
         }
 
         private string getGroupQuery(string type)
         {
           
-            if (type == "armor")
+            if (type == "armortype")
             {
                 return "SELECT a.armorName, a.armorClass, a.armorDexState FROM armor a, armor_armortype b WHERE b.atID = @v AND a.armorID = b.armorID ORDER BY a.armorName ASC";
             
             }
-            else if (type == "weapon")
+            else if (type == "weapontype")
             {
                 return "SELECT a.weaponName, a.weaponDice FROM weapon a, weapon_weapontype b WHERE b.wtID = @v AND a.weaponID = b.weaponID ORDER BY a.weaponName ASC";
             }
