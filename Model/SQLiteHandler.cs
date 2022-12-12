@@ -169,7 +169,6 @@ namespace Model
             }
             con.Close();
 
-
             return listProficiencies;
         }
 
@@ -305,7 +304,7 @@ namespace Model
 
         public List<EquipementDTO> getAllFromChoiceCollection(int choiceID)
         {
-            List<string> equipmentTypes = new List<string> { "armor", "instrument", "equipment", "weapon" };
+            List<string> equipmentTypes = new List<string> { "armor", "instrument", "equipment", "weapon","weapontype","armortype"};
             List<EquipementDTO> listChoice = new List<EquipementDTO>();
             foreach (string type in equipmentTypes)
             {
@@ -382,13 +381,35 @@ namespace Model
                 else { 
                     return "SELECT * FROM choice_equipment WHERE choiceID = @v";
                 }
-                
-            }
 
+            }
+            else if (type == "weapontype")
+            {
+                if (fromID)
+                {
+                    return "SELECT * FROM weapontype WHERE wtID = @v"; ;
+                }
+                else
+                {
+                    return "SELECT * FROM choice_weapontype WHERE choiceID = @v";
+                }
+
+            }
+            else if (type == "armortype")
+            {
+                if (fromID)
+                {
+                    return "SELECT * FROM armortype WHERE atID = @v"; 
+                }
+                else
+                {
+                    return "SELECT * FROM choice_armortype WHERE choiceID = @v";
+                }
+            }
             return null;
         }
 
-        public EquipementDTO getEquipmentFromID(int equipmentID, String type)
+        public EquipementDTO getEquipmentFromID(int equipmentID, string type)
         { 
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
@@ -402,7 +423,6 @@ namespace Model
 
             while (rdr.Read())
             {
-
                 return getCorrectEquipment(rdr, type);
             }
             con.Close();
@@ -418,7 +438,7 @@ namespace Model
                 {
                     limitedDex = true;
                 }
-                return new ArmureDTO(rdr.GetString(1), rdr.GetInt32(2), Convert.ToBoolean(rdr.GetInt32(3)), limitedDex);
+                return new ArmureDTO(rdr.GetString(1), rdr.GetInt32(2), Convert.ToBoolean(rdr.GetInt32(3)), limitedDex, Convert.ToBoolean(rdr.GetInt32(6)));
             }
             else if (type == "weapon")
             {
@@ -432,6 +452,48 @@ namespace Model
             {
                 return new EquipementDTO(rdr.GetString(1));
             }
+            else if (type == "armortype" || type == "weapontype")
+            {
+                return new GroupeDTO(rdr.GetString(1), type, rdr.GetInt32(0));
+            }
+            return null;
+        }
+
+        public List<EquipementDTO> getItemFromGroup(int groupID, string type)
+        {
+            List<EquipementDTO> listItem = new List<EquipementDTO>();
+
+            using var con = new SQLiteConnection(pathScriptSQL);
+            con.Open();
+            string stm = getGroupQuery(type);
+
+            using var cmd = new SQLiteCommand(stm, con);
+            cmd.Parameters.AddWithValue("@v", groupID);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                listItem.Add(getCorrectEquipment(rdr, type));
+            }
+            con.Close();
+
+
+            return listItem;
+        }
+
+        private string getGroupQuery(string type)
+        {
+          
+            if (type == "armortype")
+            {
+                return "SELECT a.armorName, a.armorClass, a.armorDexState FROM armor a, armor_armortype b WHERE b.atID = @v AND a.armorID = b.armorID ORDER BY a.armorName ASC";
+            
+            }
+            else if (type == "weapontype")
+            {
+                return "SELECT a.weaponName, a.weaponDice FROM weapon a, weapon_weapontype b WHERE b.wtID = @v AND a.weaponID = b.weaponID ORDER BY a.weaponName ASC";
+            }
+
             return null;
         }
     }

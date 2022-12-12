@@ -156,7 +156,7 @@ namespace TestCreationDND
         [Test]
         public void verifierGetEquipmentFromID()
         {
-            ArmureDTO armureDTO = new ArmureDTO("Armure Matelassée", 11, true, false);
+            ArmureDTO armureDTO = new ArmureDTO("Armure Matelassée", 11, true, false, false);
             Assert.AreEqual(armureDTO, sqliteHandler.getEquipmentFromID(601, "armor"));
 
             ArmeDTO armeDTO = new ArmeDTO("Bâton","1d6");

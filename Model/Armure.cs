@@ -16,11 +16,13 @@ namespace Model
         public bool obtientBonusModDex { get; private set; }
         public bool bonusModDexEstLimite { get; private set; }
 
+        public bool estBouclier { get; private set; }
         public Armure(string nom, int classeArmure, bool obtientBonusModDex, bool bonusModDexEstLimite) : base(nom)
         {
             this.classeArmure = classeArmure;
             this.obtientBonusModDex = obtientBonusModDex;
             this.bonusModDexEstLimite = bonusModDexEstLimite;
+            this.estBouclier = estBouclier;
         }
 
         public Armure(ArmureDTO armureDTO) : base(armureDTO.nom)
@@ -28,6 +30,7 @@ namespace Model
             this.classeArmure = armureDTO.classeArmure;
             this.obtientBonusModDex = armureDTO.obtientBonusModDex;
             this.bonusModDexEstLimite = armureDTO.bonusModDexEstLimite;
+            this.estBouclier = armureDTO.estBouclier;
         }
 
         public Armure(XmlElement element) : base(element)

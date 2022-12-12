@@ -40,7 +40,7 @@ namespace TestCreationDND
         [Test]
         public void creerArmureAPartirDArmureDTO()
         {
-            ArmureDTO armureDTO = new ArmureDTO("Test", 14, true, false);
+            ArmureDTO armureDTO = new ArmureDTO("Test", 14, true, false, false);
 
             Armure armure = new Armure(armureDTO);
 
