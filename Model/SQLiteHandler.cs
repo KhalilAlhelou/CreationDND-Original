@@ -495,16 +495,16 @@ namespace Model
         private string getGroupQuery(string type)
         {
           
-            if (type == "armortype")
+            if (type == "armor")
             {
                 return "SELECT a.* FROM armor a, armor_armortype b WHERE b.atID = @temp AND a.armorID = b.armorID ORDER BY a.armorName ASC";
             
             }
-            else if (type == "weapontype")
+            else if (type == "weapon")
             {
                 return "SELECT a.* FROM weapon a, weapon_weapontype b WHERE b.wtID = @temp AND a.weaponID = b.weaponID ORDER BY a.weaponName ASC";
             }
-            else if (type == "instrumenttype")
+            else if (type == "instrument")
             {
                 return "SELECT a.* FROM instrument a, instrument_instrumenttype b WHERE b.itID = @temp AND a.instrumentID = b.instrumentID ORDER BY a.instrumentName ASC";
             }
