@@ -304,7 +304,7 @@ namespace Model
 
         public List<EquipementDTO> getAllFromChoiceCollection(int choiceID)
         {
-            List<string> equipmentTypes = new List<string> {"armor", "instrument", "equipment", "weapon","weapontype","armortype"};
+            List<string> equipmentTypes = new List<string> {"armor", "instrument", "equipment", "weapon","weapontype","armortype","instrumenttype"};
             List<EquipementDTO> listChoice = new List<EquipementDTO>();
             foreach (string type in equipmentTypes)
             {
