@@ -156,10 +156,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT a.pID, a.pName FROM proficiency a, class_proficiency b WHERE b.idC = @v AND b.pID = a.pID ORDER BY a.pName ASC";
+            string stm = "SELECT a.pID, a.pName FROM proficiency a, class_proficiency b WHERE b.idC = @classID AND b.pID = a.pID ORDER BY a.pName ASC";
 
             using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", classID);
+            cmd.Parameters.AddWithValue("@classID", classID);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -179,10 +179,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT a.nameAttr, a.descAttr FROM attribute a, class_attribute b WHERE b.idC = @v AND b.idAttr = a.idAttr ORDER BY a.nameAttr ASC";
+            string stm = "SELECT a.nameAttr, a.descAttr FROM attribute a, class_attribute b WHERE b.idC = @classID AND b.idAttr = a.idAttr ORDER BY a.nameAttr ASC";
 
             using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", classID);
+            cmd.Parameters.AddWithValue("@classID", classID);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -200,10 +200,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT * FROM attribute WHERE idAttr = @v";
+            string stm = "SELECT * FROM attribute WHERE idAttr = @attrID";
 
             using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", attrID);
+            cmd.Parameters.AddWithValue("@attrID", attrID);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -222,10 +222,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT * FROM proficiency WHERE pID = @v";
+            string stm = "SELECT * FROM proficiency WHERE pID = @pID";
 
             using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", pID);
+            cmd.Parameters.AddWithValue("@pID", pID);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -266,10 +266,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT choiceCollectionID FROM class_choiceCollection WHERE idC = @idC";
+            string stm = "SELECT choiceCollectionID FROM class_choiceCollection WHERE classID = @classID";
 
             using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@idC", classID);
+            cmd.Parameters.AddWithValue("@classID", classID);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
@@ -288,10 +288,10 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT choiceID FROM choice_choiceCollection WHERE choiceCollectionID = @v";
+            string stm = "SELECT choiceID FROM choice_choiceCollection WHERE choiceCollectionID = @choiceCollectionID";
 
             using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", choiceCollectionID);
+            cmd.Parameters.AddWithValue("@choiceCollectionID", choiceCollectionID);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -304,7 +304,7 @@ namespace Model
 
         public List<EquipementDTO> getAllFromChoiceCollection(int choiceID)
         {
-            List<string> equipmentTypes = new List<string> { "armor", "instrument", "equipment", "weapon","weapontype","armortype"};
+            List<string> equipmentTypes = new List<string> {"armor", "instrument", "equipment", "weapon","weapontype","armortype"};
             List<EquipementDTO> listChoice = new List<EquipementDTO>();
             foreach (string type in equipmentTypes)
             {
@@ -322,7 +322,7 @@ namespace Model
             string stm = getCorrectEquipmentQuery(type, false);
             using var cmd = new SQLiteCommand(stm, con);
 
-            cmd.Parameters.AddWithValue("@v", choiceID);
+            cmd.Parameters.AddWithValue("@temp", choiceID);
 
 
             using SQLiteDataReader rdr = cmd.ExecuteReader();
@@ -344,10 +344,10 @@ namespace Model
             {
                 if (fromID)
                 {
-                    return "SELECT * FROM armor WHERE armorID = @v"; ;
+                    return "SELECT * FROM armor WHERE armorID = @temp"; ;
                 }
                 else {
-                    return "SELECT * FROM choice_armor WHERE choiceID = @v";
+                    return "SELECT * FROM choice_armor WHERE choiceID = @temp";
                 }
               
             }
@@ -355,10 +355,10 @@ namespace Model
             {
                 if (fromID)
                 {
-                    return "SELECT * FROM weapon WHERE weaponID = @v"; 
+                    return "SELECT * FROM weapon WHERE weaponID = @temp"; 
                 }
                 else {
-                    return "SELECT * FROM choice_weapon WHERE choiceID = @v";
+                    return "SELECT * FROM choice_weapon WHERE choiceID = @temp";
                 }
                 
             }
@@ -366,20 +366,20 @@ namespace Model
             {
                 if (fromID)
                 {
-                    return "SELECT * FROM instrument WHERE instrumentID = @v"; ;
+                    return "SELECT * FROM instrument WHERE instrumentID = @temp"; ;
                 }
                 else {
-                    return "SELECT * FROM choice_instrument WHERE choiceID = @v";
+                    return "SELECT * FROM choice_instrument WHERE choiceID = @temp";
                 }
             }
             else if (type == "equipment")
             {
                 if (fromID)
                 {
-                    return "SELECT * FROM equipment WHERE equipmentID = @v"; ;
+                    return "SELECT * FROM equipment WHERE equipmentID = @temp"; ;
                 }
                 else { 
-                    return "SELECT * FROM choice_equipment WHERE choiceID = @v";
+                    return "SELECT * FROM choice_equipment WHERE choiceID = @temp";
                 }
 
             }
@@ -387,11 +387,11 @@ namespace Model
             {
                 if (fromID)
                 {
-                    return "SELECT * FROM weapontype WHERE wtID = @v"; ;
+                    return "SELECT * FROM weapontype WHERE wtID = @temp"; ;
                 }
                 else
                 {
-                    return "SELECT * FROM choice_weapontype WHERE choiceID = @v";
+                    return "SELECT * FROM choice_weapontype WHERE choiceID = @temp";
                 }
 
             }
@@ -399,11 +399,22 @@ namespace Model
             {
                 if (fromID)
                 {
-                    return "SELECT * FROM armortype WHERE atID = @v"; 
+                    return "SELECT * FROM armortype WHERE atID = @temp"; 
                 }
                 else
                 {
-                    return "SELECT * FROM choice_armortype WHERE choiceID = @v";
+                    return "SELECT * FROM choice_armortype WHERE choiceID = @temp";
+                }
+            }
+            else if (type == "instrumenttype")
+            {
+                if (fromID)
+                {
+                    return "SELECT * FROM instrumenttype WHERE itID = @temp"; 
+                }
+                else
+                {
+                    return "SELECT * FROM choice_instrumenttype WHERE choiceID = @temp";
                 }
             }
             return null;
@@ -417,7 +428,7 @@ namespace Model
             string stm = getCorrectEquipmentQuery(type, true); 
 
             using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", equipmentID);
+            cmd.Parameters.AddWithValue("@temp", equipmentID);
 
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
@@ -452,9 +463,9 @@ namespace Model
             {
                 return new EquipementDTO(rdr.GetString(1));
             }
-            else if (type == "armortype" || type == "weapontype")
+            else if (type == "armortype" || type == "weapontype"|| type == "instrumenttype")
             {
-                return new GroupeDTO(rdr.GetString(1), type, rdr.GetInt32(0));
+                return new GroupeDTO(rdr.GetString(1), type.Remove(type.Length - 1, 4) , rdr.GetInt32(0));
             }
             return null;
         }
@@ -468,7 +479,7 @@ namespace Model
             string stm = getGroupQuery(type);
 
             using var cmd = new SQLiteCommand(stm, con);
-            cmd.Parameters.AddWithValue("@v", groupID);
+            cmd.Parameters.AddWithValue("@temp", groupID);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -486,12 +497,16 @@ namespace Model
           
             if (type == "armortype")
             {
-                return "SELECT a.armorName, a.armorClass, a.armorDexState FROM armor a, armor_armortype b WHERE b.atID = @v AND a.armorID = b.armorID ORDER BY a.armorName ASC";
+                return "SELECT a.* FROM armor a, armor_armortype b WHERE b.atID = @temp AND a.armorID = b.armorID ORDER BY a.armorName ASC";
             
             }
             else if (type == "weapontype")
             {
-                return "SELECT a.weaponName, a.weaponDice FROM weapon a, weapon_weapontype b WHERE b.wtID = @v AND a.weaponID = b.weaponID ORDER BY a.weaponName ASC";
+                return "SELECT a.* FROM weapon a, weapon_weapontype b WHERE b.wtID = @temp AND a.weaponID = b.weaponID ORDER BY a.weaponName ASC";
+            }
+            else if (type == "instrumenttype")
+            {
+                return "SELECT a.* FROM instrument a, instrument_instrumenttype b WHERE b.itID = @temp AND a.instrumentID = b.instrumentID ORDER BY a.instrumentName ASC";
             }
 
             return null;
