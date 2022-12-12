@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Model;
 using System.Security.Cryptography.X509Certificates;
 using System.Runtime.Remoting;
+using System.Collections;
 
 namespace ViewModel
 {
@@ -22,7 +23,7 @@ namespace ViewModel
         public ObservableCollection<Classe> listeClasses { get; set; }
         public ObservableCollection<Personnage> listePersonnages { get; set; }
         public ObservableCollection<Competence> listeCompetences { get; set; }
-        public ObservableCollection<ObservableCollection<Equipement>> listeEquipementsChoix { get; set; }
+        public List<GroupeChoixEquipement> listeEquipementsChoix { get; set; }
 
         public string stat1 { get; set; }
         public string stat2 { get; set; }
@@ -66,10 +67,36 @@ namespace ViewModel
             models.ajouterLaRace(race);
         }
 
+        public List<int> determinerSiGroupe(object selectedItem)
+        {
+            
+            ChoixEquipement choix = (ChoixEquipement)selectedItem;
+            List<int> positionDesGroupes = new List<int>();
+            if(choix == null)
+            {
+                return positionDesGroupes;
+            }
+            
+            for (int i = 0; i < choix.equipementsDeChoix.Count; i++)
+            {
+                if(choix.equipementsDeChoix[i] is Groupe)
+                {
+                    positionDesGroupes.Add(i);
+                }
+            }
+
+            return positionDesGroupes;
+        }
+
         public void ajouterClasse(object selectedItem)
         {
             Classe classe = (Classe)selectedItem;
             models.ajouterLaClasse(classe);
+        }
+
+        public ObservableCollection<Equipement> obtenirListeEquipementDeGroupe(object selectedItem, int position)
+        {
+            return models.obtenirEquipementsDeGroupe((Groupe)((ChoixEquipement)selectedItem).equipementsDeChoix[position]);
         }
 
         public void ajouterCompetencesMaitrises(List<object> competencesMaitrise)

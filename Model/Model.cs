@@ -84,17 +84,34 @@ namespace Model {
             return listeCompetencesMaitrisables;
         }
 
-        public ObservableCollection<ObservableCollection<Equipement>> obtenirEquipements()
+        public ObservableCollection<Equipement> obtenirEquipementsDeGroupe(Groupe groupe)
         {
-            ObservableCollection<ObservableCollection<Equipement>> list = new ObservableCollection<ObservableCollection<Equipement>>();
-
-            foreach (List<Equipement> choix in personnageEnCreation.classe.choixEquipements)
+            List<EquipementDTO> equipementDTOs = bd.getEquipementDeGroupe(groupe);
+            ObservableCollection<Equipement> equipements = new ObservableCollection<Equipement>();
+            foreach (EquipementDTO equipementDTO in equipementDTOs)
             {
-                list.Add(new ObservableCollection<Equipement>(choix));
+                if (equipementDTO is ArmeDTO)
+                {
+                    equipements.Add(new Arme((ArmeDTO)equipementDTO));
+                }
+                else if (equipementDTO is ArmureDTO)
+                {
+                    equipements.Add(new Armure((ArmureDTO)equipementDTO));
+                }
+                else
+                {
+                    equipements.Add(new Equipement(equipementDTO));
+                }
             }
 
-            return list;
-            
+            return equipements;
+
+
+        }
+
+        public List<GroupeChoixEquipement> obtenirEquipements()
+        {
+            return personnageEnCreation.classe.choixEquipements;
         }
 
         public void ajouterLaRace(Race race)

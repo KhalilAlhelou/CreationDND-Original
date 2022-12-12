@@ -36,6 +36,12 @@ namespace Model
             return sqlHandler.getCompetence(id);
         }
 
+        public List<EquipementDTO> getEquipementDeGroupe(Groupe groupe)
+        {
+            return sqlHandler.getItemFromGroup(groupe.groupId, groupe.groupType);
+
+        }
+
 
 
     }

@@ -25,6 +25,7 @@ namespace CreationDND
 
         private ViewModels _viewModel;
         List<ComboBox> comboBoxesEquipements = new List<ComboBox>();
+        List<ComboBox> comboBoxesSousOption = new List<ComboBox>();
         
 
         public InterfaceEquipements()
@@ -39,12 +40,41 @@ namespace CreationDND
                 ComboBox comboBox = new ComboBox();
                 comboBox.Width = 400;
                 comboBox.Margin = new Thickness(5);
-                comboBox.ItemsSource = _viewModel.listeEquipementsChoix[i];
+                comboBox.ItemsSource = _viewModel.listeEquipementsChoix[i].tousLesChoix;
+                comboBox.SelectionChanged += new SelectionChangedEventHandler(ComboBox_SelectionChanged);
                 Stack.Children.Add(comboBox);
                 comboBoxesEquipements.Add(comboBox);
             }
             
 
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(comboBoxesSousOption.Count > 0)
+            {
+                foreach(ComboBox comboBox in comboBoxesSousOption)
+                {
+                  Stack.Children.Remove(comboBox);
+                }
+            }
+
+            foreach(ComboBox comboBox in comboBoxesEquipements)
+            {
+                List<int> positionDesGroupes = _viewModel.determinerSiGroupe(comboBox.SelectedItem);
+                if (positionDesGroupes.Count > 0)
+                {
+                    for (int i = 0; i < positionDesGroupes.Count; i++)
+                    {
+                        ComboBox comboBoxSousOption = new ComboBox();
+                        comboBoxSousOption.Width = 400;
+                        comboBoxSousOption.Margin = new Thickness(5);
+                        comboBoxSousOption.ItemsSource = _viewModel.obtenirListeEquipementDeGroupe(comboBox.SelectedItem, positionDesGroupes[i]);
+                        Stack.Children.Add(comboBoxSousOption);
+                        comboBoxesSousOption.Add(comboBoxSousOption);
+                    }
+                }
+            }
         }
 
         private void ajouterEquipement()

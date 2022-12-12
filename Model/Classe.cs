@@ -20,7 +20,7 @@ namespace Model
         public List<Competence> competencesMaitrisable { get; private set; }
         public int nombreDeCompetencesMaitrisable { get; private set; }
         public int nombreDeChoixEquipement { get; private set; }
-        public List<List<Equipement>> choixEquipements { get; private set; }
+        public List<GroupeChoixEquipement> choixEquipements { get; private set; }
 
 
         public Classe (ClasseDTO classeDTO)
@@ -33,35 +33,40 @@ namespace Model
             this.competencesMaitrisable = creerListeComptepenceMaitrisable(classeDTO.competencesMaitrisable);
             this.nombreDeCompetencesMaitrisable = classeDTO.nombreDeCompetencesMaitrisable;
 
-            this.choixEquipements = new List<List<Equipement>>();
+            this.choixEquipements = new List<GroupeChoixEquipement>();
 
 
             
             foreach (List<List<EquipementDTO>> choixEquipements in classeDTO.choixEquipements)
             {   
-                List<Equipement> equipements = new List<Equipement>();
+                GroupeChoixEquipement groupeDeChoix = new GroupeChoixEquipement();
 
                 foreach(List<EquipementDTO> equipementChoix in choixEquipements)
                 {
+                    ChoixEquipement choix = new ChoixEquipement();
                     foreach(EquipementDTO equipementDTO in equipementChoix)
                     {
                         if(equipementDTO is ArmeDTO)
                         {
-                            equipements.Add(new Arme((ArmeDTO)equipementDTO));
+                            choix.equipementsDeChoix.Add(new Arme((ArmeDTO)equipementDTO));
                         }
                         else if(equipementDTO is ArmureDTO)
                         {
-                            equipements.Add(new Armure((ArmureDTO)equipementDTO));
+                            choix.equipementsDeChoix.Add(new Armure((ArmureDTO)equipementDTO));
+                        }
+                        else if(equipementDTO is GroupeDTO)
+                        {
+                            choix.equipementsDeChoix.Add(new Groupe((GroupeDTO)equipementDTO));
                         }
                         else
                         {
-                            equipements.Add(new Equipement(equipementDTO));
+                            choix.equipementsDeChoix.Add(new Equipement(equipementDTO));
                         }
                     }
-
+                    groupeDeChoix.tousLesChoix.Add(choix);
                 }
 
-                this.choixEquipements.Add(equipements);
+                this.choixEquipements.Add(groupeDeChoix);
             }
             
         }

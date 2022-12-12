@@ -30,7 +30,7 @@ namespace Model
         public int modIntelligence { get; private set; } = 0;
         public int modSagesse { get; private set; } = 0;
         public int modCharisme { get; private set; } = 0;
-        public int pvMax { get; private set; }
+        public int pvMax { get; private set; } = 0;
         public List<Competence> competencesMaitrises { get; private set; } = null;
         public List<Equipement> inventaire { get; private set; } = null;
 
@@ -44,7 +44,7 @@ namespace Model
             intelligence += race.bInt;
             sagesse += race.bSage;
             charisme += race.bChar;
-            calculerTousLesModificateurs();
+            calculerTousLesModificateurs(false);
             inventaire = new List<Equipement>();
 
         }
@@ -104,7 +104,7 @@ namespace Model
             }
 
 
-            calculerTousLesModificateurs();
+            calculerTousLesModificateurs(true);
         }
 
         public Personnage(string nom, Race race, Classe classe, int force, int dexterite, int constitution, int intelligence, int sagesse, int charisme, List<Competence> competencesMaitrises)
@@ -120,7 +120,7 @@ namespace Model
             this.charisme = charisme;
             inventaire = new List<Equipement>();
             this.competencesMaitrises = competencesMaitrises;
-            calculerTousLesModificateurs();
+            calculerTousLesModificateurs(true);
         }
 
         public void ajouterClasse(Classe classe)
@@ -157,7 +157,7 @@ namespace Model
             intelligence += statistiques[3];
             sagesse += statistiques[4];
             charisme += statistiques[5];
-            calculerTousLesModificateurs();
+            calculerTousLesModificateurs(true);
             calculerLaClasseArmure();
         }
 
@@ -170,7 +170,7 @@ namespace Model
             }
         }
 
-        private void calculerTousLesModificateurs()
+        private void calculerTousLesModificateurs(bool aUneClasse)
         {
             modForce = calculerUnModificateur(force);
             modDexterite = calculerUnModificateur(dexterite);
@@ -178,7 +178,11 @@ namespace Model
             modIntelligence = calculerUnModificateur(intelligence);
             modSagesse = calculerUnModificateur(sagesse);
             modCharisme = calculerUnModificateur(charisme);
-            pvMax = classe.calculerPvAuNiv1(modConstitution);
+            if (aUneClasse)
+            {
+                pvMax = classe.calculerPvAuNiv1(modConstitution);
+            }
+            
 
         }
 

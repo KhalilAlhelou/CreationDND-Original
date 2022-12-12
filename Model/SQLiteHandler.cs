@@ -304,7 +304,7 @@ namespace Model
 
         public List<EquipementDTO> getAllFromChoiceCollection(int choiceID)
         {
-            List<string> equipmentTypes = new List<string> {"armor", "instrument", "equipment", "weapon","weapontype","armortype"};
+            List<string> equipmentTypes = new List<string> {"armor", "instrument", "equipment", "weapon","weapontype","armortype","instrumenttype"};
             List<EquipementDTO> listChoice = new List<EquipementDTO>();
             foreach (string type in equipmentTypes)
             {
@@ -465,7 +465,7 @@ namespace Model
             }
             else if (type == "armortype" || type == "weapontype"|| type == "instrumenttype")
             {//to fix
-                return new GroupeDTO(rdr.GetString(1), type , rdr.GetInt32(0));
+                return new GroupeDTO(rdr.GetString(1), type.Remove(type.Length - 4, 4), rdr.GetInt32(0));
             }
             return null;
         }
