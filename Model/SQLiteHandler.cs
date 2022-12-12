@@ -452,9 +452,9 @@ namespace Model
             {
                 return new EquipementDTO(rdr.GetString(1));
             }
-            else if (type == "armortype" || type == "weapontype")
+            else if (type == "armortype" || type == "weapontype"|| type == "instrumenttype")
             {
-                return new GroupeDTO(rdr.GetString(1), type, rdr.GetInt32(0));
+                return new GroupeDTO(rdr.GetString(1), type.Remove(type.Length - 1, 4) , rdr.GetInt32(0));
             }
             return null;
         }
@@ -486,12 +486,16 @@ namespace Model
           
             if (type == "armortype")
             {
-                return "SELECT a.armorName, a.armorClass, a.armorDexState FROM armor a, armor_armortype b WHERE b.atID = @temp AND a.armorID = b.armorID ORDER BY a.armorName ASC";
+                return "SELECT a.* FROM armor a, armor_armortype b WHERE b.atID = @temp AND a.armorID = b.armorID ORDER BY a.armorName ASC";
             
             }
             else if (type == "weapontype")
             {
-                return "SELECT a.weaponName, a.weaponDice FROM weapon a, weapon_weapontype b WHERE b.wtID = @temp AND a.weaponID = b.weaponID ORDER BY a.weaponName ASC";
+                return "SELECT a.* FROM weapon a, weapon_weapontype b WHERE b.wtID = @temp AND a.weaponID = b.weaponID ORDER BY a.weaponName ASC";
+            }
+            else if (type == "instrumenttype")
+            {
+                return "SELECT a.* FROM instrument a, instrument_instrumenttype b WHERE b.itID = @temp AND a.instrumentID = b.instrumentID ORDER BY a.instrumentName ASC";
             }
 
             return null;
