@@ -47,8 +47,8 @@ DROP TABLE IF EXISTS "class_attribute";
 CREATE TABLE IF NOT EXISTS "class_attribute" (
 	"idC"	INTEGER NOT NULL,
 	"idAttr"	INTEGER NOT NULL,
-	FOREIGN KEY("idAttr") REFERENCES "attribute" ON DELETE CASCADE,
-	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE
+	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE,
+	FOREIGN KEY("idAttr") REFERENCES "attribute" ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS "weapontype";
 CREATE TABLE IF NOT EXISTS "weapontype" (
@@ -86,8 +86,8 @@ DROP TABLE IF EXISTS "weapon_weapontype";
 CREATE TABLE IF NOT EXISTS "weapon_weapontype" (
 	"weaponID"	INTEGER,
 	"wtID"	INTEGER,
-	FOREIGN KEY("weaponID") REFERENCES "weapon" ON DELETE CASCADE,
-	FOREIGN KEY("wtID") REFERENCES "weapontype" ON DELETE CASCADE
+	FOREIGN KEY("wtID") REFERENCES "weapontype" ON DELETE CASCADE,
+	FOREIGN KEY("weaponID") REFERENCES "weapon" ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS "choice";
 CREATE TABLE IF NOT EXISTS "choice" (
@@ -113,8 +113,8 @@ DROP TABLE IF EXISTS "choice_armor";
 CREATE TABLE IF NOT EXISTS "choice_armor" (
 	"choiceID"	INTEGER,
 	"armorID"	INTEGER,
-	FOREIGN KEY("choiceID") REFERENCES "choice" ON DELETE CASCADE,
-	FOREIGN KEY("armorID") REFERENCES "armor" ON DELETE CASCADE
+	FOREIGN KEY("armorID") REFERENCES "armor" ON DELETE CASCADE,
+	FOREIGN KEY("choiceID") REFERENCES "choice" ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS "instrument";
 CREATE TABLE IF NOT EXISTS "instrument" (
@@ -126,8 +126,8 @@ DROP TABLE IF EXISTS "choice_instrument";
 CREATE TABLE IF NOT EXISTS "choice_instrument" (
 	"choiceID"	INTEGER,
 	"instrumentID"	INTEGER,
-	FOREIGN KEY("choiceID") REFERENCES "choice" ON DELETE CASCADE,
-	FOREIGN KEY("instrumentID") REFERENCES "instrument" ON DELETE CASCADE
+	FOREIGN KEY("instrumentID") REFERENCES "instrument" ON DELETE CASCADE,
+	FOREIGN KEY("choiceID") REFERENCES "choice" ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS "choice_choiceCollection";
 CREATE TABLE IF NOT EXISTS "choice_choiceCollection" (
@@ -146,22 +146,22 @@ DROP TABLE IF EXISTS "class_choiceCollection";
 CREATE TABLE IF NOT EXISTS "class_choiceCollection" (
 	"idC"	INTEGER,
 	"choiceCollectionID"	INTEGER,
-	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE,
-	FOREIGN KEY("choiceCollectionID") REFERENCES "choiceCollection" ON DELETE CASCADE
+	FOREIGN KEY("choiceCollectionID") REFERENCES "choiceCollection" ON DELETE CASCADE,
+	FOREIGN KEY("idC") REFERENCES "class" ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS "choice_weapontype";
 CREATE TABLE IF NOT EXISTS "choice_weapontype" (
 	"choiceID"	INTEGER,
 	"wtID"	INTEGER,
-	FOREIGN KEY("choiceID") REFERENCES "choice" ON DELETE CASCADE,
-	FOREIGN KEY("wtID") REFERENCES "weapontype" ON DELETE CASCADE
+	FOREIGN KEY("wtID") REFERENCES "weapontype" ON DELETE CASCADE,
+	FOREIGN KEY("choiceID") REFERENCES "choice" ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS "choice_armortype";
 CREATE TABLE IF NOT EXISTS "choice_armortype" (
 	"choiceID"	INTEGER,
 	"atID"	INTEGER,
-	FOREIGN KEY("choiceID") REFERENCES "choice" ON DELETE CASCADE,
-	FOREIGN KEY("atID") REFERENCES "armortype" ON DELETE CASCADE
+	FOREIGN KEY("atID") REFERENCES "armortype" ON DELETE CASCADE,
+	FOREIGN KEY("choiceID") REFERENCES "choice" ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS "armor";
 CREATE TABLE IF NOT EXISTS "armor" (
@@ -173,6 +173,19 @@ CREATE TABLE IF NOT EXISTS "armor" (
 	"armorDiscretionDisadvantage"	BOOLEAN,
 	"armorIsShield"	BOOLEAN,
 	PRIMARY KEY("armorID" AUTOINCREMENT)
+);
+DROP TABLE IF EXISTS "instrumenttype";
+CREATE TABLE IF NOT EXISTS "instrumenttype" (
+	"itID"	INTEGER,
+	"itName"	TEXT,
+	PRIMARY KEY("itID" AUTOINCREMENT)
+);
+DROP TABLE IF EXISTS "instrument_instrumenttype";
+CREATE TABLE IF NOT EXISTS "instrument_instrumenttype" (
+	"instrumentID"	INTEGER,
+	"itID"	INTEGER,
+	FOREIGN KEY("instrumentID") REFERENCES "instrument" ON DELETE CASCADE,
+	FOREIGN KEY("itID") REFERENCES "instrumenttype" ON DELETE CASCADE
 );
 INSERT INTO "race" ("idR","nameR","descR","bForceR","bDexR","bConstR","bIntR","bSageR","bCharR") VALUES (110,'Sangdragon','Les Draconiques ressemblent beaucoup à des dragons se tenant debout sous une forme humanoïde, bien qu''ils n''aient ni ailes ni queue.',2,0,0,0,0,1),
  (120,'Nain de colline','Audacieux et robustes, les nains sont connus pour être d''habiles guerriers, mineurs et travailleurs de la pierre et du métal. En tant que nain des collines, vous avez des sens aiguisés, une profonde intuition et une remarquable résilience. Les nains d''or de Faerûn dans leur puissant royaume du sud sont des nains des collines, tout comme les Neidar exilés et les Klar avilis de Krynn dans le cadre de Dragonlance.',0,0,2,0,1,0),
@@ -392,6 +405,19 @@ INSERT INTO "class_proficiency" ("idC","pID") VALUES (301,405),
  (312,415),
  (312,409),
  (312,410);
+ INSERT INTO "armor" ("armorID","armorName","armorClass","armorDexState","armorForce","armorDiscretionDisadvantage","armorIsShield") VALUES (601,'Armure Matelassée',11,1,0,1,0),
+ (602,'Armure de Cuir',11,1,0,0,0),
+ (603,'Armure de Cuir clouté',12,1,0,0,0),
+ (604,'Armure de Peau',12,2,0,0,0),
+ (605,'Chemise de mailles',13,2,0,0,0),
+ (606,'Armure d''Écailles',14,2,0,1,0),
+ (607,'Cuirasse',14,2,0,0,0),
+ (608,'Demi-plate',15,2,0,1,0),
+ (609,'Broigne',14,0,0,1,0),
+ (610,'Cotte de mailles',16,0,13,1,0),
+ (611,'Clibanion',17,0,15,1,0),
+ (612,'Harnois',18,0,15,1,0),
+ (613,'Bouclier',2,0,0,0,1);
 INSERT INTO "class_attribute" ("idC","idAttr") VALUES (301,201),
  (301,202),
  (302,203),
@@ -486,7 +512,19 @@ INSERT INTO "equipment" ("equipmentID","equipmentName") VALUES (101,'Un paquetag
  (116,'Outils de voleur'),
  (117,'Un paquetage d''érudit'),
  (118,'Un Grimoire');
-
+INSERT INTO "armor_armortype" ("armorID","atID") VALUES (601,501),
+ (602,501),
+ (603,501),
+ (604,502),
+ (605,502),
+ (606,502),
+ (607,502),
+ (608,502),
+ (609,503),
+ (610,503),
+ (611,503),
+ (612,503),
+ (613,504);
 INSERT INTO "weapon_weapontype" ("weaponID","wtID") VALUES (701,901),
  (702,901),
  (703,901),
@@ -678,7 +716,21 @@ INSERT INTO "choice_equipment" ("choiceID","equipmentID") VALUES (5,101),
  (80,117),
  (81,101),
  (82,118);
-
+INSERT INTO "choice_armor" ("choiceID","armorID") VALUES (11,602),
+ (14,606),
+ (15,602),
+ (16,610),
+ (21,613),
+ (26,602),
+ (27,610),
+ (28,602),
+ (29,613),
+ (40,613),
+ (46,610),
+ (47,606),
+ (48,602),
+ (61,602),
+ (75,602);
 INSERT INTO "instrument" ("instrumentID","instrumentName") VALUES (1,'Chalemie'),
  (2,'Cor'),
  (3,'Cornemuse'),
@@ -790,80 +842,6 @@ INSERT INTO "class_choiceCollection" ("idC","choiceCollectionID") VALUES (301,1)
  (312,44),
  (312,45),
  (312,46);
-INSERT INTO "choice_weapontype" ("choiceID","wtID") VALUES (2,903),
- (4,901),
- (4,902),
- (8,901),
- (8,902),
- (23,901),
- (23,902),
- (25,901),
- (18,901),
- (18,902),
- (75,901),
- (75,902),
- (70,901),
- (70,902),
- (63,901),
- (63,902),
- (50,901),
- (50,901),
- (41,903),
- (41,904),
- (43,901),
- (36,901),
- (36,902),
- (29,903),
- (29,904),
- (30,903),
- (30,904),
- (30,903),
- (30,904),
- (40,903),
- (40,904),
- (41,903),
- (41,904);
-INSERT INTO "armor" ("armorID","armorName","armorClass","armorDexState","armorForce","armorDiscretionDisadvantage","armorIsShield") VALUES (601,'Armure Matelassée',11,1,0,1,0),
- (602,'Armure de Cuir',11,1,0,0,0),
- (603,'Armure de Cuir clouté',12,1,0,0,0),
- (604,'Armure de Peau',12,2,0,0,0),
- (605,'Chemise de mailles',13,2,0,0,0),
- (606,'Armure d''Écailles',14,2,0,1,0),
- (607,'Cuirasse',14,2,0,0,0),
- (608,'Demi-plate',15,2,0,1,0),
- (609,'Broigne',14,0,0,1,0),
- (610,'Cotte de mailles',16,0,13,1,0),
- (611,'Clibanion',17,0,15,1,0),
- (612,'Harnois',18,0,15,1,0),
- (613,'Bouclier',2,0,0,0,1);
- INSERT INTO "armor_armortype" ("armorID","atID") VALUES (601,501),
- (602,501),
- (603,501),
- (604,502),
- (605,502),
- (606,502),
- (607,502),
- (608,502),
- (609,503),
- (610,503),
- (611,503),
- (612,503),
- (613,504);
- INSERT INTO "choice_armor" ("choiceID","armorID") VALUES (11,602),
- (14,606),
- (15,602),
- (16,610),
- (21,613),
- (26,602),
- (27,610),
- (28,602),
- (29,613),
- (40,613),
- (46,610),
- (47,606),
- (48,602),
- (61,602),
- (75,602);
  INSERT INTO "choice_choiceCollection" ("choiceID","choiceCollectionID") VALUES (1,1),
  (2,1),
  (3,2),
@@ -946,4 +924,48 @@ INSERT INTO "armor" ("armorID","armorName","armorClass","armorDexState","armorFo
  (80,45),
  (81,45),
  (82,46);
+INSERT INTO "choice_weapontype" ("choiceID","wtID") VALUES (2,903),
+ (4,901),
+ (4,902),
+ (8,901),
+ (8,902),
+ (23,901),
+ (23,902),
+ (25,901),
+ (18,901),
+ (18,902),
+ (75,901),
+ (75,902),
+ (70,901),
+ (70,902),
+ (63,901),
+ (63,902),
+ (50,901),
+ (50,901),
+ (41,903),
+ (41,904),
+ (43,901),
+ (36,901),
+ (36,902),
+ (29,903),
+ (29,904),
+ (30,903),
+ (30,904),
+ (30,903),
+ (30,904),
+ (40,903),
+ (40,904),
+ (41,903),
+ (41,904);
+
+INSERT INTO "instrumenttype" ("itID","itName") VALUES (1,'Instrument de musique');
+INSERT INTO "instrument_instrumenttype" ("instrumentID","itID") VALUES (1,1),
+ (2,1),
+ (3,1),
+ (4,1),
+ (5,1),
+ (6,1),
+ (7,1),
+ (8,1),
+ (9,1);
 COMMIT;
