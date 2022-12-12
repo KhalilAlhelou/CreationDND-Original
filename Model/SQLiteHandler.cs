@@ -465,7 +465,7 @@ namespace Model
             }
             else if (type == "armortype" || type == "weapontype"|| type == "instrumenttype")
             {//to fix
-                return new GroupeDTO(rdr.GetString(1), type , rdr.GetInt32(0));
+                return new GroupeDTO(rdr.GetString(1), type.Remove(type.Length - 4, 4) , rdr.GetInt32(0));
             }
             return null;
         }
