@@ -406,6 +406,17 @@ namespace Model
                     return "SELECT * FROM choice_armortype WHERE choiceID = @temp";
                 }
             }
+            else if (type == "instrumenttype")
+            {
+                if (fromID)
+                {
+                    return "SELECT * FROM instrumenttype WHERE itID = @temp"; 
+                }
+                else
+                {
+                    return "SELECT * FROM choice_instrumenttype WHERE choiceID = @temp";
+                }
+            }
             return null;
         }
 
