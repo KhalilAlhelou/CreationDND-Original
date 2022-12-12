@@ -266,7 +266,7 @@ namespace Model
             using var con = new SQLiteConnection(pathScriptSQL);
             con.Open();
 
-            string stm = "SELECT choiceCollectionID FROM class_choiceCollection WHERE classID = @classID";
+            string stm = "SELECT choiceCollectionID FROM class_choiceCollection WHERE idC = @classID";
 
             using var cmd = new SQLiteCommand(stm, con);
             cmd.Parameters.AddWithValue("@classID", classID);
@@ -464,8 +464,8 @@ namespace Model
                 return new EquipementDTO(rdr.GetString(1));
             }
             else if (type == "armortype" || type == "weapontype"|| type == "instrumenttype")
-            {
-                return new GroupeDTO(rdr.GetString(1), type.Remove(type.Length - 1, 4) , rdr.GetInt32(0));
+            {//to fix
+                return new GroupeDTO(rdr.GetString(1), type , rdr.GetInt32(0));
             }
             return null;
         }
