@@ -114,9 +114,22 @@ namespace ViewModel
         public void ajouterLesEquipements(List<object> equipementsChoisisObject)
         {
             List<Equipement> equipementsChoisis = new List<Equipement>();
-            foreach (object equipement in equipementsChoisisObject)
+            foreach (object choixObject in equipementsChoisisObject)
             {
-                equipementsChoisis.Add((Equipement)equipement);
+                if(choixObject is ChoixEquipement)
+                {
+                    ChoixEquipement choix = (ChoixEquipement)choixObject;
+                    foreach(Equipement equipement in choix.equipementsDeChoix)
+                    {
+                        equipementsChoisis.Add(equipement);
+                    }
+                } 
+                else if(choixObject is Equipement)
+                {
+                    equipementsChoisis.Add((Equipement)choixObject);
+                }
+               
+                    
             }
             models.ajouterEquipements(equipementsChoisis);
         }

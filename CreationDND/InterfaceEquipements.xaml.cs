@@ -57,6 +57,8 @@ namespace CreationDND
                 {
                   Stack.Children.Remove(comboBox);
                 }
+
+                comboBoxesSousOption.Clear();
             }
 
             foreach(ComboBox comboBox in comboBoxesEquipements)
@@ -85,6 +87,14 @@ namespace CreationDND
                 listeEquipementsChoisis.Add(comboBox.SelectedItem);
             }
 
+            if (comboBoxesSousOption.Count > 0)
+            {
+                foreach (ComboBox comboBox in comboBoxesSousOption)
+                {
+                    listeEquipementsChoisis.Add(comboBox.SelectedItem);
+                }
+            }
+
             _viewModel.ajouterLesEquipements(listeEquipementsChoisis);
         }
 
@@ -108,6 +118,25 @@ namespace CreationDND
                 }
             }
 
+            if(comboBoxesSousOption.Count > 0)
+            {
+                for (int i = 0; i < comboBoxesSousOption.Count; i++)
+                {
+                    if (comboBoxesSousOption[i].IsEnabled)
+                    {
+                        if (comboBoxesSousOption[i].SelectedItem == null)
+                        {
+                            equipSelect = false;
+                            break;
+                        }
+                        else
+                        {
+                            equipSelect = true;
+                        }
+                    }
+                }
+            }
+
             if (!equipSelect)
             {
                 e.CanExecute = false;
@@ -120,16 +149,6 @@ namespace CreationDND
 
         public void choisirEquip_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            List<object> equipementsSelectionnes = new List<object>();
-
-            foreach (ComboBox comboBox in comboBoxesEquipements)
-            {
-                if (comboBox.IsEnabled)
-                {
-                    equipementsSelectionnes.Add(comboBox.SelectedItem);
-                }
-            }
-
             InterfaceStats interfaceStats = new InterfaceStats();
             ajouterEquipement();
             interfaceStats.Show();

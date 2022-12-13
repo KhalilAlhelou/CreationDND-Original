@@ -130,7 +130,12 @@ namespace Model
         }
 
         public void ajouterEquipement(Equipement equipement)
-        {
+        {   
+            if(equipement is Groupe)
+            {
+                return;
+            }    
+
             if(equipement is Armure && armurePortee == null)
             {
                 armurePortee = (Armure)equipement;
