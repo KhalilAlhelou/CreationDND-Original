@@ -22,10 +22,8 @@ namespace TestCreationDND
         [Test]
         public void VerifierFichierSQLiteCreer()
         {
-
             string pathSQLite = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/.CreationDND/dbCharacter.sqlite";
             Assert.IsTrue(File.Exists(pathSQLite));
-
         }
 
         [Test]
@@ -95,6 +93,7 @@ namespace TestCreationDND
             List<CompetenceDTO> listCompetence = sqliteHandler.getClassCompetences(302);
             Assert.AreEqual(competenceDTO, listCompetence[0]);
         }
+
         [Test]
         public void VerifierTailleDeListeRequeteGetAllAttributDTOPourClassID()
         {
@@ -117,6 +116,7 @@ namespace TestCreationDND
             listAttribut[0] = listAttribut[1];
             Assert.AreNotEqual(listAttribut.Count, listAttribut.Distinct().Count());
         }
+
         [Test]
         public void VerifierZeroDuplicationListeCompetencesDeRaces()
         {
@@ -167,7 +167,6 @@ namespace TestCreationDND
 
             EquipementDTO equipementDTO  = new EquipementDTO("Un paquetage d'explorateur");
             Assert.AreEqual(equipementDTO, sqliteHandler.getEquipmentFromID(101, "equipment"));
-          
         }
 
         [Test]
@@ -219,7 +218,6 @@ namespace TestCreationDND
             Assert.AreEqual(listEquipement.Count, listEquipement.Distinct().Count());
             listEquipement[0] = listEquipement[1];
             Assert.AreNotEqual(listEquipement.Count, listEquipement.Distinct().Count());
-
         }
 
         [Test]
@@ -228,6 +226,5 @@ namespace TestCreationDND
             string testQuery = "SELECT a.* FROM armor a, armor_armortype b WHERE b.atID = @temp AND a.armorID = b.armorID ORDER BY a.armorName ASC";
             Assert.AreEqual(testQuery, sqliteHandler.getGroupQuery("armor"));
         }
-
     }
 }
