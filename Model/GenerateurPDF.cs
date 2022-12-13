@@ -17,6 +17,7 @@ namespace Model
 
         public string GenererLePDFDuPersonnage(Personnage personnage, bool estTest)
         {
+            List<string> competencesMatriseString = new List<string>();
             string texte;
             string nom = personnage.nom;
 
@@ -91,10 +92,211 @@ namespace Model
                 {
                     texte += competence + ", ";
                 }
-                
-            }
 
+                competencesMatriseString.Add(competence.ToString());
+            }
             AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, true);
+
+            section.AddParagraph();
+
+            if (competencesMatriseString.Contains("Acrobaties"))
+            {
+                texte = "Acrobaties = " + (personnage.modDexterite + personnage.bonusMaitrise);
+
+            } else
+            {
+                texte = "Acrobaties = " + (personnage.modDexterite);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Arcanes"))
+            {
+                texte = "Arcanes = " + (personnage.modIntelligence + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Arcanes = " + (personnage.modIntelligence);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Athlétisme"))
+            {
+                texte = "Athlétisme = " + (personnage.modForce + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Athlétisme = " + (personnage.modForce);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Discrétion"))
+            {
+                texte = "Discrétion = " + (personnage.modDexterite + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Discrétion = " + (personnage.modDexterite);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Dressage"))
+            {
+                texte = "Dressage = " + (personnage.modSagesse + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Dressage = " + (personnage.modSagesse);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Escamotage"))
+            {
+                texte = "Escamotage = " + (personnage.modDexterite + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Escamotage = " + (personnage.modDexterite);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Histoire"))
+            {
+                texte = "Histoire = " + (personnage.modIntelligence + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Histoire = " + (personnage.modIntelligence);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Intimidation"))
+            {
+                texte = "Intimidation = " + (personnage.modCharisme + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Intimidation = " + (personnage.modCharisme);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Investigation"))
+            {
+                texte = "Investigation = " + (personnage.modIntelligence + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Investigation = " + (personnage.modIntelligence);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Médecine"))
+            {
+                texte = "Médecine = " + (personnage.modSagesse + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Médecine = " + (personnage.modSagesse);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Nature"))
+            {
+                texte = "Nature = " + (personnage.modIntelligence + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Nature = " + (personnage.modIntelligence);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Perception"))
+            {
+                texte = "Perception = " + (personnage.modSagesse + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Perception = " + (personnage.modSagesse);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Perspicacité"))
+            {
+                texte = "Perspicacité = " + (personnage.modSagesse + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Perspicacité = " + (personnage.modSagesse);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Persuasion"))
+            {
+                texte = "Persuasion = " + (personnage.modCharisme + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Persuasion = " + (personnage.modCharisme);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Religion"))
+            {
+                texte = "Religion = " + (personnage.modIntelligence + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Religion = " + (personnage.modIntelligence);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Representation"))
+            {
+                texte = "Representation = " + (personnage.modCharisme + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Representation = " + (personnage.modCharisme);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Survie"))
+            {
+                texte = "Survie = " + (personnage.modSagesse + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Survie = " + (personnage.modSagesse);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+            if (competencesMatriseString.Contains("Tromperie"))
+            {
+                texte = "Tromperie = " + (personnage.modCharisme + personnage.bonusMaitrise);
+
+            }
+            else
+            {
+                texte = "Tromperie = " + (personnage.modCharisme);
+            }
+            AjouterParagraphe(section, texte, TAILLE_POLICE_NORMAL, false);
+
+
 
             section.AddPageBreak();
 
