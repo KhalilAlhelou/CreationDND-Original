@@ -15,7 +15,7 @@ namespace Model
         private const int TAILLE_POLICE_NORMAL = 14;
         private const int TAILLE_POLICE_TITRE = 20;
 
-        public void GenererLePDFDuPersonnage(Personnage personnage, bool estTest)
+        public string GenererLePDFDuPersonnage(Personnage personnage, bool estTest)
         {
             string texte;
             string nom = personnage.nom;
@@ -165,6 +165,8 @@ namespace Model
             string filename = nom + ".pdf";
             
             pdfRenderer.PdfDocument.Save(path + filename);
+
+            return (path + filename);
 
         }
 

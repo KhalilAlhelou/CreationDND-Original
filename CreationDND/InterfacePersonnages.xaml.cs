@@ -37,23 +37,7 @@ namespace CreationDND
         public void changerPage_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             
-        }
-
-        void genererPdf(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                _viewModel.creerFichePersonnagePDF(ComboBoxPersonnages.SelectedItem);
-            }
-            catch (System.IO.IOException)
-            {
-                MessageBox.Show("Le fichier est ouvert. Veuillez le fermer pour pouvoir sauvegarde le fichier PDF.", "Erreur");
-            }
-
-
-        }
-
-        
+        }        
         private void btnRetourDePagePersonnage_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
@@ -61,11 +45,20 @@ namespace CreationDND
             this.Close();
         }
 
-        private void pageDescription_click(object sender, RoutedEventArgs e)
+
+        private void afficherPdf(object sender, RoutedEventArgs e)
         {
-            InterfacePersonnagesDescription personnagesDescription = new InterfacePersonnagesDescription();
-            personnagesDescription.Show();
-            this.Close();
+            try
+            {
+                _viewModel.creerFichePersonnagePDF(ComboBoxPersonnages.SelectedItem);
+                InterfacePersonnagesDescription personnagesDescription = new InterfacePersonnagesDescription();
+                personnagesDescription.Show();
+                this.Close();
+            }
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("Le fichier est ouvert. Veuillez le fermer pour pouvoir sauvegarde le fichier PDF.", "Erreur");
+            }
         }
 
         public void changerPage_CanExecute(object sender, CanExecuteRoutedEventArgs e)
