@@ -89,6 +89,26 @@ namespace ViewModel
 
             return positionDesGroupes;
         }
+        
+        public void assignerNouvelleStat(ObservableCollection<int> newStat)
+        {
+            listeStats = newStat;
+
+            stat1 = listeStats[0].ToString();
+            stat2 = listeStats[1].ToString();
+            stat3 = listeStats[2].ToString();
+            stat4 = listeStats[3].ToString();
+            stat5 = listeStats[4].ToString();
+            stat6 = listeStats[5].ToString();
+
+            OnPropertyChange("listeStats");
+            OnPropertyChange("stat1");
+            OnPropertyChange("stat2");
+            OnPropertyChange("stat3");
+            OnPropertyChange("stat4");
+            OnPropertyChange("stat5");
+            OnPropertyChange("stat6");
+        }
 
         public void ajouterClasse(object selectedItem)
         {
@@ -162,7 +182,7 @@ namespace ViewModel
 
         }
 
-        public void ajouterLesStatistiques(int[] statistiques)
+        public void ajouterLesStatistiques(List<int> statistiques)
         {
             models.attribuerLesStatistiques(statistiques);
         }
@@ -182,6 +202,8 @@ namespace ViewModel
             stat4 = listeStats[3].ToString();
             stat5 = listeStats[4].ToString();
             stat6 = listeStats[5].ToString();
+
+            
         }
         
         public void insererCompetencesComboBox()

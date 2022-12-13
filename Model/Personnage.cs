@@ -154,7 +154,7 @@ namespace Model
            
         }
 
-        public void attribuerStatistique(int[] statistiques)
+        public void attribuerStatistique(List<int> statistiques)
         {
             force += statistiques[0];
             dexterite += statistiques[1];
