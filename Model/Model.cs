@@ -120,13 +120,14 @@ namespace Model {
             {
                 personnageEnCreation.ajouterEquipement(equipement);
             }
-            SauvegardeXml();
-            chargerXML();
+            
         }
 
-        public void attribuerLesStatistiques(int[] statistiques)
+        public void attribuerLesStatistiques(List<int> statistiques)
         {
             personnageEnCreation.attribuerStatistique(statistiques);
+            SauvegardeXml();
+            chargerXML();
         }
 
         public void GenererFichePersonnagePDF(Personnage personnage, bool estTest)
