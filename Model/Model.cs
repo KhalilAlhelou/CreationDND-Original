@@ -146,9 +146,9 @@ namespace Model {
             personnageEnCreation.attribuerStatistique(statistiques);
         }
 
-        public void GenererFichePersonnagePDF(Personnage personnage, bool estTest)
+        public string GenererFichePersonnagePDF(Personnage personnage, bool estTest)
         {
-            generateurPDF.GenererLePDFDuPersonnage(personnage, estTest);
+           return generateurPDF.GenererLePDFDuPersonnage(personnage, estTest);
         }
 
 

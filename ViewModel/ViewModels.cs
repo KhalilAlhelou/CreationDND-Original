@@ -32,6 +32,8 @@ namespace ViewModel
         public string stat5 { get; set; }
         public string stat6 { get; set; }
 
+        public string path { get; set; }
+
         public ObservableCollection<int> listeStats { get; set; }
 
         public string choixEquipementUnique { get; set; }
@@ -146,9 +148,9 @@ namespace ViewModel
         public void creerFichePersonnagePDF(object personnageSelectionne)
         {
             Personnage personnage = (Personnage)personnageSelectionne;
-            models.GenererFichePersonnagePDF(personnage, false);
+            path = models.GenererFichePersonnagePDF(personnage, false);
 
-
+            
         }
         
         public void afficherClasse(object classeSelectionnee)
