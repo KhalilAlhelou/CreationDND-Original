@@ -213,8 +213,11 @@ namespace Model
                     return;
                 }
             }
-
-            classeDArmure = armurePortee.calculerClasseArmure(modDexterite);
+            if(armurePortee != null)
+            {
+                classeDArmure = armurePortee.calculerClasseArmure(modDexterite);
+            }
+            
         }
 
         public XmlNode toXMl(XmlDocument doc)
